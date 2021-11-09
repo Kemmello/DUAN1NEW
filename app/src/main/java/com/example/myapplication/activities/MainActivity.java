@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BookFragment;
@@ -18,7 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
     BottomNavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout_main,fragment).commit();
+                        .replace(R.id.frame,fragment).commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -63,32 +63,10 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             HomeFragment fragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frameLayout_main,fragment).commit();
+                    .add(R.id.frame,fragment).commit();
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, new BookFragment()).commit();
     }
-
-//        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(MenuItem item) {
-//                Fragment selectfrg = null;
-//                switch (item.getItemId()) {
-//                    case R.id.favorite:
-//                        viewPager.setCurrentItem(0);
-//                        break;
-//                    case R.id.cart:
-//                        viewPager.setCurrentItem(1);
-//                        break;
-//                    case R.id.user:
-//                        viewPager.setCurrentItem(2);
-//                        break;
-//                    finish();
-//
-//                }
-//
-//                return true;
-//            }
-//        });
-
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
