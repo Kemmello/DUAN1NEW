@@ -1,39 +1,25 @@
 package com.example.myapplication.fragment;
 
-<<<<<<< HEAD
+
 import android.content.Context;
-=======
-import android.content.Intent;
->>>>>>> e6c2dcf2d8e66c722efcd5d628e9c0e56a951739
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
-
 
 public class LoginFragment extends Fragment {
     EditText edtUsername_Login, edtPassword_Login;
     Button btnLogin;
-    Context context;
 
     @Override
-<<<<<<< HEAD
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_fragment, container, false);
-=======
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        ViewGroup root = (ViewGroup)  inflater.inflate(R.layout.login_tag_fragment, container, false);
->>>>>>> e6c2dcf2d8e66c722efcd5d628e9c0e56a951739
         return root;
     }
 
