@@ -1,6 +1,5 @@
 package com.example.myapplication.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,13 +12,12 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.myapplication.R;
-import com.example.myapplication.fragment.GioHangFragment;
+import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.HomeFragment;
-import com.example.myapplication.fragment.SachFragment;
-import com.example.myapplication.fragment.TrangChuFragment;
+import com.example.myapplication.fragment.BookFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class TrangChinhActivity extends AppCompatActivity {
+public class DrawerActivity extends AppCompatActivity {
 
     FrameLayout main_content;
     DrawerLayout drawerLayout;
@@ -27,7 +25,7 @@ public class TrangChinhActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trang_chinh);
+        setContentView(R.layout.activity_drawer);
         main_content = this.findViewById(R.id.frameLayout);
         drawerLayout = this.findViewById(R.id.drawerLayout);
         toolbar = this.findViewById(R.id.toolbar);
@@ -39,13 +37,13 @@ public class TrangChinhActivity extends AppCompatActivity {
                 Fragment fragment = new Fragment();
                 switch (id){
                     case R.id.nav_trangchu:
-                        fragment = new TrangChuFragment();
+                        fragment = new HomeFragment();
                         break;
                     case R.id.nav_sach:
-                        fragment = new SachFragment();
+                        fragment = new BookFragment();
                         break;
                     case R.id.nav_giohang:
-                        fragment = new GioHangFragment();
+                        fragment = new CartFragment();
                         break;
 //                    case R.id.nav_giohang:
 //                        fragment = new ChiFragment();

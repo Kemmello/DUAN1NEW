@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     android:background="@color/GhostWhite"
-    tools:context=".activities.TrangChinhActivity"
+    tools:context=".activities.DrawerActivity"
     android:id="@+id/drawerLayout">
     <LinearLayout
         android:layout_width="match_parent"

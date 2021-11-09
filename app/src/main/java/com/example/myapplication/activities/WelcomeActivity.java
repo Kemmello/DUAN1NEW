@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(WelcomeActivity.this, SignUp.class);
+                Intent intent = new Intent(WelcomeActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         }, SPLASH_SCREEN_TIMEOUT);

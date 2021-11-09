@@ -1,7 +1,6 @@
 package com.example.myapplication.fragment;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
-import com.example.myapplication.activities.TrangChinhActivity;
+import com.example.myapplication.activities.DrawerActivity;
 
 public class LoginFragment extends Fragment {
     EditText edtUsername_Login, edtPassword_Login;
@@ -41,7 +40,7 @@ public class LoginFragment extends Fragment {
 //                } else {
 //                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
 //                }
-                Intent intent = new Intent(getActivity(), TrangChinhActivity.class);
+                Intent intent = new Intent(getActivity(), DrawerActivity.class);
                 startActivity(intent);
             }
         });

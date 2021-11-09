@@ -21,23 +21,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <!--        <com.denzcoskun.imageslider.ImageSlider-->
-                <!--            android:id="@+id/slider"-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="210dp"-->
-                <!--            app:auto_cycle="true"-->
-                <!--            app:corner_radius="5"-->
-                <!--            app:delay="0"-->
-                <!--            app:period="1000" />-->
 
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="BOOK STORE"
-                    android:textColor="#1B6E62"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:layout_height="200dp"
+                    android:src="@drawable/bookbackround"
+                    android:scaleType="fitXY"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

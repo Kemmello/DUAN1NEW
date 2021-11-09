@@ -12,10 +12,10 @@ import com.example.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SachFragment#newInstance} factory method to
+ * Use the {@link BookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SachFragment extends Fragment {
+public class BookFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class SachFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SachFragment() {
+    public BookFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class SachFragment extends Fragment {
      * @return A new instance of fragment SachFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SachFragment newInstance(String param1, String param2) {
-        SachFragment fragment = new SachFragment();
+    public static BookFragment newInstance(String param1, String param2) {
+        BookFragment fragment = new BookFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

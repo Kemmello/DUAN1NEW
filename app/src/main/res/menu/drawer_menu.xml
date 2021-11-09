@@ -5,38 +5,38 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_trangchu"
             android:icon="@drawable/ic_baseline_home_24"
-            android:title="Trang chủ"/>
+            android:title="Home"/>
         <item android:id="@+id/nav_sach"
             android:icon="@drawable/ic_menu_book"
-            android:title="Sách"/>
+            android:title="Book"/>
         <item android:id="@+id/nav_giohang"
             android:icon="@drawable/ic_shopping_cart"
-            android:title="Giỏ hàng"/>
+            android:title="Cart"/>
     </group>
-    <item android:title="Thống kê">
+    <item android:title="Statistical">
         <menu>
             <item android:id="@+id/nav_doanhthu"
                 android:icon="@drawable/ic_doanhthu"
-                android:title="Doanh thu"/>
+                android:title="Revenue"/>
             <item android:id="@+id/nav_topsach"
                 android:icon="@drawable/ic_top_sach"
-                android:title="Top 10 sách mua nhiều nhất"/>
+                android:title="Top 10 "/>
         </menu>
     </item>
-    <item android:title="Người dùng">
+    <item android:title="User">
         <menu>
             <item android:id="@+id/nav_thongtin"
                 android:icon="@drawable/ic_person"
-                android:title="Thông tin"/>
+                android:title="User Information"/>
             <item android:id="@+id/nav_lienhe"
                 android:icon="@drawable/ic_lienhe"
-                android:title="Liên hệ"/>
+                android:title="Contact"/>
             <item android:id="@+id/nav_doimatkhau"
                 android:icon="@drawable/ic_doi_mk"
-                android:title="Đổi mật khẩu"/>
+                android:title="Change Password"/>
             <item android:id="@+id/nav_thoat"
                 android:icon="@drawable/ic_baseline_exit_to_app_24"
-                android:title="Thoát"/>
+                android:title="Exit"/>
         </menu>
     </item>
 </menu>
