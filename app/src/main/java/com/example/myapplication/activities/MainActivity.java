@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 //        user.put("born", 1815);
 //
 //        // Add a new document with a generated ID
-//        db.collection("users")
+//        db.collection("BOOK")
 //                .add(user)
 //                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                    @Override
@@ -50,6 +50,30 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                });
 
+//        // Create a new user with a first, middle, and last name
+//        Map<String, Object> user = new HashMap<>();
+//        user.put("first", "Alan");
+//        user.put("middle", "Mathison");
+//        user.put("last", "Turing");
+//        user.put("born", 1912);
+//
+//        // Add a new document with a generated ID
+//        db.collection("BOOK")
+//                .add(user)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w(TAG, "Error adding document", e);
+//                    }
+//                });
+
+        //Read data:
         db.collection("BOOK")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -57,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Toast.makeText(MainActivity.this, document.get("TITLE").toString(), Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w("====>", "Error getting documents.", task.getException());
+                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });

@@ -2,6 +2,7 @@ package com.example.myapplication.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activities.TrangChinhActivity;
 
 public class LoginFragment extends Fragment {
     EditText edtUsername_Login, edtPassword_Login;
@@ -30,17 +32,19 @@ public class LoginFragment extends Fragment {
         edtPassword_Login = view.findViewById(R.id.edtPassword_Login);
         btnLogin = view.findViewById(R.id.btnLogin);
 
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 //                boolean isError = validate();
 //                if (isError) {
 //                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
 //                } else {
 //                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
 //                }
-//            }
-//        });
+                Intent intent = new Intent(getActivity(), TrangChinhActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 //    private boolean validate() {
