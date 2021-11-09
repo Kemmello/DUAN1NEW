@@ -13,8 +13,13 @@ import android.widget.FrameLayout;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.BookFragment;
+import com.example.myapplication.fragment.PasswordChangeFragment;
+import com.example.myapplication.fragment.RevenueFragment;
+import com.example.myapplication.fragment.TopFragment;
+import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerActivity extends AppCompatActivity {
@@ -42,26 +47,15 @@ public class DrawerActivity extends AppCompatActivity {
                     case R.id.nav_sach:
                         fragment = new BookFragment();
                         break;
-                    case R.id.nav_giohang:
-                        fragment = new CartFragment();
+                    case R.id.nav_topsach:
+                        fragment = new TopFragment();
                         break;
-//                    case R.id.nav_giohang:
-//                        fragment = new ChiFragment();
-//                        break;
-//                    case R.id.nav_giohang:
-//                        fragment = new ChiFragment();
-//                        break;
-//                    case R.id.nav_giohang:
-//                        fragment = new ChiFragment();
-//                        break;
-//                    case R.id.nav_giohang:
-//                        fragment = new ChiFragment();
-//                        break;
-//                    case R.id.nav_giohang:
-//                        fragment = new ChiFragment();
-//                        break;
-//                    case R.id.nav_giohang:
-//                        break;
+                    case R.id.nav_lienhe:
+                        fragment = new ContactFragment();
+                        break;
+                    case R.id.nav_doimatkhau:
+                        fragment = new PasswordChangeFragment();
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayout,fragment).commit();

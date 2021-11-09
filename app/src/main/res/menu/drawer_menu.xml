@@ -9,9 +9,6 @@
         <item android:id="@+id/nav_sach"
             android:icon="@drawable/ic_menu_book"
             android:title="Book"/>
-        <item android:id="@+id/nav_giohang"
-            android:icon="@drawable/ic_shopping_cart"
-            android:title="Cart"/>
     </group>
     <item android:title="Statistical">
         <menu>
@@ -25,9 +22,6 @@
     </item>
     <item android:title="User">
         <menu>
-            <item android:id="@+id/nav_thongtin"
-                android:icon="@drawable/ic_person"
-                android:title="User Information"/>
             <item android:id="@+id/nav_lienhe"
                 android:icon="@drawable/ic_lienhe"
                 android:title="Contact"/>

@@ -14,7 +14,13 @@ import android.widget.FrameLayout;
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.HomeFragment;
+import com.example.myapplication.fragment.LoginFragment;
+import com.example.myapplication.fragment.PasswordChangeFragment;
+import com.example.myapplication.fragment.RevenueFragment;
+import com.example.myapplication.fragment.TopFragment;
+import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -45,9 +51,18 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_sach:
                         fragment = new BookFragment();
                         break;
-                    case R.id.nav_giohang:
-                        fragment = new CartFragment();
-                        break;
+//                    case R.id.cart:
+//                        fragment = new RevenueFragment();
+//                        break;
+//                    case R.id.cart:
+//                        fragment = new TopFragment();
+//                        break;
+//                    case R.id.cart:
+//                        fragment = new ContactFragment();
+//                        break;
+//                    case R.id.cart:
+//                        fragment = new PasswordChangeFragment();
+//                        break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame,fragment).commit();
@@ -65,21 +80,24 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame,fragment).commit();
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame, new BookFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             Fragment selectfrg = null;
             switch (item.getItemId()) {
-                case R.id.favorite:
-                    selectfrg = new BookFragment();
-                    break;
-                case R.id.cart:
+                case R.id.home:
                     selectfrg = new HomeFragment();
                     break;
-                case R.id.user:
+                case R.id.cart:
                     selectfrg = new CartFragment();
+                    break;
+                case R.id.user:
+                    selectfrg = new UserFragment();
+                    break;
+                case R.id.exit:
+                    selectfrg = new LoginFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
