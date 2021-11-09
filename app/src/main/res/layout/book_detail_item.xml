@@ -7,15 +7,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chi tiết sách"
+        android:text="Book detail"
         android:textSize="45dp"
+        android:textColor="@color/mauchuchudao"
         android:layout_gravity="center"/>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         android:layout_margin="25dp"
-        android:backgroundTint="@color/xam">
+        android:backgroundTint="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,8 +40,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên sách"
+                android:text="Bookname"
                 android:textSize="20dp"
+                android:textColor="@color/mauchudennhat"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginBottom="15dp"
@@ -49,14 +51,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tác giả"
+                android:text="author"
+                android:textColor="@color/mauchudennhat"
                 android:textSize="20dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginBottom="15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thể loại"
+                android:text="type"
+                android:textColor="@color/mauchudennhat"
                 android:textSize="20dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginBottom="10dp"/>
@@ -70,7 +74,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         android:layout_margin="25dp"
-        android:backgroundTint="@color/xam">
+        android:backgroundTint="@color/colorBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,8 +98,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giá"
+                android:text="price"
                 android:textSize="30dp"
+                android:textColor="@color/red"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="45dp"
 
@@ -104,9 +109,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="Thêm vào giỏ hàng"
+                android:text="Add cart"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="140dp"
                 />
 
         </LinearLayout>
