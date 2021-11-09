@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape"
         android:text="Submit"
-        android:textColor="@color/black"
+        android:textColor="#DDFAED"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

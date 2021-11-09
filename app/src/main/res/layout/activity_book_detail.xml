@@ -9,7 +9,7 @@
         android:id="@+id/ToolbarChitiet"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="@string/app_chitietsanpham"
+        app:title="Book Detail"
         app:titleTextColor="#1B6E62"
         android:background="#DDFAED"/>
     <LinearLayout
@@ -75,7 +75,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chi tiết sản phẩm"
+            android:text="Book Detail"
             android:textStyle="bold"
             android:textSize="30dp"
             android:textColor="#2D6860"

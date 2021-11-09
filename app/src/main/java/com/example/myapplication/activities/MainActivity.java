@@ -1,6 +1,5 @@
 package com.example.myapplication.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = this.findViewById(R.id.drawerLayout_main);
         toolbar = this.findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.bottom_nav);
+
         navigationView.setOnNavigationItemSelectedListener(navlistener);
         NavigationView navigationView_main = findViewById(R.id.navView_main);
         navigationView_main.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_giohang:
                         fragment = new CartFragment();
                         break;
-
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayout_main,fragment).commit();
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected(MenuItem item) {
             Fragment selectfrg = null;
             switch (item.getItemId()) {
                 case R.id.favorite:

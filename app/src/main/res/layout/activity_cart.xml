@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#DDFAED"
-        app:title="@string/app_giohang"
+        app:title="Cart"
         app:titleTextColor="#1B6E62"
         android:id="@+id/toolbarGioHang"/>
     <LinearLayout
@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giỏ hàng bạn đang trống"
+                android:text="Cart is empty"
                 android:textSize="30dp"
                 android:layout_gravity="center"
                 android:id="@+id/tvToastGioHang"/>
@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng thanh toán "
+                android:text="Total: "
                 android:textSize="20dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"/>
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đặt hàng"
+            android:text="Buy"
             android:backgroundTint="#E41111"/>
       </LinearLayout>
 </LinearLayout>

@@ -17,7 +17,7 @@ public class SignupFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        ViewGroup root = (ViewGroup)  inflater.inflate(R.layout.signup_tag_fragment, container, false);
+        ViewGroup root = (ViewGroup)  inflater.inflate(R.layout.signup_fragment, container, false);
 
         email = root.findViewById(R.id.edtEmail);
         password = root.findViewById(R.id.edtPassword_SignUp);
