@@ -93,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/mauchudennhat"
             android:textSize="25dp"
             android:text="Change password"/>
         <TextView
@@ -100,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/mauchudennhat"
             android:textSize="25dp"
             android:text="Change password"/>
         <TextView
@@ -107,6 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/mauchudennhat"
             android:textSize="25dp"
             android:text="Change password"/>
         <TextView
@@ -114,6 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/mauchudennhat"
             android:textSize="25dp"
             android:text="Change password"/>
         <TextView
@@ -121,6 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/mauchudennhat"
             android:textSize="25dp"
             android:text="Change password"/>
         <androidx.cardview.widget.CardView
