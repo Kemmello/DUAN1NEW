@@ -1,92 +1,112 @@
 package com.example.myapplication.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+import android.view.MenuItem;
 
 import com.example.myapplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static android.content.ContentValues.TAG;
+import com.example.myapplication.fragment.BookFragment;
+import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.HomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    BottomNavigationView navigationView;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        // Create a new user with a first and last name
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("first", "Ada");
-//        user.put("last", "Lovelace");
-//        user.put("born", 1815);
-//
-//        // Add a new document with a generated ID
-//        db.collection("BOOK")
-//                .add(user)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error adding document", e);
-//                    }
-//                });
 
-//        // Create a new user with a first, middle, and last name
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("first", "Alan");
-//        user.put("middle", "Mathison");
-//        user.put("last", "Turing");
-//        user.put("born", 1912);
-//
-//        // Add a new document with a generated ID
-//        db.collection("BOOK")
-//                .add(user)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error adding document", e);
-//                    }
-//                });
+        drawerLayout = this.findViewById(R.id.drawerLayout_main);
+        toolbar = this.findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.bottom_nav);
+        navigationView.setOnNavigationItemSelectedListener(navlistener);
+        NavigationView navigationView_main = findViewById(R.id.navView_main);
+        navigationView_main.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int id = item.getItemId();
+                Fragment fragment = new Fragment();
+                switch (id) {
+                    case R.id.nav_trangchu:
+                        fragment = new HomeFragment();
+                        break;
+                    case R.id.nav_sach:
+                        fragment = new BookFragment();
+                        break;
+                    case R.id.nav_giohang:
+                        fragment = new CartFragment();
+                        break;
 
-        //Read data:
-        db.collection("BOOK")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
+                }
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout_main,fragment).commit();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
+                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null){
+            HomeFragment fragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.frameLayout_main,fragment).commit();
+        }
     }
+
+//        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem item) {
+//                Fragment selectfrg = null;
+//                switch (item.getItemId()) {
+//                    case R.id.favorite:
+//                        viewPager.setCurrentItem(0);
+//                        break;
+//                    case R.id.cart:
+//                        viewPager.setCurrentItem(1);
+//                        break;
+//                    case R.id.user:
+//                        viewPager.setCurrentItem(2);
+//                        break;
+//                    finish();
+//
+//                }
+//
+//                return true;
+//            }
+//        });
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectfrg = null;
+            switch (item.getItemId()) {
+                case R.id.favorite:
+                    selectfrg = new BookFragment();
+                    break;
+                case R.id.cart:
+                    selectfrg = new HomeFragment();
+                    break;
+                case R.id.user:
+                    selectfrg = new CartFragment();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
+            return true;
+        }
+    };
 }

@@ -17,11 +17,12 @@
         app:showAsAction="ifRoom"
         android:enabled="false"/>
     <item
+        android:id="@+id/user"
         android:title="User"
         app:showAsAction="ifRoom"
         android:icon="@drawable/iconuser"/>
     <item
-        android:title="User"
+        android:title="Exit"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/iconuser"/>
+        android:icon="@drawable/ic_baseline_exit_to_app_24"/>
 </menu>

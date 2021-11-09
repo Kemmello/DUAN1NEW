@@ -12,6 +12,7 @@
         android:orientation="vertical"
         tools:context=".activities.HomeActivity">
 
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -488,7 +489,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="50dp">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
