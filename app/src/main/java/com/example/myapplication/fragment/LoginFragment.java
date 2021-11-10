@@ -58,7 +58,7 @@ public class LoginFragment extends Fragment {
 //                    }
 //                }
 
-                Intent intent = new Intent(getActivity(), DrawerActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 
                 boolean isError = validate();
@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(context, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+//                    Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }
 
@@ -78,13 +78,13 @@ public class LoginFragment extends Fragment {
         boolean isError = false;
 
 
-    private boolean validate(String inputUsername, String inputPassword) {
-
-        if (inputUsername.equals(username) && inputPassword.equals(password)) {
-            return true;
-        } else {
-            return false;
-        }
+//    private boolean validate(String inputUsername, String inputPassword) {
+//
+//        if (inputUsername.equals(username) && inputPassword.equals(password)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
 //        String password = edtPassword_Login.getText().toString().trim();
 //        if (password.length() == 0) {
 //            edtPassword_Login.setError("Password không được để trống");

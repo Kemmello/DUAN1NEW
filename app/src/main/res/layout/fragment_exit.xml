@@ -13,14 +13,14 @@
         android:weightSum="3">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:layout_weight="1"
-        android:src="@drawable/avt_exit"/>
+        android:src="@drawable/s3"
+        android:layout_marginTop="40dp"/>
     <TextView
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hẹn gặp lại bạn"
+        android:layout_height="50dp"
+        android:text="See you soon"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="#1B6E62"
@@ -32,6 +32,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Log out"
             android:id="@+id/btnLogOut"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 </FrameLayout>
