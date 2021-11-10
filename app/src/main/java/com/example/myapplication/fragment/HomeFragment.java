@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
         cvNovel = view.findViewById(R.id.cvNovel);
         cvSchool = view.findViewById(R.id.cvSchool);
         cvLiterature = view.findViewById(R.id.cvLiterature);
-//        cvTechnology = view.findViewById(R.id.cvTechnology);
+        cvTechnology = view.findViewById(R.id.cvTechnology);
 
         tvShowMoreExplore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment {
         List<SliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItem(R.drawable.a));
         sliderItems.add(new SliderItem(R.drawable.a1));
-        sliderItems.add(new SliderItem(R.drawable.a2));
+        sliderItems.add(new SliderItem(R.drawable.avt));
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems,viewPager2));
 
