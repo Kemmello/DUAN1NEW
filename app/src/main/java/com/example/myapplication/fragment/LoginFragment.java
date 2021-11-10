@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment {
             }
         });
     }
-
+ 
     private boolean validate() {
         boolean isError = false;
 
