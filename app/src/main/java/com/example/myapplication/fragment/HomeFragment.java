@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment {
         List<SliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItem(R.drawable.a));
         sliderItems.add(new SliderItem(R.drawable.a1));
-        sliderItems.add(new SliderItem(R.drawable.avt));
+        sliderItems.add(new SliderItem(R.drawable.a2));
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems,viewPager2));
 
