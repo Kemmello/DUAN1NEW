@@ -16,15 +16,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--        <com.denzcoskun.imageslider.ImageSlider-->
-            <!--            android:id="@+id/slider"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="210dp"-->
-            <!--            app:auto_cycle="true"-->
-            <!--            app:corner_radius="5"-->
-            <!--            app:delay="0"-->
-            <!--            app:period="1000" />-->
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
