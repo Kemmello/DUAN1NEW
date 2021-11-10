@@ -15,6 +15,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.ContactFragment;
+import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.LoginFragment;
 import com.example.myapplication.fragment.PasswordChangeFragment;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     selectfrg = new UserFragment();
                     break;
                 case R.id.exit:
-                    selectfrg = new LoginFragment();
+                    selectfrg = new ExitFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
