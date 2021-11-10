@@ -9,26 +9,22 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
-import com.example.myapplication.fragment.ContactFragment;
-import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.LoginFragment;
-import com.example.myapplication.fragment.PasswordChangeFragment;
-import com.example.myapplication.fragment.RevenueFragment;
-import com.example.myapplication.fragment.TopFragment;
 import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
     BottomNavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
@@ -98,11 +95,12 @@ public class MainActivity extends AppCompatActivity {
                     selectfrg = new UserFragment();
                     break;
                 case R.id.exit:
-                    selectfrg = new ExitFragment();
+                    selectfrg = new LoginFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
             return true;
         }
     };
+
 }

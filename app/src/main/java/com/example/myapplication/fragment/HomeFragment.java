@@ -5,12 +5,19 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.SliderAdapter;
+import com.example.myapplication.model.SliderItem;
 import com.example.myapplication.activities.SignUpActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,6 +28,9 @@ public class HomeFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     TextView tvShowMoreExplore,tvShowMoreNew,tvShowMoreSell,tvShowMoreSale,tvShowMoreRecommend;
     CardView cvChildren,cvNovel,cvSchool,cvLiterature,cvTechnology;
+
+    ViewPager2 viewPager2;
+    Handler sliderHandler = new Handler();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,15 +40,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//                ImageSlider imageSlider = findViewById(R.id.slider);
-//        List<SlideModel> slideModels = new ArrayList<>();
-//        slideModels.add(new SlideModel("https://www.pixelstalk.net/wp-content/uploads/2016/11/Dandelion-Background-Full-HD.jpg","1 Image"));
-//        slideModels.add(new SlideModel("https://scr.vn/wp-content/uploads/2020/07/H%C3%ACnh-n%E1%BB%81n-Anime-4k-cho-desktop.jpg","2 Image"));
-//        slideModels.add(new SlideModel("http://3.bp.blogspot.com/-Cb0sId5ZlhY/U4RDKxBRFxI/AAAAAAAARvk/-5tjDo7U9FE/s1600/Winter-2.jpg","3 Image"));
-//        slideModels.add(new SlideModel("http://1.bp.blogspot.com/-9B2JNcvWR_E/VFbtDZuaCCI/AAAAAAAAG_U/roxyNysD_RI/s1600/phong-canh-3d-13.jpg","4 Image"));
-//        slideModels.add(new SlideModel("https://socbay.mobi/publics/uploads/2-2020/post/13053449290220_bo-hinh-nen-desktop-do-phan-giai-cao.jpg","5 Image"));
-//        imageSlider.setImageList(slideModels,true);
-
         tvShowMoreExplore = view.findViewById(R.id.tvShowMoreExplore);
         tvShowMoreNew = view.findViewById(R.id.tvShowMoreNew);
         tvShowMoreSell = view.findViewById(R.id.tvShowMoreSell);
@@ -120,5 +121,58 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        viewPager2 = view.findViewById(R.id.ViewPagerImageSlider);
+        List<SliderItem> sliderItems = new ArrayList<>();
+        sliderItems.add(new SliderItem(R.drawable.a1));
+        sliderItems.add(new SliderItem(R.drawable.a));
+        sliderItems.add(new SliderItem(R.drawable.a2));
+
+        viewPager2.setAdapter(new SliderAdapter(sliderItems,viewPager2));
+
+        viewPager2.setClipToPadding(false);
+        viewPager2.setClipChildren(false);
+        viewPager2.setOffscreenPageLimit(3);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.85f + r * 0.15f);
+            }
+        });
+
+        viewPager2.setPageTransformer(compositePageTransformer);
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sliderHandler.removeCallbacks(sliderRunnable);
+                sliderHandler.postDelayed(sliderRunnable,4000);
+            }
+        });
+    }
+
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+        }
+    };
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sliderHandler.removeCallbacks(sliderRunnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sliderHandler.postDelayed(sliderRunnable,4000);
     }
 }

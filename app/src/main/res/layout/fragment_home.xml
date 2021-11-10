@@ -11,6 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".activities.HomeActivity">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ViewPagerImageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:layout_marginTop="8dp"/>
 
 
         <ScrollView
@@ -21,13 +28,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/bookbackround"
-                    android:scaleType="fitXY"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
