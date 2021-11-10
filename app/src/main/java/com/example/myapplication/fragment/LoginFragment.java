@@ -20,7 +20,12 @@ import com.example.myapplication.activities.MainActivity;
 public class LoginFragment extends Fragment {
     EditText edtUsername_Login, edtPassword_Login;
     Button btnLogin;
+
+    private String username = "admin";
+    private String password = "admin";
+
     Context context;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +43,24 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                String inputUserName = edtUsername_Login.getText().toString();
+                String inputPassword = edtPassword_Login.getText().toString();
+
+                boolean isValid = false;
+//                if (inputUserName.isEmpty()||inputPassword.isEmpty()) {
+//                    Toast.makeText().show();
+//                } else {
+//                    isValid =  validate(inputUserName,inputPassword);
+//                    if (!isValid){
+//
+//                    }
+//                }
+
+                Intent intent = new Intent(getActivity(), DrawerActivity.class);
+                startActivity(intent);
+
                 boolean isError = validate();
                 if (isError) {
                     Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
@@ -46,12 +69,30 @@ public class LoginFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }
+
             }
         });
     }
  
     private boolean validate() {
         boolean isError = false;
+
+
+    private boolean validate(String inputUsername, String inputPassword) {
+
+        if (inputUsername.equals(username) && inputPassword.equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
+//        String password = edtPassword_Login.getText().toString().trim();
+//        if (password.length() == 0) {
+//            edtPassword_Login.setError("Password không được để trống");
+//            isError = true;
+//        } else {
+//            isError = false;
+//        }
+//        return isError;
 
         String username = edtUsername_Login.getText().toString().trim();
         if (username.length() == 0) {
@@ -68,5 +109,6 @@ public class LoginFragment extends Fragment {
             isError = false;
         }
         return isError;
+
     }
 }
