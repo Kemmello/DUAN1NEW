@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -17,6 +18,8 @@ import com.example.myapplication.activities.DrawerActivity;
 public class LoginFragment extends Fragment {
     EditText edtUsername_Login, edtPassword_Login;
     Button btnLogin;
+    private String username = "admin";
+    private String password = "admin";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,28 +37,33 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                boolean isError = validate();
-//                if (isError) {
-//                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+
+                String inputUserName = edtUsername_Login.getText().toString();
+                String inputPassword = edtPassword_Login.getText().toString();
+
+                boolean isValid = false;
+//                if (inputUserName.isEmpty()||inputPassword.isEmpty()) {
+//                    Toast.makeText().show();
 //                } else {
-//                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+//                    isValid =  validate(inputUserName,inputPassword);
+//                    if (!isValid){
+//
+//                    }
 //                }
+
                 Intent intent = new Intent(getActivity(), DrawerActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-//    private boolean validate() {
-//        boolean isError = false;
-//
-//        String username = edtUsername_Login.getText().toString().trim();
-//        if (username.length() == 0) {
-//            edtUsername_Login.setError("Tên người dùng không được để trống");
-//            isError = true;
-//        } else {
-//            isError = false;
-//        }
+    private boolean validate(String inputUsername, String inputPassword) {
+
+        if (inputUsername.equals(username) && inputPassword.equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
 //        String password = edtPassword_Login.getText().toString().trim();
 //        if (password.length() == 0) {
 //            edtPassword_Login.setError("Password không được để trống");
@@ -64,5 +72,5 @@ public class LoginFragment extends Fragment {
 //            isError = false;
 //        }
 //        return isError;
-//    }
+    }
 }
