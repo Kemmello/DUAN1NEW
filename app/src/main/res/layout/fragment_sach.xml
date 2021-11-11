@@ -5,19 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragment.BookFragment">
 
-    <LinearLayout
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="ALL BOOK"
-            android:textColor="#1B6E62"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
-    </LinearLayout>
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

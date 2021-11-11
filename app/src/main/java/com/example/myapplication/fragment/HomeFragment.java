@@ -127,12 +127,6 @@ public class HomeFragment extends Fragment {
         sliderItems.add(new SliderItem(R.drawable.a));
         sliderItems.add(new SliderItem(R.drawable.a1));
         sliderItems.add(new SliderItem(R.drawable.a2));
-<<<<<<< Updated upstream
-=======
-        sliderItems.add(new SliderItem(R.drawable.a3));
-        sliderItems.add(new SliderItem(R.drawable.a4));
-        sliderItems.add(new SliderItem(R.drawable.a5));
->>>>>>> Stashed changes
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems,viewPager2));
 
