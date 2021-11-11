@@ -9,6 +9,7 @@
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_drawer.xml" value="0.22644927536231885" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_gio_hang.xml" value="0.22644927536231885" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_sign_up.xml" value="0.13541666666666666" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_welcome.xml" value="0.22644927536231885" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/book_detail_item.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/book_item.xml" value="0.23369565217391305" />
@@ -19,6 +20,9 @@
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/fragment_sach.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/fragment_user.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/giohang_item.xml" value="0.4" />
+        <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/login_fragment.xml" value="0.21302083333333333" />
+        <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/signup_fragment.xml" value="0.264" />
+        <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/signup_tag_fragment.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/Admin/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/book_detail_item.xml" value="0.259375" />
         <entry key="..\:/Users/Admin/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/book_item.xml" value="0.259375" />
         <entry key="..\:/Users/Admin/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_book.xml" value="0.259375" />
