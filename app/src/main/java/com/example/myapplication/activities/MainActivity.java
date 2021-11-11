@@ -1,5 +1,6 @@
 package com.example.myapplication.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -19,6 +21,8 @@ import com.example.myapplication.fragment.LoginFragment;
 import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = this.findViewById(R.id.drawerLayout_main);
         toolbar = this.findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.bottom_nav);
 
         navigationView.setOnNavigationItemSelectedListener(navlistener);
@@ -45,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_trangchu:
                         fragment = new HomeFragment();
+                        toolbar.setTitle("Home");
                         break;
                     case R.id.nav_sach:
+                        toolbar.setTitle("Sách");
                         fragment = new BookFragment();
                         break;
 //                    case R.id.cart:
@@ -79,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.frame,fragment).commit();
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+
+
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -103,5 +114,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+
 
 }
