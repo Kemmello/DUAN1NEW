@@ -15,9 +15,13 @@ import android.view.MenuItem;
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.LoginFragment;
+import com.example.myapplication.fragment.PasswordChangeFragment;
+import com.example.myapplication.fragment.RevenueFragment;
+import com.example.myapplication.fragment.TopFragment;
 import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -56,18 +60,18 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.setTitle("Sách");
                         fragment = new BookFragment();
                         break;
-//                    case R.id.cart:
-//                        fragment = new RevenueFragment();
-//                        break;
-//                    case R.id.cart:
-//                        fragment = new TopFragment();
-//                        break;
-//                    case R.id.cart:
-//                        fragment = new ContactFragment();
-//                        break;
-//                    case R.id.cart:
-//                        fragment = new PasswordChangeFragment();
-//                        break;
+                    case R.id.nav_doanhthu:
+                        fragment = new RevenueFragment();
+                        break;
+                    case R.id.nav_topsach:
+                        fragment = new TopFragment();
+                        break;
+                    case R.id.nav_lienhe:
+                        fragment = new ContactFragment();
+                        break;
+                    case R.id.nav_doimatkhau:
+                        fragment = new PasswordChangeFragment();
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame,fragment).commit();
