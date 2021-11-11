@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,6 +23,7 @@ public class SignupFragment extends Fragment {
         email = root.findViewById(R.id.edtEmail);
         password = root.findViewById(R.id.edtPassword_SignUp);
         repeatPassword = root.findViewById(R.id.edtRepeatPassword);
+        btnSubmit = root.findViewById(R.id.btnSubmit);
 
 //        mobileNumber.setTranslationX(800);
 //        email.setTranslationX(800);
@@ -37,6 +39,14 @@ public class SignupFragment extends Fragment {
 //        email.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(300).start();
 //        password.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(300).start();
 //        repeatPassword.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(300).start();
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"Đăng ký thành công",Toast.LENGTH_LONG).show();
+            }
+        });
+
         return root;
     }
 }

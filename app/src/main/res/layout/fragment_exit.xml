@@ -25,13 +25,21 @@
         android:gravity="center"
         android:textColor="#1B6E62"
         android:textSize="40dp"/>
+
         <Button
+            android:id="@+id/btnLogOut"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:gravity="center"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="Log out"
+<<<<<<< Updated upstream
             android:id="@+id/btnLogOut"
             android:textSize="20dp"/>
+=======
+            android:textSize="20dp"
+            android:backgroundTint="#1B6E62"/>
+>>>>>>> Stashed changes
     </LinearLayout>
 </FrameLayout>
