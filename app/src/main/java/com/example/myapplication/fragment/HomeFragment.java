@@ -124,9 +124,13 @@ public class HomeFragment extends Fragment {
 
         viewPager2 = view.findViewById(R.id.ViewPagerImageSlider);
         List<SliderItem> sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItem(R.drawable.a1));
         sliderItems.add(new SliderItem(R.drawable.a));
+        sliderItems.add(new SliderItem(R.drawable.a1));
         sliderItems.add(new SliderItem(R.drawable.a2));
+        sliderItems.add(new SliderItem(R.drawable.a3));
+        sliderItems.add(new SliderItem(R.drawable.a4));
+        sliderItems.add(new SliderItem(R.drawable.a5));
+        sliderItems.add(new SliderItem(R.drawable.a6));
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems,viewPager2));
 
