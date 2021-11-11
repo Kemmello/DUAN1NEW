@@ -10,12 +10,14 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapter.SignUpAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     ToggleButton fabFacebook, fabGoogle;
     float v=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
