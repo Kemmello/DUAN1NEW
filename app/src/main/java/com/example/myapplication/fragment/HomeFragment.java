@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.adapter.BookAdapter;
 import com.example.myapplication.adapter.SliderAdapter;
 import com.example.myapplication.model.Book;
@@ -36,7 +37,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     TextView tvShowMoreNew, tvShowMoreSell, tvShowMoreSale, tvShowMoreRecommend;
-    CardView cvChildren, cvNovel, cvSchool, cvLiterature, cvTechnology;
+    CardView cvChildren, cvNovel, cvSchool, cvLiterature, cvTechnology,cvPolitics,cvHistory;
 
     //List
     FirebaseFirestore firestore;
@@ -163,7 +164,8 @@ public class HomeFragment extends Fragment {
         cvSchool = view.findViewById(R.id.cvSchool);
         cvLiterature = view.findViewById(R.id.cvLiterature);
         cvTechnology = view.findViewById(R.id.cvTechnology);
-
+        cvPolitics = view.findViewById(R.id.cvPolitics);
+        cvHistory = view.findViewById(R.id.cvHistory);
 
         tvShowMoreNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,35 +198,56 @@ public class HomeFragment extends Fragment {
         cvChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Sách trẻ em");
                 startActivity(intent);
             }
         });
         cvNovel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Tiểu thuyết");
                 startActivity(intent);
             }
         });
         cvSchool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Sách giáo khoa");
                 startActivity(intent);
             }
         });
         cvLiterature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Sách Văn Học - Nghệ Thuật");
                 startActivity(intent);
             }
         });
         cvTechnology.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Sách Khoa học - Công nghệ");
+                startActivity(intent);
+            }
+        });
+        cvPolitics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Sách Chính trị - Xã hội");
+                startActivity(intent);
+            }
+        });
+        cvHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("type", "Sách lịch sử");
                 startActivity(intent);
             }
         });
