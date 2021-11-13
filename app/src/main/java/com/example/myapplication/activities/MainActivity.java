@@ -1,32 +1,33 @@
 package com.example.myapplication.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.ChangePasswordFragment;
 import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
-import com.example.myapplication.fragment.LoginFragment;
-import com.example.myapplication.fragment.PasswordChangeFragment;
 import com.example.myapplication.fragment.RevenueFragment;
 import com.example.myapplication.fragment.TopFragment;
 import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ContactFragment();
                         break;
                     case R.id.nav_doimatkhau:
-                        fragment = new PasswordChangeFragment();
+                        fragment = new ChangePasswordFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
@@ -90,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.frame,fragment).commit();
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
-
-
 
 
     }
