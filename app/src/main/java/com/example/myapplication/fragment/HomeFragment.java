@@ -16,6 +16,8 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,9 @@ public class HomeFragment extends Fragment {
     TextView tvShowMoreNew, tvShowMoreSell, tvShowMoreSale, tvShowMoreRecommend;
     CardView cvChildren, cvNovel, cvSchool, cvLiterature, cvTechnology,cvPolitics,cvHistory;
 
+    ProgressBar progressBar;
+    ScrollView scvHome;
+
     //List
     FirebaseFirestore firestore;
     RecyclerView recyclerNewBook , recyclerViewTopSell , recyclerViewSale , recyclerViewRecommend;
@@ -60,6 +65,12 @@ public class HomeFragment extends Fragment {
         recyclerViewTopSell = root.findViewById(R.id.recyclerViewTopSell);
         recyclerViewSale = root.findViewById(R.id.recyclerViewSale);
         recyclerViewRecommend = root.findViewById(R.id.recyclerViewRecommend);
+
+        scvHome = root.findViewById(R.id.scvHome);
+        progressBar = root.findViewById(R.id.progressbar);
+
+        progressBar.setVisibility(View.VISIBLE);
+        scvHome.setVisibility(View.GONE);
 
         recyclerNewBook.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         recyclerViewTopSell.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -91,6 +102,9 @@ public class HomeFragment extends Fragment {
                                 Book book = document.toObject(Book.class);
                                 newlist.add(book);
                                 bookAdapter.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
