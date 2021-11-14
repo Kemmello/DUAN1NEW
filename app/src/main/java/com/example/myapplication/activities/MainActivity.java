@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.BillFragment;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.ChangePasswordFragment;
@@ -108,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.user:
                     selectfrg = new UserFragment();
+                    break;
+                case R.id.list_bottom:
+                    selectfrg = new BillFragment();
                     break;
                 case R.id.exit:
                     selectfrg = new ExitFragment();
