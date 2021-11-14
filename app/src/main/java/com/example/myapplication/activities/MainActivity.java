@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BillFragment;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.bottom_nav);
+        title = findViewById(R.id.title);
 
         navigationView.setOnNavigationItemSelectedListener(navlistener);
         NavigationView navigationView_main = findViewById(R.id.navView_main);
@@ -56,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_trangchu:
                         fragment = new HomeFragment();
+                        title.setText("HOME");
                         break;
                     case R.id.nav_sach:
                         fragment = new BookFragment();
+                        title.setText("BOOK");
                         break;
                     case R.id.nav_doanhthu:
                         fragment = new RevenueFragment();

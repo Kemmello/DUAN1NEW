@@ -20,8 +20,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include
-            layout="@layout/toolbar"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:background="#DDFAED"
+                android:layout_centerVertical="true"
+                android:layout_height="?attr/actionBarSize"
+                android:fitsSystemWindows="true"
+                app:titleTextColor="@color/white"
+                android:id="@+id/toolbar">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:text="BOOK STORE"
+                        android:textColor="#1B6E62"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/iconsearch"
+                        android:layout_marginLeft="-50dp"
+                        android:layout_marginTop="6dp"/>
+
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="match_parent"
