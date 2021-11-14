@@ -7,6 +7,19 @@
     tools:context=".fragment.HomeFragment"
     android:background="#72EDE7E9">
 
+    <ScrollView
+        android:id="@+id/scvHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/progressbar"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,9 +35,7 @@
             android:paddingEnd="50dp" />
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -442,8 +453,10 @@
 
             </LinearLayout>
 
-        </ScrollView>
+
 
     </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </FrameLayout>
