@@ -71,6 +71,7 @@
                     android:layout_height="wrap_content"
                     />
                 <EditText
+                    android:background="#00000000"
                     android:inputType="textNoSuggestions"
                     android:layout_below="@+id/tv1"
                     android:textSize="20dp"
@@ -99,6 +100,7 @@
                     android:layout_height="wrap_content"
                     />
                 <EditText
+                    android:background="#00000000"
                     android:inputType="textNoSuggestions"
                     android:layout_below="@+id/tv3"
                     android:textSize="20dp"
@@ -129,6 +131,7 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
+                android:background="#00000000"
                 android:inputType="textNoSuggestions"
                 android:layout_below="@+id/tv5"
                 android:textSize="20dp"
@@ -157,6 +160,7 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
+                android:background="#00000000"
                 android:inputType="textNoSuggestions"
                 android:textSize="20dp"
 
@@ -184,6 +188,7 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
+                android:background="#00000000"
                 android:inputType="textNoSuggestions"
                 android:textSize="20dp"
 
