@@ -20,7 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     ViewPager viewPager;
     ToggleButton fabFacebook, fabGoogle;
     float v=0;
-    private  FirebaseAuth auth;
+    private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
 
 

@@ -55,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_trangchu:
                         fragment = new HomeFragment();
-                        toolbar.setTitle("Home");
                         break;
                     case R.id.nav_sach:
-                        toolbar.setTitle("Sách");
                         fragment = new BookFragment();
                         break;
                     case R.id.nav_doanhthu:
