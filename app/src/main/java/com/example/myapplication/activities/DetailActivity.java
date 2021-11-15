@@ -3,6 +3,7 @@ package com.example.myapplication.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
     Button btnAddCart;
     Book book = null;
 
+    int totalQuantity = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,5 +46,25 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         btnAddCart = this.findViewById(R.id.btnAddCart);
+
+        imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(totalQuantity > 0){
+                    totalQuantity--;
+                    tvQuantity.setText(String.valueOf(totalQuantity));
+                }
+            }
+        });
+
+        imgMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(totalQuantity < 10){
+                    totalQuantity++;
+                    tvQuantity.setText(String.valueOf(totalQuantity));
+                }
+            }
+        });
     }
 }
