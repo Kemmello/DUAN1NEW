@@ -40,12 +40,12 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.087" />
+            app:layout_constraintVertical_bias="0.061" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="372dp"
+            android:layout_height="391dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".7"
@@ -54,29 +54,30 @@
             app:layout_constraintTop_toBottomOf="@+id/tab_Layout"
             app:layout_constraintVertical_bias="0.02" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+        <ToggleButton
+            android:id="@+id/btn_google"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/google_button"
             android:elevation="35dp"
-            android:src="@drawable/ic_google__g__logo"
+            android:textOff=""
+            android:textOn=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.633"
+            app:layout_constraintHorizontal_bias="0.623"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_pager"
             app:layout_constraintVertical_bias="0.0" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_facebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:elevation="35dp"
-            android:src="@drawable/ic_facebook_logo"
+        <ToggleButton
+            android:id="@+id/btn_facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textOn=""
+            android:textOff=""
+            android:background="@drawable/facebook_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fab_google"
+            app:layout_constraintEnd_toStartOf="@+id/btn_google"
             app:layout_constraintHorizontal_bias="0.779"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_pager"

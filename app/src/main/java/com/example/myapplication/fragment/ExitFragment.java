@@ -17,12 +17,13 @@ import android.widget.Button;
 import com.example.myapplication.R;
 import com.example.myapplication.activities.MainActivity;
 import com.example.myapplication.activities.SignUpActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class ExitFragment extends Fragment {
 
 Button btnLogOut;
-
+FirebaseAuth auth;
     public ExitFragment() {
         // Required empty public constructor
     }
@@ -38,7 +39,7 @@ Button btnLogOut;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        auth = FirebaseAuth.getInstance();
         btnLogOut = view.findViewById(R.id.btnLogOut);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +56,8 @@ Button btnLogOut;
                 builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getContext(), SignUpActivity.class);
-                        startActivity(intent);
+                        auth.signOut();
+                        getActivity().finish();
                     }
                 });
                 builder.show();

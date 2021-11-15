@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AllBookActivity"
     android:backgroundTint="@color/backGroundAllBook">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rcvAllBook"
         android:backgroundTint="@color/backGroundAllBook"
+        android:layout_marginBottom="65dp"
+        android:layout_marginLeft="5dp"
         >
 
     </androidx.recyclerview.widget.RecyclerView>

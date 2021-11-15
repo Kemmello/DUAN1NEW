@@ -12,14 +12,11 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.myapplication.R;
-import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.ChangePasswordFragment;
 import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.BookFragment;
-import com.example.myapplication.fragment.PasswordChangeFragment;
-import com.example.myapplication.fragment.RevenueFragment;
 import com.example.myapplication.fragment.TopFragment;
-import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerActivity extends AppCompatActivity {
@@ -54,7 +51,7 @@ public class DrawerActivity extends AppCompatActivity {
                         fragment = new ContactFragment();
                         break;
                     case R.id.nav_doimatkhau:
-                        fragment = new PasswordChangeFragment();
+                        fragment = new ChangePasswordFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
