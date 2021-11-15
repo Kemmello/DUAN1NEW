@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if (book != null){
             Glide.with(getApplicationContext()).load(book.getIMAGE()).into(imageViewDetail);
-            tvBookNameDetail.setText(book.getNEWBOOK());
+            tvBookNameDetail.setText(book.getTITLE());
             tvBookAuthorDetail.setText(book.getAUTHOR());
             tvBookTypeDetail.setText(book.getTYPENAME());
         }

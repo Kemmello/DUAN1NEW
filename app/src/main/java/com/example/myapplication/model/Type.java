@@ -1,20 +1,20 @@
 package com.example.myapplication.model;
 
 public class Type {
-    String AUTHOR, IMAGE, INTRODUCTION, PRICE, TITLE, TYPENAME;
-    Integer PAGE;
+    String AUTHOR, IMAGE, INTRODUCTION, TITLE, TYPENAME;
+    Integer PAGE , PRICE;
 
     public Type() {
     }
 
-    public Type(String AUTHOR, String IMAGE, String INTRODUCTION, String PRICE, String TITLE, String TYPENAME, Integer PAGE) {
+    public Type(String AUTHOR, String IMAGE, String INTRODUCTION, String TITLE, String TYPENAME, Integer PAGE, Integer PRICE) {
         this.AUTHOR = AUTHOR;
         this.IMAGE = IMAGE;
         this.INTRODUCTION = INTRODUCTION;
-        this.PRICE = PRICE;
         this.TITLE = TITLE;
         this.TYPENAME = TYPENAME;
         this.PAGE = PAGE;
+        this.PRICE = PRICE;
     }
 
     public String getAUTHOR() {
@@ -41,14 +41,6 @@ public class Type {
         this.INTRODUCTION = INTRODUCTION;
     }
 
-    public String getPRICE() {
-        return PRICE;
-    }
-
-    public void setPRICE(String PRICE) {
-        this.PRICE = PRICE;
-    }
-
     public String getTITLE() {
         return TITLE;
     }
@@ -71,5 +63,13 @@ public class Type {
 
     public void setPAGE(Integer PAGE) {
         this.PAGE = PAGE;
+    }
+
+    public Integer getPRICE() {
+        return PRICE;
+    }
+
+    public void setPRICE(Integer PRICE) {
+        this.PRICE = PRICE;
     }
 }

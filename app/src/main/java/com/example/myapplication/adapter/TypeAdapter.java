@@ -40,7 +40,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
         Glide.with(context).load(list.get(position).getIMAGE()).into(holder.imageView4);
         holder.tvTenSach.setText(list.get(position).getTITLE());
         holder.tvAuthor.setText(list.get(position).getAUTHOR());
-        holder.tvPrice.setText(list.get(position).getPRICE());
+        holder.tvPrice.setText(list.get(position).getPRICE().toString());
     }
 
     @Override
