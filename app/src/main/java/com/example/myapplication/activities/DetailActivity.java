@@ -2,6 +2,7 @@ package com.example.myapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.model.Book;
 
 public class DetailActivity extends AppCompatActivity {
-    ImageView imageViewDetail , imgAdd , imgMinus;
-    TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvQuantity;
+    ImageView imageViewDetail , imgAdd , imgMinus , imgBack;
+    TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvQuantity;
     Button btnAddCart;
     Book book = null;
 
@@ -32,10 +33,12 @@ public class DetailActivity extends AppCompatActivity {
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
         imgAdd = this.findViewById(R.id.imgAdd);
         imgMinus = this.findViewById(R.id.imgMinus);
+        imgBack = this.findViewById(R.id.imgBack);
 
         tvBookNameDetail = this.findViewById(R.id.tvBookNameDetail);
         tvBookAuthorDetail = this.findViewById(R.id.tvBookAuthorDetail);
         tvBookTypeDetail = this.findViewById(R.id.tvBookTypeDetail);
+        tvBookPageDetail = this.findViewById(R.id.tvBookPageDetail);
         tvQuantity = this.findViewById(R.id.tvQuantity);
 
         if (book != null){
@@ -43,15 +46,24 @@ public class DetailActivity extends AppCompatActivity {
             tvBookNameDetail.setText(book.getTITLE());
             tvBookAuthorDetail.setText(book.getAUTHOR());
             tvBookTypeDetail.setText(book.getTYPENAME());
+            tvBookPageDetail.setText(book.getPAGE()+"");
         }
 
         btnAddCart = this.findViewById(R.id.btnAddCart);
 
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(totalQuantity > 0){
-                    totalQuantity--;
+                if(totalQuantity < 10){
+                    totalQuantity++;
                     tvQuantity.setText(String.valueOf(totalQuantity));
                 }
             }
@@ -60,8 +72,9 @@ public class DetailActivity extends AppCompatActivity {
         imgMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(totalQuantity < 10){
-                    totalQuantity++;
+
+                if(totalQuantity > 0){
+                    totalQuantity--;
                     tvQuantity.setText(String.valueOf(totalQuantity));
                 }
             }

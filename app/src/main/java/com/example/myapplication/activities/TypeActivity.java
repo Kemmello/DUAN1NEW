@@ -42,8 +42,8 @@ public class TypeActivity extends AppCompatActivity {
         rcvType.setAdapter(typeAdapter);
 
         /////Sách trẻ em
-        if(type != null && type.equalsIgnoreCase("Sách trẻ em")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Sách trẻ em").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if(type != null && type.equalsIgnoreCase("Trẻ em")){
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Trẻ em").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
