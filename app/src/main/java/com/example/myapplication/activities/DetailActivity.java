@@ -15,7 +15,7 @@ import com.example.myapplication.model.Book;
 
 public class DetailActivity extends AppCompatActivity {
     ImageView imageViewDetail , imgAdd , imgMinus , imgBack;
-    TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvQuantity;
+    TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvBookIntroduction , tvBookPriceDetail , tvQuantity;
     Button btnAddCart;
     Book book = null;
 
@@ -39,6 +39,8 @@ public class DetailActivity extends AppCompatActivity {
         tvBookAuthorDetail = this.findViewById(R.id.tvBookAuthorDetail);
         tvBookTypeDetail = this.findViewById(R.id.tvBookTypeDetail);
         tvBookPageDetail = this.findViewById(R.id.tvBookPageDetail);
+        tvBookIntroduction = this.findViewById(R.id.tvBookIntroduction);
+        tvBookPriceDetail = this.findViewById(R.id.tvBookPriceDetail);
         tvQuantity = this.findViewById(R.id.tvQuantity);
 
         if (book != null){
@@ -46,7 +48,9 @@ public class DetailActivity extends AppCompatActivity {
             tvBookNameDetail.setText(book.getTITLE());
             tvBookAuthorDetail.setText(book.getAUTHOR());
             tvBookTypeDetail.setText(book.getTYPENAME());
-            tvBookPageDetail.setText(book.getPAGE()+"");
+            tvBookPageDetail.setText(book.getPAGE().toString());
+            tvBookPriceDetail.setText(book.getPRICE().toString()+" VNĐ");
+            tvBookIntroduction.setText(book.getINTRODUCTION());
         }
 
         btnAddCart = this.findViewById(R.id.btnAddCart);
