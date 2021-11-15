@@ -1,19 +1,21 @@
 package com.example.myapplication.model;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     String IMAGE;
     String TITLE;
     String AUTHOR;
     String TYPENAME;
-    String PRICE;
+    Integer PRICE;
     String INTRODUCTION;
-    int PAGE;
+    Integer PAGE;
     String NEWBOOK;
 
     public Book() {
     }
 
-    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, String PRICE, String INTRODUCTION, int PAGE , String NEWBOOK) {
+    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE , String NEWBOOK) {
         this.IMAGE = IMAGE;
         this.TITLE = TITLE;
         this.AUTHOR = AUTHOR;
@@ -56,11 +58,11 @@ public class Book {
         this.TYPENAME = TYPENAME;
     }
 
-    public String getPRICE() {
+    public Integer getPRICE() {
         return PRICE;
     }
 
-    public void setPRICE(String PRICE) {
+    public void setPRICE(Integer PRICE) {
         this.PRICE = PRICE;
     }
 

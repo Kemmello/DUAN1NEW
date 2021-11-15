@@ -63,19 +63,23 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_sach:
                         fragment = new BookFragment();
-                        title.setText("BOOK");
+                        title.setText("ALL OF BOOK");
                         break;
                     case R.id.nav_doanhthu:
                         fragment = new RevenueFragment();
+                        title.setText("REVENUE");
                         break;
                     case R.id.nav_topsach:
                         fragment = new TopFragment();
+                        title.setText("TOP BOOK");
                         break;
                     case R.id.nav_lienhe:
                         fragment = new ContactFragment();
+                        title.setText("CONTACT US");
                         break;
                     case R.id.nav_doimatkhau:
                         fragment = new ChangePasswordFragment();
+                        title.setText("CHANGE PASSWORD");
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()

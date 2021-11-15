@@ -34,7 +34,7 @@ public class BookAllAdapter extends RecyclerView.Adapter<BookAllAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context).load(list.get(position).getIMAGE()).into(holder.imageView);
         holder.tvTitle.setText(list.get(position).getTITLE());
-        holder.tvPrice.setText(list.get(position).getPRICE());
+        holder.tvPrice.setText(list.get(position).getPRICE().toString());
     }
 
     @Override
