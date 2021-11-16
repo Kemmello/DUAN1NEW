@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Book;
+import com.example.myapplication.model.Type;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvBookIntroduction , tvBookPriceDetail , tvQuantity;
     Button btnAddCart;
     Book book = null;
+    Type type = null;
 
     int totalQuantity = 1;
     FirebaseFirestore firestore;
@@ -41,6 +43,11 @@ public class DetailActivity extends AppCompatActivity {
         final Object object = getIntent().getSerializableExtra("detail");
         if (object instanceof Book){
             book = (Book) object;
+        }
+
+        final Object objecttype = getIntent().getSerializableExtra("type");
+        if (object instanceof Type){
+            type = (Type) objecttype;
         }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
@@ -67,6 +74,16 @@ public class DetailActivity extends AppCompatActivity {
             tvBookPageDetail.setText(book.getPAGE().toString());
             tvBookPriceDetail.setText(book.getPRICE().toString()+" VNĐ");
             tvBookIntroduction.setText(book.getINTRODUCTION());
+        }
+
+        if (type != null){
+            Glide.with(getApplicationContext()).load(type.getIMAGE()).into(imageViewDetail);
+            tvBookNameDetail.setText(type.getTITLE());
+            tvBookAuthorDetail.setText(type.getAUTHOR());
+            tvBookTypeDetail.setText(type.getTYPENAME());
+            tvBookPageDetail.setText(type.getPAGE().toString());
+            tvBookPriceDetail.setText(type.getPRICE().toString()+" VNĐ");
+            tvBookIntroduction.setText(type.getINTRODUCTION());
         }
 
         btnAddCart = this.findViewById(R.id.btnAddCart);

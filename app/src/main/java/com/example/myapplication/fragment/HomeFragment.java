@@ -213,7 +213,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách trẻ em");
+                intent.putExtra("type", "Trẻ Em");
                 startActivity(intent);
             }
         });
@@ -221,7 +221,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Tiểu thuyết");
+                intent.putExtra("type", "Tiểu Thuyết");
                 startActivity(intent);
             }
         });
@@ -229,7 +229,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách giáo khoa");
+                intent.putExtra("type", "Giáo Khoa");
                 startActivity(intent);
             }
         });
@@ -237,7 +237,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách Văn Học - Nghệ Thuật");
+                intent.putExtra("type", "Văn Học");
                 startActivity(intent);
             }
         });
@@ -245,7 +245,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách Khoa học - Công nghệ");
+                intent.putExtra("type", "Khoa Học");
                 startActivity(intent);
             }
         });
@@ -253,7 +253,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách Chính trị - Xã hội");
+                intent.putExtra("type", "Chính Trị");
                 startActivity(intent);
             }
         });
@@ -261,7 +261,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách lịch sử");
+                intent.putExtra("type", "Lịch Sử");
                 startActivity(intent);
             }
         });
