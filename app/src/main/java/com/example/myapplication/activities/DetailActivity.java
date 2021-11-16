@@ -45,9 +45,14 @@ public class DetailActivity extends AppCompatActivity {
             book = (Book) object;
         }
 
-        final Object objecttype = getIntent().getSerializableExtra("type");
-        if (object instanceof Type){
-            type = (Type) objecttype;
+        final Object objectAll = getIntent().getSerializableExtra("all");
+        if (objectAll instanceof Book){
+            book = (Book) objectAll;
+        }
+
+        final Object objectType = getIntent().getSerializableExtra("type");
+        if (objectType instanceof Type){
+            type = (Type) objectType;
         }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
@@ -97,8 +102,7 @@ public class DetailActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this,MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

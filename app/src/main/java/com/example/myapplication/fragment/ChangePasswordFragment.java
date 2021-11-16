@@ -41,18 +41,18 @@ public class ChangePasswordFragment extends Fragment {
     View mView;
 
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container,@NonNull Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.signup_fragment, container, false);
-        initUi();
-        btnOk_Change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        return mView;
-    }
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container,@NonNull Bundle savedInstanceState) {
+//        mView = inflater.inflate(R.layout.signup_fragment, container, false);
+//        initUi();
+//        btnOk_Change.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                OnClickChangePass();
+//            }
+//        });
+//        return mView;
+//    }
 
     private void initUi(){
         progressDialog = new ProgressDialog(getActivity());

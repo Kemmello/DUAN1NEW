@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_trangchu:
                         fragment = new HomeFragment();
-                        title.setText("HOME");
+                        title.setText("BOOK STORE");
                         break;
                     case R.id.nav_sach:
                         fragment = new BookFragment();

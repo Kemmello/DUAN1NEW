@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.TypeAdapter;
@@ -25,6 +29,8 @@ public class TypeActivity extends AppCompatActivity {
     RecyclerView rcvType;
     TypeAdapter typeAdapter;
     List<Type> types;
+    ImageView imgBackType;
+    TextView tvBookTypeActivity;
 
     Type type = null;
 
@@ -32,6 +38,15 @@ public class TypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
+        imgBackType = this.findViewById(R.id.imgBackType);
+        tvBookTypeActivity = this.findViewById(R.id.tvBookTypeActivity);
+
+        imgBackType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -53,6 +68,7 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Children");
                     }
                 }
             });
@@ -67,6 +83,7 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Novel");
                     }
                 }
             });
@@ -81,6 +98,7 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("School");
                     }
                 }
             });
@@ -95,6 +113,7 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Literature");
                     }
                 }
             });
@@ -109,6 +128,7 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Technology");
                     }
                 }
             });
@@ -123,6 +143,7 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Politics");
                     }
                 }
             });
@@ -137,11 +158,11 @@ public class TypeActivity extends AppCompatActivity {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("History");
                     }
                 }
             });
         }
-
 
     }
 }
