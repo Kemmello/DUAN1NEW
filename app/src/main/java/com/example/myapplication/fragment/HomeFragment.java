@@ -169,10 +169,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tvShowMoreNew = view.findViewById(R.id.tvShowMoreNew);
-        tvShowMoreSell = view.findViewById(R.id.tvShowMoreSell);
-        tvShowMoreSale = view.findViewById(R.id.tvShowMoreSale);
-        tvShowMoreRecommend = view.findViewById(R.id.tvShowMoreRecommend);
+
         cvChildren = view.findViewById(R.id.cvChildren);
         cvNovel = view.findViewById(R.id.cvNovel);
         cvSchool = view.findViewById(R.id.cvSchool);
@@ -181,34 +178,6 @@ public class HomeFragment extends Fragment {
         cvPolitics = view.findViewById(R.id.cvPolitics);
         cvHistory = view.findViewById(R.id.cvHistory);
 
-        tvShowMoreNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        tvShowMoreSell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        tvShowMoreSale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        tvShowMoreRecommend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
         cvChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
