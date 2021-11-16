@@ -175,10 +175,11 @@
     </RelativeLayout>
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="150dp">
+        android:layout_height="170dp"
+        android:layout_marginBottom="5dp">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="170dp"
             android:layout_margin="20dp"
             app:cardCornerRadius="15dp">
 
@@ -188,7 +189,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Câu chuyện xoay quanh sinh viên trẻ Rodion Romanovich Raskolnikov (nói rằng nhanh hơn mười lần), một thanh niên thông minh nhưng gặp rắc rối, người đã chuẩn bị cho một vụ giết người hoàn hảo của một tiệm cầm đồ tàn ác. Tuy nhiên, sau vụ giết người, Raskolnikov bị mắc kẹt trong sự tồn tại tội lỗi của mình, khiến anh ta phát điên khi mẹ và em gái của anh ta cùng anh ta đến St"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp"/>
 
         </androidx.cardview.widget.CardView>
     </ScrollView>
@@ -196,15 +198,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/imgMinus"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="35dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/iconminus" />
 
         <TextView
@@ -212,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="1"
             android:textSize="25dp" />
 
@@ -221,7 +224,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/iconadd" />
 
         <Button
@@ -229,7 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:text="Add to cart" />
