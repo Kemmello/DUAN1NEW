@@ -74,9 +74,11 @@ public class Book implements Serializable {
         this.INTRODUCTION = INTRODUCTION;
     }
 
-    public Integer getPAGE() { return PAGE; }
+    public int getPAGE() {
+        return PAGE;
+    }
 
-    public void setPAGE(Integer PAGE) {
+    public void setPAGE(int PAGE) {
         this.PAGE = PAGE;
     }
 

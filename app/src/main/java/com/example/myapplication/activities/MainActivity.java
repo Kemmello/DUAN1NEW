@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_trangchu:
                         fragment = new HomeFragment();
-                        title.setText("BOOK STORE");
+                        title.setText("HOME");
                         break;
                     case R.id.nav_sach:
                         fragment = new BookFragment();
@@ -113,19 +113,15 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.cart:
                     selectfrg = new CartFragment();
-                    title.setText("CART");
                     break;
                 case R.id.user:
                     selectfrg = new UserFragment();
-                    title.setText("USER");
                     break;
                 case R.id.list_bottom:
                     selectfrg = new BillFragment();
-                    title.setText("BILL");
                     break;
                 case R.id.exit:
                     selectfrg = new ExitFragment();
-                    title.setText("EXIT");
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();

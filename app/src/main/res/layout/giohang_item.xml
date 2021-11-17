@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/duongvien_goctron"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvBiaSanPham"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="100dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="100dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/ivBiaSanPham"
+                android:background="@drawable/backgroud_hinhtron"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/biadoremon"
+                android:scaleType="centerInside"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+   <LinearLayout
+       android:padding="10dp"
+       android:id="@+id/lnSanPham"
+       android:layout_toRightOf="@id/cvBiaSanPham"
+       android:layout_width="150dp"
+       android:layout_marginLeft="15dp"
+       android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+         android:text="Doraemon: Thám hiểm vùng đất mới"
+         android:textSize="15dp"
+         android:textStyle="bold"
+          android:textColor="#1B6E62"
+          android:id="@+id/tvTenSanPhamGioHang"
+         android:textAlignment="center"/>
+     <Spinner
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+        android:id="@+id/spnSanPhamGioHang"/>
+   </LinearLayout>
+   <TextView
+       android:layout_marginTop="40dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:text="$19.99"
+      android:textSize="19dp"
+       android:layout_marginLeft="35dp"
+      android:textColor="#BAADAD"
+      android:textStyle="bold"
+      android:id="@+id/tvGiaSanPhamGioHang"
+      android:layout_toRightOf="@id/lnSanPham"/>
+   <ImageView
+       android:layout_alignParentEnd="true"
+       android:layout_width="20dp"
+       android:layout_height="wrap_content"
+      android:src="@drawable/ic_cancel"
+       android:id="@+id/imageDelete"/>
+</RelativeLayout>

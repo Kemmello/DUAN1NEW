@@ -1,7 +1,6 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.activities.DetailActivity;
 import com.example.myapplication.model.Book;
 
 import java.util.List;
@@ -36,16 +34,7 @@ public class BookAllAdapter extends RecyclerView.Adapter<BookAllAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context).load(list.get(position).getIMAGE()).into(holder.imageView);
         holder.tvTitle.setText(list.get(position).getTITLE());
-        holder.tvPrice.setText(list.get(position).getPRICE().toString() + " VNĐ");
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("all", list.get(position));
-                context.startActivity(intent);
-            }
-        });
+        holder.tvPrice.setText(list.get(position).getPRICE().toString());
     }
 
     @Override

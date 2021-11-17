@@ -3,9 +3,7 @@ package com.example.myapplication.model;
 public class MyCart {
     String TITLE, TOTALQUANTITY, CURRENTDATE, CURRENTTIME, IMAGE;
     int TOTALPRICE;
-
     String DOCUMENTID;
-
 
     public MyCart() {
     }
@@ -19,7 +17,6 @@ public class MyCart {
         this.TOTALPRICE = TOTALPRICE;
     }
 
-
     public String getDOCUMENTID() {
         return DOCUMENTID;
     }
@@ -27,7 +24,6 @@ public class MyCart {
     public void setDOCUMENTID(String DOCUMENTID) {
         this.DOCUMENTID = DOCUMENTID;
     }
-
 
     public String getTITLE() {
         return TITLE;
