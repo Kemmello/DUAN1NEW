@@ -42,9 +42,7 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_cart, container, false);
-
+        
        View root =  inflater.inflate(R.layout.fragment_cart, container, false);
      firestore = FirebaseFirestore.getInstance();
      auth = FirebaseAuth.getInstance();
@@ -67,7 +65,6 @@ public class CartFragment extends Fragment {
                      MyCart cart = documentSnapshot.toObject(MyCart.class);
                      cart.setDOCUMENTID(documentId);
 
-                     MyCart cart = documentSnapshot.toObject(MyCart.class);
 
                      myCartList.add(cart);
                      cartAdapter.notifyDataSetChanged();

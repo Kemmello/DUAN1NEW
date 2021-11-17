@@ -119,7 +119,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
         ImageView ivBiaSanPham,imgDelete;
 
-        ImageView ivBiaSanPham;
 
 
         public ViewHolder(@NonNull View itemView) {
