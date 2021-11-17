@@ -27,7 +27,16 @@ public class LoginFragment extends Fragment {
     Button btnLogin;
     Context context;
     FirebaseAuth auth;
+    String email;
+    static String pass;
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        LoginFragment.pass = pass;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,8 +60,9 @@ public class LoginFragment extends Fragment {
         });
     }
     public void login(){
-        String email = edtEmail_Login.getText().toString();
-        String pass = edtPassword_Login.getText().toString();
+        email = edtEmail_Login.getText().toString();
+        pass = edtPassword_Login.getText().toString();
+        setPass(pass);
         if (TextUtils.isEmpty(email)){
             Toast.makeText(getActivity(),"Email để trống",Toast.LENGTH_LONG).show();
             edtEmail_Login.requestFocus();
@@ -79,8 +89,6 @@ public class LoginFragment extends Fragment {
                         }
                     }
                 });
-
-
     }
 
 }

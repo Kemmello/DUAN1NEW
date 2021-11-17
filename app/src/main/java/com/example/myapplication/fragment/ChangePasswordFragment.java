@@ -31,36 +31,18 @@ import java.util.Map;
 
 public class ChangePasswordFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private EditText edtOldPassword, edtPassword_Change, edtRepeatPassword_Change;
     private Button btnOk_Change, btnCancel;
-    private ProgressDialog progressDialog;
     FirebaseAuth auth;
+    FirebaseUser user;
     FirebaseFirestore database;
     View mView;
 
 
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container,@NonNull Bundle savedInstanceState) {
-//        mView = inflater.inflate(R.layout.signup_fragment, container, false);
-//        initUi();
-//        btnOk_Change.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                OnClickChangePass();
-//            }
-//        });
-//        return mView;
-//    }
-
-    private void initUi(){
-        progressDialog = new ProgressDialog(getActivity());
-        edtOldPassword = mView.findViewById(R.id.edtOldPassword);
-        edtPassword_Change = mView.findViewById(R.id.edtPassword_Change);
-        edtRepeatPassword_Change = mView.findViewById(R.id.edtRepeatPassword_Change);
-        btnOk_Change = mView.findViewById(R.id.btnOk_Change);
-        btnCancel = mView.findViewById(R.id.btnCancel);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        ViewGroup root = (ViewGroup)  inflater.inflate(R.layout.fragment_change_password, container, false);
+        return root;
     }
 
 
@@ -68,10 +50,10 @@ public class ChangePasswordFragment extends Fragment {
         String oldPassword =edtOldPassword.getText().toString().trim();
         String password_Change = edtPassword_Change.getText().toString();
         String rppassword_Change = edtRepeatPassword_Change.getText().toString();
-        progressDialog.show();
-
-        if (TextUtils.isEmpty(oldPassword)){
-            Toast.makeText(getActivity(),"Nhập mật khẩu cũ",Toast.LENGTH_LONG).show();
+//        TextUtils.isEmpty(password_Change)
+        LoginFragment Loginfrmnt = new LoginFragment();
+        if (!oldPassword.equals(Loginfrmnt.getPass())){
+            Toast.makeText(getActivity(),"Nhập mật cũ sai!",Toast.LENGTH_LONG).show();
             edtOldPassword.requestFocus();
             edtPassword_Change.setFocusable(false);
             edtRepeatPassword_Change.setFocusable(false);
@@ -100,12 +82,12 @@ public class ChangePasswordFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(),"User password updated.", Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
                         }
                     }
                 });
+        auth.signOut();
+        getActivity().finish();
 
-        auth.getCurrentUser();
 //        auth.updateCurrentUser("","","Email",);
 //        auth.createUserWithEmailAndPassword(email,password)
 //                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -138,33 +120,23 @@ public class ChangePasswordFragment extends Fragment {
     }
 
 
-        public ChangePasswordFragment() {
-    }
 
-    public static ChangePasswordFragment newInstance(String param1, String param2) {
-        ChangePasswordFragment fragment = new ChangePasswordFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onViewCreated( View view,  Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        edtOldPassword = view.findViewById(R.id.edtOldPassword);
+        edtPassword_Change = view.findViewById(R.id.edtPassword_Change);
+        edtRepeatPassword_Change = view.findViewById(R.id.edtRepeatPassword_Change);
+        btnOk_Change = view.findViewById(R.id.btnOk_Change);
+        btnCancel = view.findViewById(R.id.btnCancel);
+        auth = FirebaseAuth.getInstance();
+        auth.getCurrentUser();
+        database = FirebaseFirestore.getInstance();
+        btnOk_Change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OnClickChangePass();
+            }
+        });
     }
-
-//    @Override
-//    public void onViewCreated( View view,  Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        edtOldPassword = view.findViewById(R.id.edtOldPassword);
-//        edtPassword_Change = view.findViewById(R.id.edtPassword_Change);
-//        edtRepeatPassword_Change = view.findViewById(R.id.edtRepeatPassword_Change);
-//        btnOk_Change = view.findViewById(R.id.btnOk_Change);
-//        btnCancel = view.findViewById(R.id.btnCancel);
-//        auth = FirebaseAuth.getInstance();
-//        database = FirebaseFirestore.getInstance();
-//        btnOk_Change.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ChangePass();
-//            }
-//        });
-//    }
 }
