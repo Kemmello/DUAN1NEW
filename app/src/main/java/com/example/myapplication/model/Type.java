@@ -1,6 +1,8 @@
 package com.example.myapplication.model;
 
-public class Type {
+import java.io.Serializable;
+
+public class Type implements Serializable {
     String AUTHOR, IMAGE, INTRODUCTION, TITLE, TYPENAME;
     Integer PAGE , PRICE;
 

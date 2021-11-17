@@ -1,6 +1,7 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.activities.DetailActivity;
+import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.model.Type;
 
 import java.util.List;
@@ -40,7 +43,16 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
         Glide.with(context).load(list.get(position).getIMAGE()).into(holder.imageView4);
         holder.tvTenSach.setText(list.get(position).getTITLE());
         holder.tvAuthor.setText(list.get(position).getAUTHOR());
-        holder.tvPrice.setText(list.get(position).getPRICE().toString());
+        holder.tvPrice.setText(list.get(position).getPRICE().toString()+" VNĐ");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("type", list.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
