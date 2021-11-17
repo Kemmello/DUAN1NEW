@@ -144,13 +144,14 @@ public class DetailActivity extends AppCompatActivity {
             final HashMap<String, Object> cartMap = new HashMap<>();
 
             cartMap.put("TITLE", book.getTITLE());
+            cartMap.put("IMAGE", book.getIMAGE());
             cartMap.put("TOTALPRICE", totalPrice);
             cartMap.put("CURRENTDATE",saveCurrentDate );
             cartMap.put("CURRENTTIME", saveCurrentTime);
             cartMap.put("TOTALQUANTITY", tvQuantity.getText().toString());
 
             firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
-                    .collection("CurrentUser").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    .collection("CURRENTUSER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentReference> task) {
                     Toast.makeText(DetailActivity.this, "Added complete", Toast.LENGTH_LONG).show();
