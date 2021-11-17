@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Book;
+import com.example.myapplication.model.Type;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvBookIntroduction , tvBookPriceDetail , tvQuantity;
     Button btnAddCart;
     Book book = null;
+    Type type = null;
 
     int totalQuantity = 1;
     FirebaseFirestore firestore;
@@ -41,6 +43,16 @@ public class DetailActivity extends AppCompatActivity {
         final Object object = getIntent().getSerializableExtra("detail");
         if (object instanceof Book){
             book = (Book) object;
+        }
+
+        final Object objectAll = getIntent().getSerializableExtra("all");
+        if (objectAll instanceof Book){
+            book = (Book) objectAll;
+        }
+
+        final Object objectType = getIntent().getSerializableExtra("type");
+        if (objectType instanceof Type){
+            type = (Type) objectType;
         }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
@@ -69,6 +81,16 @@ public class DetailActivity extends AppCompatActivity {
             tvBookIntroduction.setText(book.getINTRODUCTION());
         }
 
+        if (type != null){
+            Glide.with(getApplicationContext()).load(type.getIMAGE()).into(imageViewDetail);
+            tvBookNameDetail.setText(type.getTITLE());
+            tvBookAuthorDetail.setText(type.getAUTHOR());
+            tvBookTypeDetail.setText(type.getTYPENAME());
+            tvBookPageDetail.setText(type.getPAGE().toString());
+            tvBookPriceDetail.setText(type.getPRICE().toString()+" VNĐ");
+            tvBookIntroduction.setText(type.getINTRODUCTION());
+        }
+
         btnAddCart = this.findViewById(R.id.btnAddCart);
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +102,7 @@ public class DetailActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this,MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

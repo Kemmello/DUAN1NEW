@@ -169,10 +169,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tvShowMoreNew = view.findViewById(R.id.tvShowMoreNew);
-        tvShowMoreSell = view.findViewById(R.id.tvShowMoreSell);
-        tvShowMoreSale = view.findViewById(R.id.tvShowMoreSale);
-        tvShowMoreRecommend = view.findViewById(R.id.tvShowMoreRecommend);
+
         cvChildren = view.findViewById(R.id.cvChildren);
         cvNovel = view.findViewById(R.id.cvNovel);
         cvSchool = view.findViewById(R.id.cvSchool);
@@ -181,39 +178,11 @@ public class HomeFragment extends Fragment {
         cvPolitics = view.findViewById(R.id.cvPolitics);
         cvHistory = view.findViewById(R.id.cvHistory);
 
-        tvShowMoreNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        tvShowMoreSell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        tvShowMoreSale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        tvShowMoreRecommend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
         cvChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách trẻ em");
+                intent.putExtra("type", "Trẻ Em");
                 startActivity(intent);
             }
         });
@@ -221,7 +190,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Tiểu thuyết");
+                intent.putExtra("type", "Tiểu Thuyết");
                 startActivity(intent);
             }
         });
@@ -229,7 +198,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách giáo khoa");
+                intent.putExtra("type", "Giáo Khoa");
                 startActivity(intent);
             }
         });
@@ -237,7 +206,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách Văn Học - Nghệ Thuật");
+                intent.putExtra("type", "Văn Học");
                 startActivity(intent);
             }
         });
@@ -245,7 +214,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách Khoa học - Công nghệ");
+                intent.putExtra("type", "Khoa Học");
                 startActivity(intent);
             }
         });
@@ -253,7 +222,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách Chính trị - Xã hội");
+                intent.putExtra("type", "Chính Trị");
                 startActivity(intent);
             }
         });
@@ -261,7 +230,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
-                intent.putExtra("type", "Sách lịch sử");
+                intent.putExtra("type", "Lịch Sử");
                 startActivity(intent);
             }
         });

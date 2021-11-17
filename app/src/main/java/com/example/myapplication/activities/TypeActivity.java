@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.TypeAdapter;
+import com.example.myapplication.model.Book;
 import com.example.myapplication.model.Type;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,11 +29,24 @@ public class TypeActivity extends AppCompatActivity {
     RecyclerView rcvType;
     TypeAdapter typeAdapter;
     List<Type> types;
+    ImageView imgBackType;
+    TextView tvBookTypeActivity;
+
+    Type type = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
+        imgBackType = this.findViewById(R.id.imgBackType);
+        tvBookTypeActivity = this.findViewById(R.id.tvBookTypeActivity);
+
+        imgBackType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -42,103 +60,109 @@ public class TypeActivity extends AppCompatActivity {
         rcvType.setAdapter(typeAdapter);
 
         /////Sách trẻ em
-        if(type != null && type.equalsIgnoreCase("Trẻ em")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Trẻ em").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Trẻ Em")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Trẻ Em").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Children");
                     }
                 }
             });
         }
 
         /////Tiểu Thuyết
-        if(type != null && type.equalsIgnoreCase("Tiểu thuyết")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Tiểu thuyết").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Tiểu Thuyết")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Tiểu Thuyết").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Novel");
                     }
                 }
             });
         }
 
         /////Sách giáo khoa
-        if(type != null && type.equalsIgnoreCase("Sách giáo khoa")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Sách giáo khoa").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Giáo Khoa")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Giáo Khoa").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("School");
                     }
                 }
             });
         }
 
         /////Sách Văn Học - Nghệ Thuật
-        if(type != null && type.equalsIgnoreCase("Sách Văn Học - Nghệ Thuật")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Sách Văn Học - Nghệ Thuật").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Văn Học")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Văn Học").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Literature");
                     }
                 }
             });
         }
 
         /////Sách Khoa học - Công nghệ
-        if(type != null && type.equalsIgnoreCase("Sách Khoa học - Công nghệ")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Sách Khoa học - Công nghệ").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Khoa Học")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Khoa Học").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Technology");
                     }
                 }
             });
         }
 
         /////Sách Chính trị - Xã hội
-        if(type != null && type.equalsIgnoreCase("Sách Chính trị - Xã hội")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Sách Chính trị - Xã hội").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Chính Trị")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Chính Trị").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("Politics");
                     }
                 }
             });
         }
 
         /////Sách lịch sử
-        if(type != null && type.equalsIgnoreCase("Sách lịch sử")){
-            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Sách lịch sử").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if (type != null && type.equalsIgnoreCase("Lịch Sử")) {
+            firestore.collection("BOOK").whereEqualTo("TYPENAME", "Lịch Sử").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                         Type type1 = documentSnapshot.toObject(Type.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
+                        tvBookTypeActivity.setText("History");
                     }
                 }
             });
         }
-
 
     }
 }
