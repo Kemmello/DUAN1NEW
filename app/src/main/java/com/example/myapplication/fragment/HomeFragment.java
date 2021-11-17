@@ -122,6 +122,9 @@ public class HomeFragment extends Fragment {
                                 Book book = document.toObject(Book.class);
                                 selllist.add(book);
                                 sellAdapter.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
@@ -139,6 +142,9 @@ public class HomeFragment extends Fragment {
                                 Book book = document.toObject(Book.class);
                                 salelist.add(book);
                                 saleAdapter.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
@@ -156,6 +162,9 @@ public class HomeFragment extends Fragment {
                                 Book book = document.toObject(Book.class);
                                 recommendlist.add(book);
                                 recommendAdapter.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
