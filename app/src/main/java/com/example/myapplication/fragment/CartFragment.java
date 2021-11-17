@@ -1,15 +1,21 @@
 package com.example.myapplication.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.MyCartAdapter;
@@ -30,6 +36,8 @@ public class CartFragment extends Fragment {
     FirebaseFirestore firestore;
     FirebaseAuth auth;
 
+    TextView tvTotalAmount;
+
     RecyclerView rcvCart;
     MyCartAdapter cartAdapter;
     List<MyCart> myCartList;
@@ -42,12 +50,15 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        
+
        View root =  inflater.inflate(R.layout.fragment_cart, container, false);
      firestore = FirebaseFirestore.getInstance();
      auth = FirebaseAuth.getInstance();
      rcvCart = root.findViewById(R.id.rcvCart);
      rcvCart.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        tvTotalAmount = root.findViewById(R.id.tvTotalAmount);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("MyTotalAmount"));
 
      myCartList = new ArrayList<>();
      cartAdapter = new MyCartAdapter(getActivity(), myCartList);
@@ -76,4 +87,12 @@ public class CartFragment extends Fragment {
      return root;
 
     }
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int totalBill = intent.getIntExtra("totalAmount", 0);
+            tvTotalAmount.setText("Total: "+totalBill+"VND");
+        }
+    };
 }
