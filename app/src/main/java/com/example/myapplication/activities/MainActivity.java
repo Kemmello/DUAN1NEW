@@ -6,15 +6,27 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.BillFragment;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.ChangePasswordFragment;
+import com.example.myapplication.fragment.ContactFragment;
+import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
-import com.example.myapplication.fragment.LoginFragment;
+import com.example.myapplication.fragment.RevenueFragment;
+import com.example.myapplication.fragment.TopFragment;
 import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = this.findViewById(R.id.drawerLayout_main);
         toolbar = this.findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.bottom_nav);
+        title = findViewById(R.id.title);
 
         navigationView.setOnNavigationItemSelectedListener(navlistener);
         NavigationView navigationView_main = findViewById(R.id.navView_main);
@@ -44,22 +59,28 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_trangchu:
                         fragment = new HomeFragment();
+                        title.setText("BOOK STORE");
                         break;
                     case R.id.nav_sach:
                         fragment = new BookFragment();
+                        title.setText("ALL OF BOOK");
                         break;
-//                    case R.id.cart:
-//                        fragment = new RevenueFragment();
-//                        break;
-//                    case R.id.cart:
-//                        fragment = new TopFragment();
-//                        break;
-//                    case R.id.cart:
-//                        fragment = new ContactFragment();
-//                        break;
-//                    case R.id.cart:
-//                        fragment = new PasswordChangeFragment();
-//                        break;
+                    case R.id.nav_doanhthu:
+                        fragment = new RevenueFragment();
+                        title.setText("REVENUE");
+                        break;
+                    case R.id.nav_topsach:
+                        fragment = new TopFragment();
+                        title.setText("TOP BOOK");
+                        break;
+                    case R.id.nav_lienhe:
+                        fragment = new ContactFragment();
+                        title.setText("CONTACT US");
+                        break;
+                    case R.id.nav_doimatkhau:
+                        fragment = new ChangePasswordFragment();
+                        title.setText("CHANGE PASSWORD");
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame,fragment).commit();
@@ -78,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.frame,fragment).commit();
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -90,17 +113,26 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.cart:
                     selectfrg = new CartFragment();
+                    title.setText("CART");
                     break;
                 case R.id.user:
                     selectfrg = new UserFragment();
+                    title.setText("USER");
+                    break;
+                case R.id.list_bottom:
+                    selectfrg = new BillFragment();
+                    title.setText("BILL");
                     break;
                 case R.id.exit:
-                    selectfrg = new LoginFragment();
+                    selectfrg = new ExitFragment();
+                    title.setText("EXIT");
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
             return true;
         }
     };
+
+
 
 }

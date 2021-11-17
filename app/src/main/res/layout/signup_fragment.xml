@@ -7,12 +7,12 @@
 
 
     <EditText
-        android:id="@+id/edtUserName_SignUp"
+        android:id="@+id/edtName_SignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_shape"
-        android:hint="Enter Username"
+        android:hint="Enter Your name"
         android:minHeight="48dp"
         android:drawableLeft="@drawable/textview_user"
         android:padding="2dp"
@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="4dp"
-        android:text="User name:"
-        app:layout_constraintBottom_toTopOf="@+id/edtUserName_SignUp"
+        android:text="Your Name:"
+        app:layout_constraintBottom_toTopOf="@+id/edtName_SignUp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,10 +49,11 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUserName_SignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edtName_SignUp"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
+        android:inputType="textPassword"
         android:id="@+id/edtPassword_SignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
+        android:inputType="textPassword"
         android:id="@+id/edtRepeatPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -101,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtRepeatPassword"
-        app:layout_constraintVertical_bias="0.115"
+        app:layout_constraintVertical_bias="0.164"
         app:layout_constraintWidth_percent=".8" />
 
     <TextView
@@ -114,7 +116,7 @@
         android:text="Email:"
         app:layout_constraintBottom_toTopOf="@+id/edtEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUserName_SignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edtName_SignUp"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView

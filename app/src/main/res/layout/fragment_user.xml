@@ -71,8 +71,9 @@
                     android:layout_height="wrap_content"
                     />
                 <EditText
+                    android:background="#00000000"
                     android:inputType="textNoSuggestions"
-                    android:layout_below="@+id/tv1"
+                    android:layout_below="@+id/edt1"
                     android:textSize="20dp"
 
                     android:text="Nguyễn Văn A"
@@ -99,8 +100,9 @@
                     android:layout_height="wrap_content"
                     />
                 <EditText
+                    android:background="#00000000"
                     android:inputType="textNoSuggestions"
-                    android:layout_below="@+id/tv3"
+                    android:layout_below="@+id/edt3"
                     android:textSize="20dp"
 
                     android:text="duongtantaibmt@gmail.com"
@@ -129,8 +131,9 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
+                android:background="#00000000"
                 android:inputType="textNoSuggestions"
-                android:layout_below="@+id/tv5"
+                android:layout_below="@+id/edt5"
                 android:textSize="20dp"
 
                 android:text="08346722047"
@@ -157,9 +160,10 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
+                android:background="#00000000"
                 android:inputType="textNoSuggestions"
                 android:textSize="20dp"
-
+                android:id="@+id/edt7"
                 android:text="135 Nguyễn Xí, Bình Thạnh, Sài Gòn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,9 +188,10 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
+                android:background="#00000000"
                 android:inputType="textNoSuggestions"
                 android:textSize="20dp"
-
+                android:id="@+id/edt9"
                 android:text="26/05/2002"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
