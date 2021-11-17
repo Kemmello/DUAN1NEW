@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+ 
         tabLayout = findViewById(R.id.tab_Layout);
         viewPager = findViewById(R.id.view_pager);
         fabFacebook = findViewById(R.id.btn_facebook);
