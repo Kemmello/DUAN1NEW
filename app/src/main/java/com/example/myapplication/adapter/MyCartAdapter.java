@@ -29,7 +29,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.giohang_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item, parent, false));
 
     }
 
@@ -37,7 +37,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvTenSanPhamGioHang.setText(myCartList.get(position).getTITLE());
         holder.tvTotalQuantity.setText(myCartList.get(position).getTOTALQUANTITY());
-        holder.tvGiaSanPhamGioHang.setText(String.valueOf(myCartList.get(position).getTOTALPRICE()));
+        holder.tvGiaSanPhamGioHang.setText(String.valueOf(myCartList.get(position).getTOTALPRICE())+ " VNĐ");
         Glide.with(context).load(myCartList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
     }
 
