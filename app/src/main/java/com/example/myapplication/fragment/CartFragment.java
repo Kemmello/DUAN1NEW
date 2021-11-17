@@ -61,6 +61,38 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+<<<<<<< Updated upstream
         return inflater.inflate(R.layout.fragment_cart, container, false);
+=======
+       View root =  inflater.inflate(R.layout.fragment_cart, container, false);
+     firestore = FirebaseFirestore.getInstance();
+     auth = FirebaseAuth.getInstance();
+     rcvCart = root.findViewById(R.id.rcvCart);
+     rcvCart.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+     myCartList = new ArrayList<>();
+     cartAdapter = new MyCartAdapter(getActivity(), myCartList);
+     rcvCart.setAdapter(cartAdapter);
+
+     firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+             .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+         @Override
+         public void onComplete(@NonNull Task<QuerySnapshot> task) {
+             if(task.isSuccessful()){
+                 for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+
+                     String documentId = documentSnapshot.getId();
+
+                     MyCart cart = documentSnapshot.toObject(MyCart.class);
+                     cart.setDOCUMENTID(documentId);
+                     myCartList.add(cart);
+                     cartAdapter.notifyDataSetChanged();
+                 }
+             }
+         }
+     });
+
+     return root;
+>>>>>>> Stashed changes
     }
 }
