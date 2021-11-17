@@ -4,6 +4,9 @@ public class MyCart {
     String TITLE, TOTALQUANTITY, CURRENTDATE, CURRENTTIME, IMAGE;
     int TOTALPRICE;
 
+    String DOCUMENTID;
+
+
     public MyCart() {
     }
 
@@ -15,6 +18,16 @@ public class MyCart {
         this.IMAGE = IMAGE;
         this.TOTALPRICE = TOTALPRICE;
     }
+
+
+    public String getDOCUMENTID() {
+        return DOCUMENTID;
+    }
+
+    public void setDOCUMENTID(String DOCUMENTID) {
+        this.DOCUMENTID = DOCUMENTID;
+    }
+
 
     public String getTITLE() {
         return TITLE;
