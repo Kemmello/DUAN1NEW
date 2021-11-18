@@ -47,12 +47,23 @@
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/drawable/ic_google__g__logo.xml" value="0.3828125" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/drawable/logo_google_background.xml" value="0.3828125" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/activity_book_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/activity_sign_up.xml" value="0.390893947806774" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_change_password.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_exit.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_revenue.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_top.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/fragment_user.xml" value="0.21829710144927536" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/giohang_item.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/layout_all_book_items_main.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/layout_book_items_main.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/login_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/setting_fragment.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/signup_fragment.xml" value="0.29891304347826086" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/signup_tag_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/slide_item_container.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/layout/toolbar.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/annh/Documents/GitHub/DUAN1NEW/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/annh/Documents/GitHub/DuAn1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/annh/Documents/GitHub/DuAn1/app/src/main/res/drawable/button_shape.xml" value="0.2703125" />
