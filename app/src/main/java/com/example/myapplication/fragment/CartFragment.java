@@ -51,48 +51,47 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-       View root =  inflater.inflate(R.layout.fragment_cart, container, false);
-     firestore = FirebaseFirestore.getInstance();
-     auth = FirebaseAuth.getInstance();
-     rcvCart = root.findViewById(R.id.rcvCart);
-     rcvCart.setLayoutManager(new LinearLayoutManager(getActivity()));
+        View root = inflater.inflate(R.layout.fragment_cart, container, false);
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        rcvCart = root.findViewById(R.id.rcvCart);
+        rcvCart.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         tvTotalAmount = root.findViewById(R.id.tvTotalAmount);
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("MyTotalAmount"));
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("MyTotalAmount"));
 
-     myCartList = new ArrayList<>();
-     cartAdapter = new MyCartAdapter(getActivity(), myCartList);
-     rcvCart.setAdapter(cartAdapter);
+        myCartList = new ArrayList<>();
+        cartAdapter = new MyCartAdapter(getActivity(), myCartList);
+        rcvCart.setAdapter(cartAdapter);
 
-     firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
-             .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-         @Override
-         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-             if(task.isSuccessful()){
-                 for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
 
-                     String documentId = documentSnapshot.getId();
+                        String documentId = documentSnapshot.getId();
 
-                     MyCart cart = documentSnapshot.toObject(MyCart.class);
-                     cart.setDOCUMENTID(documentId);
+                        MyCart cart = documentSnapshot.toObject(MyCart.class);
+                        cart.setDOCUMENTID(documentId);
 
 
-                     myCartList.add(cart);
-                     cartAdapter.notifyDataSetChanged();
-                 }
-             }
-         }
-     });
+                        myCartList.add(cart);
+                        cartAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
 
-     return root;
-
+        return root;
     }
 
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             int totalBill = intent.getIntExtra("totalAmount", 0);
-            tvTotalAmount.setText("Total: "+totalBill+"VND");
+            tvTotalAmount.setText("Total: " + totalBill + "VND");
         }
     };
 }

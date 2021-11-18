@@ -129,8 +129,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void addedToCart() {
-            int totalPrice = totalQuantity * book.getPRICE();
-
+            Integer totalPrice = totalQuantity * book.getPRICE();
 
             String saveCurrentDate, saveCurrentTime;
             Calendar calForDate = Calendar.getInstance();
