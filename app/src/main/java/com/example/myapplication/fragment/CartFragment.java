@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activities.BillActivity;
 import com.example.myapplication.adapter.MyCartAdapter;
 import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class CartFragment extends Fragment {
     FirebaseAuth auth;
 
     TextView tvTotalAmount;
+    Button btnBuy;
 
     RecyclerView rcvCart;
     MyCartAdapter cartAdapter;
@@ -56,6 +60,8 @@ public class CartFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         rcvCart = root.findViewById(R.id.rcvCart);
         rcvCart.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        btnBuy = root.findViewById(R.id.btnBuy);
 
         tvTotalAmount = root.findViewById(R.id.tvTotalAmount);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("MyTotalAmount"));
@@ -81,6 +87,15 @@ public class CartFragment extends Fragment {
                         cartAdapter.notifyDataSetChanged();
                     }
                 }
+            }
+        });
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), BillActivity.class);
+                i.putExtra("itemlist", (Serializable) myCartList);
+                startActivity(i);
             }
         });
 
