@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.home:
                     selectfrg = new HomeFragment();
+                    title.setText("HOME");
                     break;
                 case R.id.cart:
                     selectfrg = new CartFragment();

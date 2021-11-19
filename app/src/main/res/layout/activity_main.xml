@@ -13,9 +13,11 @@
         android:background="@color/GhostWhite"
         android:fitsSystemWindows="true"
         tools:context=".activities.DrawerActivity"
+        android:layout_above="@+id/bottom_nav"
         tools:openDrawer="start">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
