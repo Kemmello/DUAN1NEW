@@ -31,7 +31,10 @@ public class DetailActivity extends AppCompatActivity {
     Button btnAddCart;
     Book book = null;
     Type type = null;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     int totalQuantity = 1;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
@@ -43,6 +46,10 @@ public class DetailActivity extends AppCompatActivity {
         final Object object = getIntent().getSerializableExtra("detail");
         if (object instanceof Book){
             book = (Book) object;
+        }
+        final Object object1 = getIntent().getSerializableExtra("type");
+        if (object1 instanceof Type){
+            type = (Type) object1;
         }
 
         final Object objectAll = getIntent().getSerializableExtra("all");
@@ -74,6 +81,15 @@ public class DetailActivity extends AppCompatActivity {
             tvBookPageDetail.setText(book.getPAGE().toString());
             tvBookPriceDetail.setText(book.getPRICE().toString()+" VNĐ");
             tvBookIntroduction.setText(book.getINTRODUCTION());
+        }
+        if (type != null){
+            Glide.with(getApplicationContext()).load(type.getIMAGE()).into(imageViewDetail);
+            tvBookNameDetail.setText(type.getTITLE());
+            tvBookAuthorDetail.setText(type.getAUTHOR());
+            tvBookTypeDetail.setText(type.getTYPENAME());
+            tvBookPageDetail.setText(type.getPAGE().toString());
+            tvBookPriceDetail.setText(type.getPRICE().toString()+" VNĐ");
+            tvBookIntroduction.setText(type.getINTRODUCTION());
         }
 
         if (type != null){

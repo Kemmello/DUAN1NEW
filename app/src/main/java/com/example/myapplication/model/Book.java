@@ -10,12 +10,12 @@ public class Book implements Serializable {
     Integer PRICE;
     String INTRODUCTION;
     Integer PAGE;
-    String NEWBOOK;
+
 
     public Book() {
     }
 
-    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE , String NEWBOOK) {
+    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE) {
         this.IMAGE = IMAGE;
         this.TITLE = TITLE;
         this.AUTHOR = AUTHOR;
@@ -23,7 +23,7 @@ public class Book implements Serializable {
         this.PRICE = PRICE;
         this.INTRODUCTION = INTRODUCTION;
         this.PAGE = PAGE;
-        this.NEWBOOK = NEWBOOK;
+
     }
 
     public String getIMAGE() {
@@ -80,11 +80,5 @@ public class Book implements Serializable {
         this.PAGE = PAGE;
     }
 
-    public String getNEWBOOK() {
-        return NEWBOOK;
-    }
 
-    public void setNEWBOOK(String NEWBOOK) {
-        this.NEWBOOK = NEWBOOK;
-    }
 }

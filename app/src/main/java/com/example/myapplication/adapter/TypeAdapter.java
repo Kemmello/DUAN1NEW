@@ -15,8 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.activities.DetailActivity;
+<<<<<<< Updated upstream
 import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.model.Book;
+=======
+>>>>>>> Stashed changes
 import com.example.myapplication.model.Type;
 
 import java.util.List;
@@ -44,13 +47,21 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
         Glide.with(context).load(list.get(position).getIMAGE()).into(holder.imageView4);
         holder.tvTenSach.setText(list.get(position).getTITLE());
         holder.tvAuthor.setText(list.get(position).getAUTHOR());
+<<<<<<< Updated upstream
         holder.tvPrice.setText(list.get(position).getPRICE().toString()+" VNĐ");
 
+=======
+        holder.tvPrice.setText(list.get(position).getPRICE().toString());
+>>>>>>> Stashed changes
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
+<<<<<<< Updated upstream
                 intent.putExtra("detail", list.get(position));
+=======
+                intent.putExtra("type", list.get(position));
+>>>>>>> Stashed changes
                 context.startActivity(intent);
             }
         });

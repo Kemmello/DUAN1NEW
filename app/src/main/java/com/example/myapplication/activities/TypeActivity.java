@@ -60,7 +60,11 @@ public class TypeActivity extends AppCompatActivity {
         rcvType.setAdapter(typeAdapter);
 
         /////Sách trẻ em
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Trẻ Em")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Trẻ Em")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Trẻ Em").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -75,7 +79,11 @@ public class TypeActivity extends AppCompatActivity {
         }
 
         /////Tiểu Thuyết
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Tiểu Thuyết")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Tiểu Thuyết")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Tiểu Thuyết").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -90,7 +98,11 @@ public class TypeActivity extends AppCompatActivity {
         }
 
         /////Sách giáo khoa
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Giáo Khoa")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Giáo Khoa")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Giáo Khoa").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -105,7 +117,11 @@ public class TypeActivity extends AppCompatActivity {
         }
 
         /////Sách Văn Học - Nghệ Thuật
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Văn Học")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Văn Học")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Văn Học").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -120,7 +136,11 @@ public class TypeActivity extends AppCompatActivity {
         }
 
         /////Sách Khoa học - Công nghệ
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Khoa Học")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Khoa Học")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Khoa Học").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -135,7 +155,11 @@ public class TypeActivity extends AppCompatActivity {
         }
 
         /////Sách Chính trị - Xã hội
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Chính Trị")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Chính Trị")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Chính Trị").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -150,7 +174,11 @@ public class TypeActivity extends AppCompatActivity {
         }
 
         /////Sách lịch sử
+<<<<<<< Updated upstream
         if (type != null && type.equalsIgnoreCase("Lịch Sử")) {
+=======
+        if(type != null && type.equalsIgnoreCase("Lịch Sử")){
+>>>>>>> Stashed changes
             firestore.collection("BOOK").whereEqualTo("TYPENAME", "Lịch Sử").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {

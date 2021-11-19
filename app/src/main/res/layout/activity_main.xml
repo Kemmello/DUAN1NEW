@@ -22,6 +22,7 @@
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
+<<<<<<< Updated upstream
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
@@ -50,6 +51,46 @@
                             android:textColor="#1B6E62"
                             android:textSize="25dp"
                             android:textStyle="bold" />
+=======
+                android:background="#DDFAED"
+                android:layout_centerVertical="true"
+                android:layout_height="?attr/actionBarSize"
+                android:fitsSystemWindows="true"
+                app:titleTextColor="@color/white"
+                android:id="@+id/toolbar">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_toLeftOf="@+id/ivsearch"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="BOOK STORE"
+                        android:textColor="#1B6E62"
+                        android:textSize="25dp"
+                        android:layout_marginRight="50dp"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/ivsearch"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/iconsearch"
+
+                        android:layout_marginTop="15dp"/>
+
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_nav"/>
+>>>>>>> Stashed changes
 
                         <ImageView
                             android:id="@+id/ivsearch"
