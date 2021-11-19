@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import androidx.annotation.NonNull;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +43,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     FirebaseFirestore firestore;
     FirebaseAuth auth;
     int totalQuantity;
+
+    int totalPrice = 0;
 
     public MyCartAdapter(Context context, List<MyCart> myCartList) {
         this.context = context;
@@ -65,6 +69,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.tvTotalQuantity.setText(myCartList.get(position).getTOTALQUANTITY());
         holder.tvGiaSanPhamGioHang.setText(String.valueOf(myCartList.get(position).getTOTALPRICE()) + " VNĐ");
         Glide.with(context).load(myCartList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
+
+        //pass total mount to my cart fragment
+        totalPrice = totalPrice + myCartList.get(position).getTOTALPRICE();
+        Intent intent = new Intent("MyTotalAmount");
+        intent.putExtra("totalAmount", totalPrice);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
