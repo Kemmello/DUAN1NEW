@@ -28,6 +28,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.model.MyCart;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,17 +65,16 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        totalQuantity = Integer.parseInt(myCartList.get(position).getTOTALQUANTITY());
+
+        totalQuantity = myCartList.get(position).getTOTALQUANTITY();
+        totalPrice = totalQuantity * myCartList.get(position).getPRICE();
         holder.tvTenSanPhamGioHang.setText(myCartList.get(position).getTITLE());
-        holder.tvTotalQuantity.setText(myCartList.get(position).getTOTALQUANTITY());
-        holder.tvGiaSanPhamGioHang.setText(String.valueOf(myCartList.get(position).getTOTALPRICE()) + " VNĐ");
+        holder.tvTotalQuantity.setText(String.valueOf(totalQuantity));
+        holder.tvGiaSanPhamGioHang.setText(String.valueOf(totalPrice) + " VNĐ");
         Glide.with(context).load(myCartList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
 
         //pass total mount to my cart fragment
-        totalPrice = totalPrice + myCartList.get(position).getTOTALPRICE();
-        Intent intent = new Intent("MyTotalAmount");
-        intent.putExtra("totalAmount", totalPrice);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
 
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +120,59 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             public void onClick(View view) {
                 if (totalQuantity < 10) {
                     totalQuantity++;
+                    totalPrice = totalQuantity * myCartList.get(position).getPRICE();
+                    //set gia tri
+                    myCartList.get(position).setTOTALQUANTITY(totalQuantity);
+                    myCartList.get(position).setTOTALPRICE(totalPrice);
+
                     holder.tvTotalQuantity.setText(String.valueOf(totalQuantity));
+                    holder.tvGiaSanPhamGioHang.setText(String.valueOf(totalPrice) + " VNĐ");
+
+
+
+                    //UPDATE TONG SACH
+                    firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                            .collection("CURRENTUSER")
+                            .document(myCartList.get(position).getDOCUMENTID()).update("TOTALQUANTITY",totalQuantity)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
+
+                                    notifyDataSetChanged();
+
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                    // UPDATE TONG TIEN
+                    firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                            .collection("CURRENTUSER")
+                            .document(myCartList.get(position).getDOCUMENTID()).update("TOTALPRICE",totalPrice)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
+
+                                    notifyDataSetChanged();
+
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
                 }
             }
         });
@@ -130,10 +182,56 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             public void onClick(View view) {
                 if (totalQuantity > 0) {
                     totalQuantity--;
+                    totalPrice = totalQuantity * myCartList.get(position).getPRICE();
                     holder.tvTotalQuantity.setText(String.valueOf(totalQuantity));
+                    holder.tvGiaSanPhamGioHang.setText(String.valueOf(totalPrice) + " VNĐ");
+                    //set gia tri
+                    myCartList.get(position).setTOTALQUANTITY(totalQuantity);
+                    myCartList.get(position).setTOTALPRICE(totalPrice);
+                    firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                            .collection("CURRENTUSER")
+                            .document(myCartList.get(position).getDOCUMENTID()).update("TOTALQUANTITY",totalQuantity)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                    // UPDATE TONG TIEN
+                    firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                            .collection("CURRENTUSER")
+                            .document(myCartList.get(position).getDOCUMENTID()).update("TOTALPRICE",totalPrice)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
+
+                                    notifyDataSetChanged();
+
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
                 }
             }
         });
+
 
     }
 

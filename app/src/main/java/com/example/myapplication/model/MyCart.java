@@ -3,20 +3,22 @@ package com.example.myapplication.model;
 import java.io.Serializable;
 
 public class MyCart implements Serializable {
-    String TITLE, TOTALQUANTITY, CURRENTDATE, CURRENTTIME, IMAGE;
-    int TOTALPRICE ;
+    String TITLE, CURRENTDATE, CURRENTTIME, IMAGE;
+    int TOTALPRICE,TOTALQUANTITY,PRICE ;
     String DOCUMENTID;
 
     public MyCart() {
     }
 
-    public MyCart(String TITLE, String TOTALQUANTITY, String CURRENTDATE, String CURRENTTIME, String IMAGE, int TOTALPRICE) {
+    public MyCart(String TITLE, String CURRENTDATE, String CURRENTTIME, String IMAGE, int TOTALPRICE, int TOTALQUANTITY, int PRICE, String DOCUMENTID) {
         this.TITLE = TITLE;
-        this.TOTALQUANTITY = TOTALQUANTITY;
         this.CURRENTDATE = CURRENTDATE;
         this.CURRENTTIME = CURRENTTIME;
         this.IMAGE = IMAGE;
         this.TOTALPRICE = TOTALPRICE;
+        this.TOTALQUANTITY = TOTALQUANTITY;
+        this.PRICE = PRICE;
+        this.DOCUMENTID = DOCUMENTID;
     }
 
     public String getDOCUMENTID() {
@@ -35,11 +37,11 @@ public class MyCart implements Serializable {
         this.TITLE = TITLE;
     }
 
-    public String getTOTALQUANTITY() {
+    public int getTOTALQUANTITY() {
         return TOTALQUANTITY;
     }
 
-    public void setTOTALQUANTITY(String TOTALQUANTITY) {
+    public void setTOTALQUANTITY(int TOTALQUANTITY) {
         this.TOTALQUANTITY = TOTALQUANTITY;
     }
 
@@ -73,5 +75,13 @@ public class MyCart implements Serializable {
 
     public void setTOTALPRICE(int TOTALPRICE) {
         this.TOTALPRICE = TOTALPRICE;
+    }
+
+    public int getPRICE() {
+        return PRICE;
+    }
+
+    public void setPRICE(int PRICE) {
+        this.PRICE = PRICE;
     }
 }

@@ -136,7 +136,8 @@ public class DetailActivity extends AppCompatActivity {
             cartMap.put("TOTALPRICE", totalPrice);
             cartMap.put("CURRENTDATE",saveCurrentDate );
             cartMap.put("CURRENTTIME", saveCurrentTime);
-            cartMap.put("TOTALQUANTITY", tvQuantity.getText().toString());
+            cartMap.put("TOTALQUANTITY", totalQuantity);
+            cartMap.put("PRICE",book.getPRICE());
 
             firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
                     .collection("CURRENTUSER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -147,4 +148,5 @@ public class DetailActivity extends AppCompatActivity {
                 }
             });
         }
+
 }
