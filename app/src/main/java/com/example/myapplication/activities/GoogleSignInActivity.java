@@ -65,11 +65,11 @@ public class GoogleSignInActivity extends SignUpActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                Toast.makeText(GoogleSignInActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GoogleSignInActivity.this, "Sign In Success", Toast.LENGTH_SHORT).show();
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(this, "KO" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sign In Failed !" , Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 finish();
             }
