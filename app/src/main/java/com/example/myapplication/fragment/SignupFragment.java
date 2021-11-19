@@ -139,6 +139,7 @@ public class SignupFragment extends Fragment {
                             user.put("BIRTHDAY","");
                             user.put("PHONE","");
                             user.put("ROLE",2);
+                            user.put("IMAGE","");
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

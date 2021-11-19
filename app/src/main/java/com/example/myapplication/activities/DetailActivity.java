@@ -50,11 +50,6 @@ public class DetailActivity extends AppCompatActivity {
             book = (Book) objectAll;
         }
 
-        final Object objectType = getIntent().getSerializableExtra("type");
-        if (objectType instanceof Type){
-            type = (Type) objectType;
-        }
-
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
         imgAdd = this.findViewById(R.id.imgAdd);
         imgMinus = this.findViewById(R.id.imgMinus);
@@ -95,9 +90,13 @@ public class DetailActivity extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 addedToCart();
+
             }
         });
+
+
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,4 +158,35 @@ public class DetailActivity extends AppCompatActivity {
                 }
             });
         }
+//    private void addedToCartType() {
+//        int totalPrice = totalQuantity * type.getPRICE();
+//
+//
+//        String saveCurrentDate, saveCurrentTime;
+//        Calendar calForDate = Calendar.getInstance();
+//
+//        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+//        saveCurrentDate = currentDate.format(calForDate.getTime());
+//
+//        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+//        saveCurrentTime = currentTime.format(calForDate.getTime());
+//
+//        final HashMap<String, Object> cartMap = new HashMap<>();
+//
+//        cartMap.put("TITLE", book.getTITLE());
+//        cartMap.put("IMAGE", book.getIMAGE());
+//        cartMap.put("TOTALPRICE", totalPrice);
+//        cartMap.put("CURRENTDATE",saveCurrentDate );
+//        cartMap.put("CURRENTTIME", saveCurrentTime);
+//        cartMap.put("TOTALQUANTITY", tvQuantity.getText().toString());
+//
+//        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+//                .collection("CURRENTUSER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentReference> task) {
+//                Toast.makeText(DetailActivity.this, "Added complete", Toast.LENGTH_LONG).show();
+//                finish();
+//            }
+//        });
+//    }
 }

@@ -1,13 +1,17 @@
 package com.example.myapplication.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 
 import android.content.DialogInterface;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.activities.MainActivity;
 import com.example.myapplication.model.MyCart;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -69,42 +74,59 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                        AlertDialog.Builder builder =  new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Light_Dialog);
-                        builder.setTitle("Bạn có muốn xoá khỏi giỏ hàng không ?");
-                        builder.setMessage("Hãy xác nhận");
-                        builder.setPositiveButton("Không", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                
-                            }
-                        });
-                        builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
-                                        .collection("CURRENTUSER")
-                                        .document(myCartList.get(position).getDOCUMENTID())
-                                        .delete()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()){
-                                                    myCartList.remove(myCartList.get(position));
-                                                    notifyDataSetChanged();
-                                                    Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
-                                                }else {
-                                                    Toast.makeText(context, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            }
-                        });
-                        builder.show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                View view1 = LayoutInflater.from(context).inflate(R.layout.dialog_delete,null);
+                builder.setView(view1);
+
+                Button delete = view1.findViewById(R.id.btn_confirm);
+                Button cancel = view1.findViewById(R.id.btn_cancel);
+
+                Dialog dialog = builder.create();
+
+                dialog.getWindow().setBackgroundDrawable(new
+                        ColorDrawable(Color.TRANSPARENT));
+
+                dialog.show();
+
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                                .collection("CURRENTUSER")
+                                .document(myCartList.get(position).getDOCUMENTID())
+                                .delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            myCartList.remove(myCartList.get(position));
+                                            notifyDataSetChanged();
+                                            dialog.dismiss();
+                                            Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(context, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+//                        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+//                                .collection("CURRENTUSER")
+//                                .document(myCartList.get(position).getDOCUMENTID())
+//                                .update()
+//
+//                                });
                     }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
 
 
-        });
-
+    });
 
     }
 

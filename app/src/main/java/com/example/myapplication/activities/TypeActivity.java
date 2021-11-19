@@ -28,7 +28,7 @@ public class TypeActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     RecyclerView rcvType;
     TypeAdapter typeAdapter;
-    List<Type> types;
+    List<Book> types;
     ImageView imgBackType;
     TextView tvBookTypeActivity;
 
@@ -65,7 +65,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Children");
@@ -80,7 +80,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Novel");
@@ -95,7 +95,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("School");
@@ -110,7 +110,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Literature");
@@ -125,7 +125,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Technology");
@@ -140,7 +140,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Politics");
@@ -155,7 +155,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("History");

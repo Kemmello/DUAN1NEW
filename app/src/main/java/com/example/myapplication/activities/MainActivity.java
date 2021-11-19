@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
+
             return true;
         }
     };

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Github/DUAN1NEW/app/src/main/res/drawable/duongvien_goctron.xml" value="0.1" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_book_detail.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_cart.xml" value="0.22644927536231885" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/activity_chi_tiet_san_pham.xml" value="0.23369565217391305" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/book_detail_item.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/book_item.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/bottom_nav.xml" value="0.23369565217391305" />
+        <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/dialog_delete.xml" value="0.2" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/drawer_header.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/fragment_gio_hang.xml" value="0.23369565217391305" />
         <entry key="..\:/Github/DUAN1NEW/app/src/main/res/layout/fragment_home.xml" value="0.25" />
