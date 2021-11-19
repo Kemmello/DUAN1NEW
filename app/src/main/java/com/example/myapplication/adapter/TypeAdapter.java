@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,17 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.activities.DetailActivity;
-import com.example.myapplication.activities.TypeActivity;
-import com.example.myapplication.model.Type;
+import com.example.myapplication.model.Book;
 
 import java.util.List;
 
 public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
 
     Context context;
-    List<Type> list;
+    List<Book> list;
 
-    public TypeAdapter(Context context, List<Type> list) {
+    public TypeAdapter(Context context, List<Book> list) {
         this.context = context;
         this.list = list;
     }
