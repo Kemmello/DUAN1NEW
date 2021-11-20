@@ -6,7 +6,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ToggleButton;
 
 import com.example.myapplication.R;
@@ -34,14 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         fabFacebook = findViewById(R.id.btn_facebook);
         fabGoogle = findViewById(R.id.btn_google);
-
-        fabGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SignUpActivity.this,GoogleSignInActivity.class);
-                startActivity(intent);
-            }
-        });
 
         auth = FirebaseAuth.getInstance();
 
