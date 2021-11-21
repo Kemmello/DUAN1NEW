@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
@@ -26,6 +27,7 @@ import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
 import com.example.myapplication.fragment.RevenueFragment;
+import com.example.myapplication.fragment.SearchFragment;
 import com.example.myapplication.fragment.TopFragment;
 import com.example.myapplication.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     TextView title;
+    ImageView ivsearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.bottom_nav);
         title = findViewById(R.id.title);
-
+        ivsearch = findViewById(R.id.ivsearch);
         navigationView.setOnNavigationItemSelectedListener(navlistener);
         NavigationView navigationView_main = findViewById(R.id.navView_main);
         navigationView_main.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -100,7 +103,16 @@ public class MainActivity extends AppCompatActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
 
+        ivsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new Fragment();
+                fragment = new SearchFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.frame,fragment).commit();
 
+            }
+        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -110,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.home:
                     selectfrg = new HomeFragment();
+                    title.setText("HOME");
                     break;
                 case R.id.cart:
                     selectfrg = new CartFragment();

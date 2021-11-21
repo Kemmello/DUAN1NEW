@@ -3,7 +3,6 @@ package com.example.myapplication.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Book;
-import com.example.myapplication.model.Type;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvBookIntroduction , tvBookPriceDetail , tvQuantity;
     Button btnAddCart;
     Book book = null;
-    Type type = null;
+
 
     int totalQuantity = 1;
     FirebaseFirestore firestore;
@@ -51,8 +49,8 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         final Object objectType = getIntent().getSerializableExtra("type");
-        if (objectType instanceof Type){
-            type = (Type) objectType;
+        if (objectType instanceof Book){
+            book = (Book) objectType;
         }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
@@ -81,15 +79,6 @@ public class DetailActivity extends AppCompatActivity {
             tvBookIntroduction.setText(book.getINTRODUCTION());
         }
 
-        if (type != null){
-            Glide.with(getApplicationContext()).load(type.getIMAGE()).into(imageViewDetail);
-            tvBookNameDetail.setText(type.getTITLE());
-            tvBookAuthorDetail.setText(type.getAUTHOR());
-            tvBookTypeDetail.setText(type.getTYPENAME());
-            tvBookPageDetail.setText(type.getPAGE().toString());
-            tvBookPriceDetail.setText(type.getPRICE().toString()+" VNĐ");
-            tvBookIntroduction.setText(type.getINTRODUCTION());
-        }
 
         btnAddCart = this.findViewById(R.id.btnAddCart);
         btnAddCart.setOnClickListener(new View.OnClickListener() {
@@ -129,8 +118,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void addedToCart() {
-            int totalPrice = totalQuantity * book.getPRICE();
-
+            Integer totalPrice = totalQuantity * book.getPRICE();
 
             String saveCurrentDate, saveCurrentTime;
             Calendar calForDate = Calendar.getInstance();
@@ -148,7 +136,8 @@ public class DetailActivity extends AppCompatActivity {
             cartMap.put("TOTALPRICE", totalPrice);
             cartMap.put("CURRENTDATE",saveCurrentDate );
             cartMap.put("CURRENTTIME", saveCurrentTime);
-            cartMap.put("TOTALQUANTITY", tvQuantity.getText().toString());
+            cartMap.put("TOTALQUANTITY", totalQuantity);
+            cartMap.put("PRICE",book.getPRICE());
 
             firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
                     .collection("CURRENTUSER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -159,4 +148,5 @@ public class DetailActivity extends AppCompatActivity {
                 }
             });
         }
+
 }

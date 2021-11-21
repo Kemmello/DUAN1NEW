@@ -62,6 +62,7 @@
 
             <EditText
                 android:id="@+id/edtUserName"
+
                 android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv1"
@@ -110,7 +111,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ln2"
             android:orientation="vertical"
-
             android:paddingLeft="35dp"
             android:paddingTop="16dp">
 

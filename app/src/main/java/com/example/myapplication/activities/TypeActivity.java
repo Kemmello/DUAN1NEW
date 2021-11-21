@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.TypeAdapter;
 import com.example.myapplication.model.Book;
-import com.example.myapplication.model.Type;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,11 +26,11 @@ public class TypeActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     RecyclerView rcvType;
     TypeAdapter typeAdapter;
-    List<Type> types;
+    List<Book> types;
     ImageView imgBackType;
     TextView tvBookTypeActivity;
 
-    Type type = null;
+    Book type = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +63,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Children");
@@ -80,7 +78,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Novel");
@@ -95,7 +93,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("School");
@@ -110,7 +108,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Literature");
@@ -125,7 +123,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Technology");
@@ -140,7 +138,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("Politics");
@@ -155,7 +153,7 @@ public class TypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        Type type1 = documentSnapshot.toObject(Type.class);
+                        Book type1 = documentSnapshot.toObject(Book.class);
                         types.add(type1);
                         typeAdapter.notifyDataSetChanged();
                         tvBookTypeActivity.setText("History");

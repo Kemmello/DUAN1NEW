@@ -33,8 +33,6 @@ import java.util.Map;
 
 
 public class UserFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     String email, name, phone, address, birthday;
     FirebaseUser auth;
@@ -42,6 +40,7 @@ public class UserFragment extends Fragment {
     Button btnSave, btnCancel;
     FirebaseFirestore database;
     String id;
+    String name, email, birthday, phone, address;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,8 +70,6 @@ public class UserFragment extends Fragment {
         });
         return view;
     }
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -193,4 +190,29 @@ public class UserFragment extends Fragment {
 }
 
 
+        database = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        id = auth.getCurrentUser().getUid();
+
+
+        DocumentReference reference = database.collection("USER").document(id);
+        reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.getResult().exists()){
+                    name  = task.getResult().getString("NAME");
+                    email = task.getResult().getString("EMAIL");
+                    phone = task.getResult().getString("PHONE");
+                    address = task.getResult().getString("ADDRESS");
+                    birthday = task.getResult().getString("BIRTHDAY");
+                    edtUserName.setText(name);
+                    edtDate.setText(birthday);
+                    edtPhone.setText(phone);
+                    edtEmail.setText(email);
+                    edtAddress.setText(address);
+                }else {
+
+                }
+            }
+        });
 
