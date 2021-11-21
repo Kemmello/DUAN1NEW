@@ -17,20 +17,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.activities.BillActivity;
 import com.example.myapplication.adapter.MyCartAdapter;
 import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -74,12 +76,35 @@ public class CartFragment extends Fragment {
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), BillActivity.class);
-                i.putExtra("itemlist", (Serializable) myCartList);
-                startActivity(i);
+                auth = FirebaseAuth.getInstance();
+                firestore = FirebaseFirestore.getInstance();
+
+                if(myCartList!= null && myCartList.size() >0){
+                    for (MyCart cart : myCartList){
+
+                        final HashMap<String, Object> cartMap = new HashMap<>();
+
+                        cartMap.put("TITLE", cart.getTITLE());
+                        cartMap.put("PRICE", cart.getPRICE());
+                        cartMap.put("IMAGE", cart.getIMAGE());
+                        cartMap.put("TOTALPRICE", cart.getTOTALPRICE());
+                        cartMap.put("CURRENTDATE",cart.getCURRENTDATE() );
+                        cartMap.put("CURRENTTIME", cart.getCURRENTTIME());
+                        cartMap.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
+
+                        firestore.collection("CURRENTUSER").document(auth.getCurrentUser().getUid())
+                                .collection("MYORDER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                Toast.makeText(getContext(), "Your order has been complete", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                }
             }
         });
         myCartList.clear();
+
         firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
                 .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
