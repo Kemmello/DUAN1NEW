@@ -49,7 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
             android:paddingLeft="35dp"
             android:paddingTop="25dp">
 
@@ -63,7 +62,8 @@
 
             <EditText
                 android:id="@+id/edtUserName"
-                android:layout_width="wrap_content"
+
+                android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv1"
                 android:background="#00000000"
@@ -93,7 +93,7 @@
 
             <EditText
                 android:id="@+id/edtEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv3"
                 android:background="#00000000"
@@ -111,7 +111,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ln2"
             android:orientation="vertical"
-
             android:paddingLeft="35dp"
             android:paddingTop="16dp">
 
@@ -124,7 +123,7 @@
 
             <EditText
                 android:id="@+id/edtPhone"
-                android:layout_width="wrap_content"
+                android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv5"
                 android:background="#00000000"
@@ -154,7 +153,7 @@
 
             <EditText
                 android:id="@+id/edtAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:inputType="textNoSuggestions"
@@ -173,7 +172,6 @@
 
             android:paddingLeft="35dp"
             android:paddingTop="16dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,7 +181,7 @@
 
             <EditText
                 android:id="@+id/edtDate"
-                android:layout_width="wrap_content"
+                android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:inputType="textNoSuggestions"
@@ -213,6 +211,7 @@
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:background="#1B6E62"
+                    android:id="@+id/btnSave"
                     android:text="SAVE"
                     android:textSize="18dp" />
             </androidx.cardview.widget.CardView>
@@ -228,6 +227,7 @@
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:background="#1B6E62"
+                    android:id="@+id/btnCancelUpdate"
                     android:text="CANCEL"
                     android:textSize="18dp" />
             </androidx.cardview.widget.CardView>
