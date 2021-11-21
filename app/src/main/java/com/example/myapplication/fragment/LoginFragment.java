@@ -64,13 +64,13 @@ public class LoginFragment extends Fragment {
         pass = edtPassword_Login.getText().toString();
         setPass(pass);
         if (TextUtils.isEmpty(email)){
-            Toast.makeText(getActivity(),"Email is empty !",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Email để trống",Toast.LENGTH_LONG).show();
             edtEmail_Login.requestFocus();
             edtPassword_Login.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(pass)){
-            Toast.makeText(getActivity(),"Password is empty !",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Mật khẩu để trống",Toast.LENGTH_LONG).show();
             edtPassword_Login.requestFocus();
             edtEmail_Login.setFocusable(false);
             return;
@@ -80,11 +80,11 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getActivity(),"Login success",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"Đăng nhập thành công",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity(),MainActivity.class);
                             startActivity(intent);
                         }else {
-                            Toast.makeText(getActivity(),"Wrong email or password !",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"Nhập sai email hoặc mật khẩu",Toast.LENGTH_LONG).show();
 
                         }
                     }

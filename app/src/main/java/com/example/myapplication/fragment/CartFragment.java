@@ -73,6 +73,8 @@ public class CartFragment extends Fragment {
 
 
 
+
+
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,10 +101,10 @@ public class CartFragment extends Fragment {
                     }
 
 
+
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 auth = FirebaseAuth.getInstance();
                 firestore = FirebaseFirestore.getInstance();
 
@@ -112,6 +114,7 @@ public class CartFragment extends Fragment {
                         final HashMap<String, Object> cartMap = new HashMap<>();
 
                         cartMap.put("TITLE", cart.getTITLE());
+                        cartMap.put("PRICE", cart.getPRICE());
                         cartMap.put("IMAGE", cart.getIMAGE());
                         cartMap.put("TOTALPRICE", cart.getTOTALPRICE());
                         cartMap.put("CURRENTDATE",cart.getCURRENTDATE() );
@@ -130,6 +133,29 @@ public class CartFragment extends Fragment {
                 }
             }
         });
+
+        myCartList.clear();
+
+        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+
+                        String documentId = documentSnapshot.getId();
+                        MyCart cart = documentSnapshot.toObject(MyCart.class);
+                        cart.setDOCUMENTID(documentId);
+                        myCartList.add(cart);
+                        cartAdapter.notifyDataSetChanged();
+                        TotalMoney(myCartList);
+                    }
+
+                }
+            }
+        });
+
         return root;
     }
 
@@ -141,6 +167,7 @@ public class CartFragment extends Fragment {
         if(cartAdapter != null) {
             cartAdapter.notifyDataSetChanged();
             TotalMoney(myCartList);
+
         }
 
     }
@@ -149,6 +176,16 @@ public class CartFragment extends Fragment {
         for (MyCart myCart : list){
             totalAmount += myCart.getTOTALPRICE();
         }
+
+        }
+
+    }
+    public  void TotalMoney(List<MyCart> list){
+        int totalAmount = 0;
+        for (MyCart myCart : list){
+            totalAmount += myCart.getTOTALPRICE();
+        }
+
         tvTotalAmount.setText("Total : "+totalAmount);
 
     }

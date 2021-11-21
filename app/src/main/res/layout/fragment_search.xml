@@ -8,8 +8,13 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+
+    android:background="@color/white"
+    android:orientation="vertical">
+
     android:orientation="vertical"
     android:background="#F4F2F2">
+
 
     <LinearLayout
         android:orientation="vertical"
