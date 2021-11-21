@@ -73,6 +73,35 @@ public class CartFragment extends Fragment {
 
 
 
+
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), BillActivity.class);
+                i.putExtra("itemlist", (Serializable) myCartList);
+                startActivity(i);
+            }
+        });
+        myCartList.clear();
+        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+
+                        String documentId = documentSnapshot.getId();
+                        MyCart cart = documentSnapshot.toObject(MyCart.class);
+                        cart.setDOCUMENTID(documentId);
+                        myCartList.add(cart);
+                        cartAdapter.notifyDataSetChanged();
+                        TotalMoney(myCartList);
+                    }
+
+
+
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,9 +129,11 @@ public class CartFragment extends Fragment {
                             }
                         });
                     }
+
                 }
             }
         });
+
         myCartList.clear();
 
         firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
@@ -124,6 +155,7 @@ public class CartFragment extends Fragment {
                 }
             }
         });
+
         return root;
     }
 
@@ -135,6 +167,7 @@ public class CartFragment extends Fragment {
         if(cartAdapter != null) {
             cartAdapter.notifyDataSetChanged();
             TotalMoney(myCartList);
+
         }
 
     }
@@ -143,6 +176,16 @@ public class CartFragment extends Fragment {
         for (MyCart myCart : list){
             totalAmount += myCart.getTOTALPRICE();
         }
+
+        }
+
+    }
+    public  void TotalMoney(List<MyCart> list){
+        int totalAmount = 0;
+        for (MyCart myCart : list){
+            totalAmount += myCart.getTOTALPRICE();
+        }
+
         tvTotalAmount.setText("Total : "+totalAmount);
 
     }
