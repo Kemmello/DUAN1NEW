@@ -65,11 +65,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        totalQuantity = myCartList.get(position).getTOTALQUANTITY();
-        totalPrice = totalQuantity * myCartList.get(position).getPRICE();
+        totalPrice = myCartList.get(position).getTOTALQUANTITY() * myCartList.get(position).getPRICE();
         holder.tvTenSanPhamGioHang.setText(myCartList.get(position).getTITLE());
-        holder.tvTotalQuantity.setText(String.valueOf(totalQuantity));
+        holder.tvTotalQuantity.setText(String.valueOf(myCartList.get(position).getTOTALQUANTITY()));
         holder.tvGiaSanPhamGioHang.setText(String.valueOf(totalPrice) + " VNĐ");
         Glide.with(context).load(myCartList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
 
@@ -118,17 +116,15 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (totalQuantity < 10) {
+                if ( myCartList.get(position).getTOTALQUANTITY() < 10) {
+                    totalQuantity = myCartList.get(position).getTOTALQUANTITY();
                     totalQuantity++;
                     totalPrice = totalQuantity * myCartList.get(position).getPRICE();
                     //set gia tri
                     myCartList.get(position).setTOTALQUANTITY(totalQuantity);
                     myCartList.get(position).setTOTALPRICE(totalPrice);
-
                     holder.tvTotalQuantity.setText(String.valueOf(totalQuantity));
                     holder.tvGiaSanPhamGioHang.setText(String.valueOf(totalPrice) + " VNĐ");
-
-
 
                     //UPDATE TONG SACH
                     firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
@@ -137,17 +133,15 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
 
                                     notifyDataSetChanged();
-
 
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Error" + e, Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -158,17 +152,13 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
-
                                     notifyDataSetChanged();
-
-
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Error" + e, Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -180,7 +170,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.imgMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (totalQuantity > 0) {
+                if (myCartList.get(position).getTOTALQUANTITY() > 0) {
+                    totalQuantity = myCartList.get(position).getTOTALQUANTITY();
                     totalQuantity--;
                     totalPrice = totalQuantity * myCartList.get(position).getPRICE();
                     holder.tvTotalQuantity.setText(String.valueOf(totalQuantity));
@@ -194,7 +185,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
                                     notifyDataSetChanged();
 
                                 }
@@ -202,7 +192,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Error" + e, Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -213,7 +203,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(context, "Thành công" , Toast.LENGTH_SHORT).show();
 
                                     notifyDataSetChanged();
 
@@ -223,7 +212,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, "Lỗi" + e, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Error" + e, Toast.LENGTH_SHORT).show();
 
                                 }
                             });

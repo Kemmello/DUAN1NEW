@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.BillAdapter;
 import com.example.myapplication.adapter.MyCartAdapter;
 import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +34,7 @@ public class BillFragment extends Fragment {
 
     RecyclerView rcvBill;
     List<MyCart> myCartList;
-    MyCartAdapter cartAdapter;
+    BillAdapter billAdapter;
 
 
     public BillFragment() {
@@ -53,8 +55,8 @@ public class BillFragment extends Fragment {
         firestore = FirebaseFirestore.getInstance();
 
         myCartList = new ArrayList<>();
-        cartAdapter = new MyCartAdapter(getActivity(), myCartList);
-        rcvBill.setAdapter(cartAdapter);
+        billAdapter = new BillAdapter(getActivity(), myCartList);
+        rcvBill.setAdapter(billAdapter);
 
         firestore.collection("CURRENTUSER").document(auth.getCurrentUser().getUid())
                 .collection("MYORDER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,7 +72,7 @@ public class BillFragment extends Fragment {
 
 
                         myCartList.add(cart);
-                        cartAdapter.notifyDataSetChanged();
+                        billAdapter.notifyDataSetChanged();
                     }
                 }
             }

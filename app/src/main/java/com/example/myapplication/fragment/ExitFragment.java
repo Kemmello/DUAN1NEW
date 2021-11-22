@@ -44,16 +44,16 @@ FirebaseAuth auth;
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder =  new AlertDialog.Builder(getContext(), android.R.style.Theme_DeviceDefault_Light_Dialog);
-                builder.setTitle("Bạn có muốn thoát khỏi app");
-                builder.setMessage("Hãy xác nhận");
-                builder.setPositiveButton("Không", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder =  new AlertDialog.Builder(getContext());
+                builder.setTitle("Are you sure");
+                builder.setMessage("Please confirm");
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
-                builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         auth.signOut();

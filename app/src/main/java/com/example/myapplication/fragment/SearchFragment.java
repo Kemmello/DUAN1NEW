@@ -102,21 +102,6 @@ public class SearchFragment extends Fragment {
     }
     private void searchProduct(String book) {
         if (!book.isEmpty()) {
-//            firestore.collection("BOOK").whereEqualTo("TITLE",book).get()
-//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful() && task.getResult() != null){
-//                                viewAllBookList.clear();
-//                                bookAllAdapter.notifyDataSetChanged();
-//                                for (DocumentSnapshot doc: task.getResult().getDocuments()){
-//                                    Book viewAllBook = doc.toObject(Book.class);
-//                                    viewAllBookList.add(viewAllBook);
-//                                    bookAllAdapter.notifyDataSetChanged();
-//                                }
-//                            }
-//                        }
-//                    });
             firestore.collection("BOOK").orderBy("TITLE").get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -131,7 +116,6 @@ public class SearchFragment extends Fragment {
                             }
                         }
                     });
-
         }
     }
 }

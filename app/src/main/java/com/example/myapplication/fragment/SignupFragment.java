@@ -10,17 +10,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
-import com.example.myapplication.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,13 +25,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignupFragment extends Fragment {
-    EditText etname,etemail,etpassword,etrepeatPassword;
+    EditText etname, etemail, etpassword, etrepeatPassword;
     Button btnSubmit;
     FirebaseAuth auth;
     FirebaseFirestore database;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        ViewGroup root = (ViewGroup)  inflater.inflate(R.layout.signup_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_signup, container, false);
 
 //        mobileNumber.setTranslationX(800);
 //        email.setTranslationX(800);
@@ -54,7 +52,7 @@ public class SignupFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated( View view,  Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etemail = view.findViewById(R.id.edtEmail);
         etpassword = view.findViewById(R.id.edtPassword_SignUp);
@@ -70,87 +68,86 @@ public class SignupFragment extends Fragment {
             }
         });
     }
-    public void createUser(){
-        String name =etname.getText().toString();
+
+    public void createUser() {
+        String name = etname.getText().toString();
         String email = etemail.getText().toString();
         String password = etrepeatPassword.getText().toString();
         String rppassword = etrepeatPassword.getText().toString();
-        if (TextUtils.isEmpty(name)){
-            Toast.makeText(getActivity(),"Tên để trống",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(getActivity(), "Username is empty", Toast.LENGTH_LONG).show();
             etname.requestFocus();
             etpassword.setFocusable(false);
             etrepeatPassword.setFocusable(false);
             etemail.setFocusable(false);
             return;
         }
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(getActivity(),"Email để trống",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getActivity(), "Email is empty", Toast.LENGTH_LONG).show();
             etemail.requestFocus();
             etpassword.setFocusable(false);
             etrepeatPassword.setFocusable(false);
             etname.setFocusable(false);
             return;
         }
-        if (TextUtils.isEmpty(password)){
-            Toast.makeText(getActivity(),"Mật khẩu để trống",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getActivity(), "Password is empty", Toast.LENGTH_LONG).show();
             etpassword.requestFocus();
             etemail.setFocusable(false);
             etrepeatPassword.setFocusable(false);
             etname.setFocusable(false);
             return;
         }
-        if (TextUtils.isEmpty(rppassword)){
-            Toast.makeText(getActivity(),"Nhập lại mật khẩu để trống",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(rppassword)) {
+            Toast.makeText(getActivity(), "Re-enter password", Toast.LENGTH_LONG).show();
             etrepeatPassword.requestFocus();
             etpassword.setFocusable(false);
             etemail.setFocusable(false);
             etname.setFocusable(false);
             return;
         }
-        if (password.equals(rppassword)==false){
-            Toast.makeText(getActivity(),"Mật khẩu không khớp",Toast.LENGTH_LONG).show();
+        if (password.equals(rppassword) == false) {
+            Toast.makeText(getActivity(), "Password incorrect", Toast.LENGTH_LONG).show();
             etrepeatPassword.requestFocus();
             etpassword.setFocusable(false);
             etemail.setFocusable(false);
             etname.setFocusable(false);
             return;
         }
-        if (password.length()<6){
-            Toast.makeText(getActivity(),"Mật khẩu phải dài hơn 6 chữ",Toast.LENGTH_LONG).show();
+        if (password.length() < 6) {
+            Toast.makeText(getActivity(),"Password must be longer than 6 characters", Toast.LENGTH_LONG).show();
             etpassword.requestFocus();
             etemail.setFocusable(false);
             etrepeatPassword.setFocusable(false);
             etname.setFocusable(false);
             return;
         }
-        auth.createUserWithEmailAndPassword(email,password)
+        auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
 //                            User user = new User(email,password,name,",",",",0,2);
                             String id = auth.getCurrentUser().getUid();
                             DocumentReference documentReference = database.collection("USER").document(id);
-                            Map<String , Object> user = new HashMap<>();
-                            user.put("EMAIL",email);
-                            user.put("PASSWORD",password);
-                            user.put("NAME",name);
-                            user.put("ADDRESS","");
-                            user.put("BIRTHDAY","");
-                            user.put("PHONE","");
-                            user.put("ROLE",2);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("IMAGE", "");
+                            user.put("EMAIL", email);
+                            user.put("NAME", name);
+                            user.put("ADDRESS", "");
+                            user.put("BIRTHDAY", "");
+                            user.put("PHONE", "");
+                            user.put("ROLE", 2);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(getActivity(),"Tạo tài khoản thành công",Toast.LENGTH_LONG).show();
-
+                                    Toast.makeText(getActivity(), "Sign Up Success", Toast.LENGTH_LONG).show();
                                 }
                             });
-                        }else {
-                            Toast.makeText(getActivity(),"Tạo tài khoản thất bại",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getActivity(), "Sign Up Failed", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
-
 }

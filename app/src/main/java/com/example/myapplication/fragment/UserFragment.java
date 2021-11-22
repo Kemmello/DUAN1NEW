@@ -112,7 +112,7 @@ public class UserFragment extends Fragment {
                     edtEmail.setText(email);
                     edtAddress.setText(address);
                 } else {
-                    Toast.makeText(getActivity(), "vui long dang nhap lai!:", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Login again ! Please:", Toast.LENGTH_LONG).show();
                 }
             }
         });

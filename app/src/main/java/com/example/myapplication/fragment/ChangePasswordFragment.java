@@ -50,28 +50,28 @@ public class ChangePasswordFragment extends Fragment {
         String rppassword_Change = edtRepeatPassword_Change.getText().toString();
         LoginFragment Loginfrmnt = new LoginFragment();
         if (!oldPassword.equals(Loginfrmnt.getPass())) {
-            Toast.makeText(getActivity(), "Nhập mật cũ sai!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Enter wrong old password!", Toast.LENGTH_LONG).show();
             edtOldPassword.requestFocus();
             edtPassword_Change.setFocusable(false);
             edtRepeatPassword_Change.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(password_Change)) {
-            Toast.makeText(getActivity(), "Nhập mật khẩu mới", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Enter new password", Toast.LENGTH_LONG).show();
             edtPassword_Change.requestFocus();
             edtOldPassword.setFocusable(false);
             edtRepeatPassword_Change.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(rppassword_Change)) {
-            Toast.makeText(getActivity(), "Mật khẩu để trống", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Password is empty", Toast.LENGTH_LONG).show();
             edtRepeatPassword_Change.requestFocus();
             edtPassword_Change.setFocusable(false);
             edtOldPassword.setFocusable(false);
             return;
         }
         if (!rppassword_Change.equals(password_Change)) {
-            Toast.makeText(getActivity(), "Mật khẩu mới chưa khớp!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Incorrect password!", Toast.LENGTH_LONG).show();
             edtRepeatPassword_Change.requestFocus();
             edtPassword_Change.setFocusable(false);
             edtOldPassword.setFocusable(false);

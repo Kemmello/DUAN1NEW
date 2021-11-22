@@ -99,10 +99,27 @@ public class CartFragment extends Fragment {
                                 Toast.makeText(getContext(), "Your order has been complete", Toast.LENGTH_LONG).show();
                             }
                         });
+                        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                                .collection("CURRENTUSER")
+                                .document(cart.getDOCUMENTID())
+                                .delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            myCartList.remove(cart);
+                                            cartAdapter.notifyDataSetChanged();
+                                            Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getActivity(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                     }
                 }
             }
         });
+
         myCartList.clear();
 
         firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())

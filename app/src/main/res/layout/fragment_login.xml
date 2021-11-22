@@ -11,17 +11,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_shape"
-        android:hint="Email"
         android:drawableLeft="@drawable/textview_user"
-        android:padding="2dp"
+        android:hint="Email"
         android:minHeight="48dp"
+        android:padding="2dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.063"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
@@ -48,14 +49,14 @@
         android:id="@+id/btnLogin"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/button_shape"
         android:text="Login"
         android:textColor="#DDFAED"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.825"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".8" />
@@ -65,7 +66,7 @@
         style="@style/LoginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:text="keep login"
         app:layout_constraintEnd_toStartOf="@+id/btnLogin"
@@ -74,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtPassword_Login" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvForgetPassword"
         style="@style/LoginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,8 +84,9 @@
         android:text="forgot Password?"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail_Login" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail_Login"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
