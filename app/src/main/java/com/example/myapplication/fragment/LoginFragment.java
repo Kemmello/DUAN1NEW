@@ -100,7 +100,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getActivity(),"Đăng nhập thành công",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"Login success",Toast.LENGTH_LONG).show();
                             firestore.collection("USER").document(auth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot snapshot) {
@@ -115,7 +115,7 @@ public class LoginFragment extends Fragment {
                                 }
                             });
                         }else {
-                            Toast.makeText(getActivity(),"Nhập sai email hoặc mật khẩu",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"Wrong email or password",Toast.LENGTH_LONG).show();
 
                         }
                     }

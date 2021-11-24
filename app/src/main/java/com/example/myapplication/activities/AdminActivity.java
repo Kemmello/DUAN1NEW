@@ -122,10 +122,6 @@ public class AdminActivity extends AppCompatActivity {
                     selectfrg = new HomeAdminFragment();
                     title.setText("HOME");
                     break;
-                case R.id.cart:
-                    selectfrg = new CartFragment();
-                    title.setText("CART");
-                    break;
                 case R.id.user:
                     selectfrg = new UserFragment();
                     title.setText("USER");
