@@ -53,7 +53,9 @@ public class BookAllAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
+                                String documentId = document.getId();
                                 Book book = document.toObject(Book.class);
+                                book.setDOCUMENTID(documentId);
                                 books.add(book);
                                 bookAllAdminAdapter.notifyDataSetChanged();
                             }
