@@ -43,7 +43,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        drawerLayout = this.findViewById(R.id.drawerLayout_main);
+        drawerLayout = this.findViewById(R.id.drawerLayout_admin);
         toolbar = this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.bottom_nav);

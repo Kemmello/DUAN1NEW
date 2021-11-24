@@ -10,6 +10,16 @@
             android:icon="@drawable/ic_menu_book"
             android:title="Book"/>
     </group>
+    <item android:title="Statistical">
+        <menu>
+            <item android:id="@+id/nav_doanhthu"
+                android:icon="@drawable/ic_doanhthu"
+                android:title="Revenue"/>
+            <item android:id="@+id/nav_topsach"
+                android:icon="@drawable/ic_top_sach"
+                android:title="Top 10 "/>
+        </menu>
+    </item>
     <item android:title="User">
         <menu>
             <item android:id="@+id/nav_lienhe"

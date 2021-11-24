@@ -57,7 +57,9 @@ FirebaseAuth auth;
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         auth.signOut();
-                        getActivity().finish();
+                        getActivity().finishAffinity();
+                        Intent intent = new Intent(getContext(), SignUpActivity.class);
+                        startActivity(intent);
                     }
                 });
                 builder.show();

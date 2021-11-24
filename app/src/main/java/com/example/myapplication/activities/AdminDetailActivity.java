@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,53 +24,54 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class AdminDetailActivity extends AppCompatActivity {
-    ImageView imageViewDetail , imgBack;
-    TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvBookIntroduction , tvBookPriceDetail , btnSaveAdmin;
+    ImageView imageViewDetail, imgBack;
+    EditText tvBookNameDetail, tvBookAuthorDetail, tvBookTypeDetail, tvBookPageDetail, tvBookIntroduction, tvBookPriceDetail;
+    TextView btnSaveAdmin;
     Book book = null;
 
     FirebaseFirestore firestore;
     FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_detail);
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         final Object object = getIntent().getSerializableExtra("detail");
-        if (object instanceof Book){
+        if (object instanceof Book) {
             book = (Book) object;
         }
 
         final Object objectAll = getIntent().getSerializableExtra("all");
-        if (objectAll instanceof Book){
+        if (objectAll instanceof Book) {
             book = (Book) objectAll;
         }
 
         final Object objectType = getIntent().getSerializableExtra("type");
-        if (objectType instanceof Book){
+        if (objectType instanceof Book) {
             book = (Book) objectType;
         }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
         imgBack = this.findViewById(R.id.imgBack);
 
-        firestore = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
-
-        tvBookNameDetail = this.findViewById(R.id.tvBookNameDetail);
-        tvBookAuthorDetail = this.findViewById(R.id.tvBookAuthorDetail);
-        tvBookTypeDetail = this.findViewById(R.id.tvBookTypeDetail);
-        tvBookPageDetail = this.findViewById(R.id.tvBookPageDetail);
-        tvBookIntroduction = this.findViewById(R.id.tvBookIntroduction);
-        tvBookPriceDetail = this.findViewById(R.id.tvBookPriceDetail);
+        tvBookNameDetail = this.findViewById(R.id.tvBookNameDetailAD);
+        tvBookAuthorDetail = this.findViewById(R.id.tvBookAuthorDetailAD);
+        tvBookTypeDetail = this.findViewById(R.id.tvBookTypeDetailAD);
+        tvBookPageDetail = this.findViewById(R.id.tvBookPageDetailAD);
+        tvBookIntroduction = this.findViewById(R.id.tvBookIntroductionAD);
+        tvBookPriceDetail = this.findViewById(R.id.tvBookPriceDetailAD);
         btnSaveAdmin = this.findViewById(R.id.btnSaveAdmin);
 
-        if (book != null){
+        if (book != null) {
             Glide.with(getApplicationContext()).load(book.getIMAGE()).into(imageViewDetail);
             tvBookNameDetail.setText(book.getTITLE());
             tvBookAuthorDetail.setText(book.getAUTHOR());
             tvBookTypeDetail.setText(book.getTYPENAME());
             tvBookPageDetail.setText(book.getPAGE().toString());
-            tvBookPriceDetail.setText(book.getPRICE().toString()+" VNĐ");
+            tvBookPriceDetail.setText(book.getPRICE().toString() + " VNĐ");
             tvBookIntroduction.setText(book.getINTRODUCTION());
         }
 
@@ -89,33 +91,4 @@ public class AdminDetailActivity extends AppCompatActivity {
 
     }
 
-    private void addedToCart() {
-
-        String saveCurrentDate, saveCurrentTime;
-        Calendar calForDate = Calendar.getInstance();
-
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentTime.format(calForDate.getTime());
-
-        final HashMap<String, Object> cartMap = new HashMap<>();
-
-        cartMap.put("TITLE", book.getTITLE());
-        cartMap.put("IMAGE", book.getIMAGE());
-        cartMap.put("TOTALPRICE", tvBookPriceDetail);
-        cartMap.put("CURRENTDATE",saveCurrentDate );
-        cartMap.put("CURRENTTIME", saveCurrentTime);
-        cartMap.put("PRICE",book.getPRICE());
-
-        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
-                .collection("CURRENTUSER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                Toast.makeText(AdminDetailActivity.this, "Added complete", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
-    }
 }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.activities.AdminDetailActivity;
 import com.example.myapplication.activities.DetailActivity;
 import com.example.myapplication.model.Book;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,7 +57,7 @@ public class BookAllAdminAdapter extends RecyclerView.Adapter<BookAllAdminAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(context, AdminDetailActivity.class);
                 intent.putExtra("all", list.get(position));
                 context.startActivity(intent);
             }

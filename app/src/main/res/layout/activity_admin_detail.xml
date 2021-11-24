@@ -20,7 +20,7 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="-180dp"
             android:src="@drawable/iconback" />
 
@@ -68,27 +68,28 @@
         </LinearLayout>
 
         <EditText
-            android:inputType="textNoSuggestions"
-            android:id="@+id/tvBookNameDetail"
+            android:id="@+id/tvBookNameDetailAD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ln6"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Book name"
+            android:background="@color/white"
+            android:hint="Book name"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24dp" />
 
         <EditText
-            android:id="@+id/tvBookAuthorDetail"
+            android:id="@+id/tvBookAuthorDetailAD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvBookNameDetail"
+            android:layout_below="@+id/tvBookNameDetailAD"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="10dp"
+            android:background="@color/white"
             android:gravity="center"
-            android:text="Author"
+            android:hint="Author"
             android:textAlignment="center"
             android:textSize="20dp" />
     </RelativeLayout>
@@ -115,13 +116,13 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/tvBookTypeDetail"
+                android:id="@+id/tvBookTypeDetailAD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="novel"
+                android:hint="novel"
                 android:textSize="20dp"
-                android:inputType="textNoSuggestions"/>
+                android:background="@color/white"/>
 
         </LinearLayout>
 
@@ -142,13 +143,13 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/tvBookPageDetail"
+                android:id="@+id/tvBookPageDetailAD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="count"
+                android:hint="count"
                 android:textSize="20dp"
-                android:inputType="textNoSuggestions"/>
+                android:background="@color/white"/>
 
         </LinearLayout>
 
@@ -169,14 +170,14 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/tvBookPriceDetail"
+                android:id="@+id/tvBookPriceDetailAD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="200000"
+                android:hint="200000"
                 android:textColor="@color/red"
                 android:textSize="20dp"
-                android:inputType="textNoSuggestions"/>
+                android:background="@color/white"/>
 
         </LinearLayout>
 
@@ -184,22 +185,23 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_margin="20dp"
-        android:layout_marginBottom="15dp"
-        app:cardCornerRadius="15dp">
+        android:layout_height="240dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp">
 
         <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="170dp">
+            android:layout_height="240dp">
 
-            <TextView
-                android:id="@+id/tvBookIntroduction"
+            <EditText
+                android:id="@+id/tvBookIntroductionAD"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:padding="10dp"
-                android:text="Câu chuyện xoay quanh sinh viên trẻ Rodion Romanovich Raskolnikov (nói rằng nhanh hơn mười lần), một thanh niên thông minh nhưng gặp rắc rối, người đã chuẩn bị cho một vụ giết người hoàn hảo của một tiệm cầm đồ tàn ác. Tuy nhiên, sau vụ giết người, Raskolnikov bị mắc kẹt trong sự tồn tại tội lỗi của mình, khiến anh ta phát điên khi mẹ và em gái của anh ta cùng anh ta đến St"
+                android:layout_height="240dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:hint="Câu chuyện xoay quanh sinh viên trẻ Rodion Romanovich Raskolnikov (nói rằng nhanh hơn mười lần), một thanh niên thông minh nhưng gặp rắc rối, người đã chuẩn bị cho một vụ giết người hoàn hảo của một tiệm cầm đồ tàn ác. Tuy nhiên, sau vụ giết người, Raskolnikov bị mắc kẹt trong sự tồn tại tội lỗi của mình, khiến anh ta phát điên khi mẹ và em gái của anh ta cùng anh ta đến St"
                 android:textSize="20dp" />
         </ScrollView>
 
