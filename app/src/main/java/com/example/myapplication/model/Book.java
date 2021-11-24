@@ -11,11 +11,12 @@ public class Book implements Serializable {
     String INTRODUCTION;
     Integer PAGE;
     String NEWBOOK;
+    String DOCUMENTID;
 
     public Book() {
     }
 
-    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE , String NEWBOOK) {
+    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE, String NEWBOOK, String DOCUMENTID) {
         this.IMAGE = IMAGE;
         this.TITLE = TITLE;
         this.AUTHOR = AUTHOR;
@@ -24,6 +25,7 @@ public class Book implements Serializable {
         this.INTRODUCTION = INTRODUCTION;
         this.PAGE = PAGE;
         this.NEWBOOK = NEWBOOK;
+        this.DOCUMENTID = DOCUMENTID;
     }
 
     public String getIMAGE() {
@@ -74,7 +76,9 @@ public class Book implements Serializable {
         this.INTRODUCTION = INTRODUCTION;
     }
 
-    public Integer getPAGE() { return PAGE; }
+    public Integer getPAGE() {
+        return PAGE;
+    }
 
     public void setPAGE(Integer PAGE) {
         this.PAGE = PAGE;
@@ -86,5 +90,13 @@ public class Book implements Serializable {
 
     public void setNEWBOOK(String NEWBOOK) {
         this.NEWBOOK = NEWBOOK;
+    }
+
+    public String getDOCUMENTID() {
+        return DOCUMENTID;
+    }
+
+    public void setDOCUMENTID(String DOCUMENTID) {
+        this.DOCUMENTID = DOCUMENTID;
     }
 }
