@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorBackground"></ImageView>
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="-180dp"
+            android:src="@drawable/iconback" />
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="-35dp"
+            android:text="Book Detail"
+            android:textColor="#1B6E62"
+            android:textSize="30dp" />
+        <TextView
+            android:id="@+id/btnSaveAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textSize="22dp"
+            android:textColor="#1B6E62"
+            android:layout_marginTop="-50dp"
+            android:layout_marginLeft="340dp"/>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-120dp">
+
+        <LinearLayout
+            android:id="@+id/ln6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageViewDetail"
+                android:layout_width="180dp"
+                android:layout_height="245dp"
+                android:layout_marginLeft="115dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/book1" />
+
+        </LinearLayout>
+
+        <EditText
+            android:inputType="textNoSuggestions"
+            android:id="@+id/tvBookNameDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ln6"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Book name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/tvBookAuthorDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvBookNameDetail"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Author"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Type"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/tvBookTypeDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="novel"
+                android:textSize="20dp"
+                android:inputType="textNoSuggestions"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Page"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/tvBookPageDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="count"
+                android:textSize="20dp"
+                android:inputType="textNoSuggestions"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Price"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/tvBookPriceDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="200000"
+                android:textColor="@color/red"
+                android:textSize="20dp"
+                android:inputType="textNoSuggestions"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="15dp"
+        app:cardCornerRadius="15dp">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="170dp">
+
+            <TextView
+                android:id="@+id/tvBookIntroduction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                android:text="Câu chuyện xoay quanh sinh viên trẻ Rodion Romanovich Raskolnikov (nói rằng nhanh hơn mười lần), một thanh niên thông minh nhưng gặp rắc rối, người đã chuẩn bị cho một vụ giết người hoàn hảo của một tiệm cầm đồ tàn ác. Tuy nhiên, sau vụ giết người, Raskolnikov bị mắc kẹt trong sự tồn tại tội lỗi của mình, khiến anh ta phát điên khi mẹ và em gái của anh ta cùng anh ta đến St"
+                android:textSize="20dp" />
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

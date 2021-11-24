@@ -6,10 +6,10 @@ public class User {
     String NAME;
     String ADDRESS;
     String BIRTHDAY;
-    Integer PHONE;
+    String PHONE;
     Integer ROLE;
 
-    public User(String EMAIL, String PASSWORD, String NAME, String ADDRESS, String BIRTHDAY, Integer PHONE, Integer ROLE) {
+    public User(String EMAIL, String PASSWORD, String NAME, String ADDRESS, String BIRTHDAY, String PHONE, Integer ROLE) {
         this.EMAIL = EMAIL;
         this.PASSWORD = PASSWORD;
         this.NAME = NAME;
@@ -62,11 +62,11 @@ public class User {
         this.PASSWORD = PASSWORD;
     }
 
-    public Integer getPHONE() {
+    public String getPHONE() {
         return PHONE;
     }
 
-    public void setPHONE(Integer PHONE) {
+    public void setPHONE(String PHONE) {
         this.PHONE = PHONE;
     }
 

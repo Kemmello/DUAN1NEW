@@ -15,7 +15,8 @@
         android:fitsSystemWindows="true"
         tools:context=".activities.DrawerActivity"
         android:layout_above="@+id/bottom_nav"
-        tools:openDrawer="start">
+        tools:openDrawer="start"
+        android:backgroundTint="@color/black">
 
         <LinearLayout
 

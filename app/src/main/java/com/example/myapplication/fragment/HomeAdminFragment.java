@@ -2,6 +2,14 @@ package com.example.myapplication.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -12,22 +20,12 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.myapplication.R;
 import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.adapter.BookAdapter;
 import com.example.myapplication.adapter.SliderAdapter;
 import com.example.myapplication.model.Book;
 import com.example.myapplication.model.SliderItem;
-import com.example.myapplication.activities.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,7 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeAdminFragment extends Fragment {
     CardView cvChildren, cvNovel, cvSchool, cvLiterature, cvTechnology,cvPolitics,cvHistory;
 
     ProgressBar progressBar;
@@ -58,7 +56,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_admin_home, container, false);
         firestore = FirebaseFirestore.getInstance();
         recyclerNewBook = root.findViewById(R.id.recyclerNewBook);
         recyclerViewTopSell = root.findViewById(R.id.recyclerViewTopSell);

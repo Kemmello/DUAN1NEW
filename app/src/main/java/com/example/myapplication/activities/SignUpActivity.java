@@ -10,10 +10,14 @@ import android.widget.ToggleButton;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.SignUpAdapter;
+import com.example.myapplication.model.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
     TabLayout tabLayout;
@@ -22,6 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
     float v=0;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseFirestore firestore;
 
 
     @Override
@@ -35,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         fabGoogle = findViewById(R.id.btn_google);
 
         auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
         tabLayout.addTab(tabLayout.newTab().setText("Sign up"));
@@ -62,8 +68,19 @@ public class SignUpActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
-
+                    firestore.collection("USER").document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot snapshot) {
+                            User user = snapshot.toObject(User.class);
+                            if (user.getROLE()==2){
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(SignUpActivity.this, AdminActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
                 }
             }
         };

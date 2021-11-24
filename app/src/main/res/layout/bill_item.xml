@@ -22,7 +22,7 @@
                 android:id="@+id/ivBiaSanPhamBill"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"/>
 
@@ -34,9 +34,9 @@
 
                 <TextView
                     android:id="@+id/tvTenSanPhamGioHangBill"
-                    android:layout_width="200dp"
+                    android:layout_width="220dp"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="35dp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -48,7 +48,7 @@
                     android:id="@+id/tvTheLoaiBill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="35dp"
                     android:layout_marginTop="10dp"
                     android:text="Trẻ Em"
                     android:textSize="20dp"
@@ -58,7 +58,7 @@
                     android:id="@+id/tvGiaSanPhamGioHangBill"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="35dp"
                     android:layout_marginTop="10dp"
                     android:text="20000 VNĐ"
                     android:textColor="@color/red"

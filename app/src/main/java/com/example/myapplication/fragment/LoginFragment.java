@@ -18,12 +18,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activities.AdminActivity;
 import com.example.myapplication.activities.ForgetPasswordActivity;
 import com.example.myapplication.activities.MainActivity;
+import com.example.myapplication.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginFragment extends Fragment {
     EditText edtEmail_Login, edtPassword_Login;
@@ -31,6 +36,7 @@ public class LoginFragment extends Fragment {
     Button btnLogin;
     Context context;
     FirebaseAuth auth;
+    FirebaseFirestore firestore;
     String email;
     static String pass;
 
@@ -56,6 +62,7 @@ public class LoginFragment extends Fragment {
         btnLogin = view.findViewById(R.id.btnLogin);
         tvForgetPassword = view.findViewById(R.id.tvForgetPassword);
         auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,11 +100,23 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getActivity(),"Login success",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getActivity(),MainActivity.class);
-                            startActivity(intent);
+                            Toast.makeText(getActivity(),"Đăng nhập thành công",Toast.LENGTH_LONG).show();
+                            firestore.collection("USER").document(auth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot snapshot) {
+                                    User user = snapshot.toObject(User.class);
+                                    if (user.getROLE()==2){
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        startActivity(intent);
+                                    }else {
+                                        Intent intent = new Intent(getActivity(), AdminActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
                         }else {
-                            Toast.makeText(getActivity(),"Wrong email or password",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"Nhập sai email hoặc mật khẩu",Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });
