@@ -15,10 +15,12 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.BillFragment;
+import com.example.myapplication.fragment.BookAllAdminFragment;
 import com.example.myapplication.fragment.BookFragment;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.ChangePasswordFragment;
 import com.example.myapplication.fragment.ContactFragment;
+import com.example.myapplication.fragment.ExitAdminFragment;
 import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeAdminFragment;
 import com.example.myapplication.fragment.HomeFragment;
@@ -61,7 +63,7 @@ public class AdminActivity extends AppCompatActivity {
                         title.setText("BOOK STORE");
                         break;
                     case R.id.nav_sach:
-                        fragment = new BookFragment();
+                        fragment = new BookAllAdminFragment();
                         title.setText("ALL OF BOOK");
                         break;
                     case R.id.nav_doanhthu:
@@ -133,7 +135,7 @@ public class AdminActivity extends AppCompatActivity {
                     title.setText("BILL");
                     break;
                 case R.id.exit:
-                    selectfrg = new ExitFragment();
+                    selectfrg = new ExitAdminFragment();
                     title.setText("EXIT");
                     break;
             }

@@ -23,6 +23,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.myapplication.R;
 import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.adapter.BookAdapter;
+import com.example.myapplication.adapter.BookAllAdminAdapter;
 import com.example.myapplication.adapter.SliderAdapter;
 import com.example.myapplication.model.Book;
 import com.example.myapplication.model.SliderItem;
@@ -48,7 +49,7 @@ public class HomeAdminFragment extends Fragment {
     List<Book> selllist;
     List<Book> salelist;
     List<Book> recommendlist;
-    BookAdapter bookAdapter , sellAdapter , saleAdapter , recommendAdapter;
+    BookAllAdminAdapter bookAdapter , sellAdapter , saleAdapter , recommendAdapter;
 
     //Slide
     ViewPager2 viewPager2;
@@ -79,10 +80,10 @@ public class HomeAdminFragment extends Fragment {
         salelist = new ArrayList<>();
         recommendlist = new ArrayList<>();
 
-        bookAdapter = new BookAdapter(getActivity(), newlist);
-        sellAdapter = new BookAdapter(getActivity(), selllist);
-        saleAdapter = new BookAdapter(getActivity(), salelist);
-        recommendAdapter = new BookAdapter(getActivity(), recommendlist);
+        bookAdapter = new BookAllAdminAdapter(getActivity(), newlist);
+        sellAdapter = new BookAllAdminAdapter(getActivity(), selllist);
+        saleAdapter = new BookAllAdminAdapter(getActivity(), salelist);
+        recommendAdapter = new BookAllAdminAdapter(getActivity(), recommendlist);
 
         recyclerNewBook.setAdapter(bookAdapter);
         recyclerViewTopSell.setAdapter(sellAdapter);
