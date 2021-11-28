@@ -88,6 +88,7 @@
             app:menu="@menu/drawer_menu">
 
         </com.google.android.material.navigation.NavigationView>
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

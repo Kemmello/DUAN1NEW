@@ -6,9 +6,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TextView title;
     ImageView ivsearch;
+    FragmentManager manager;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +141,5 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
-
-
 
 }

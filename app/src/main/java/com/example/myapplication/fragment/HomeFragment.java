@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -178,6 +180,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         cvChildren = view.findViewById(R.id.cvChildren);
         cvNovel = view.findViewById(R.id.cvNovel);
         cvSchool = view.findViewById(R.id.cvSchool);
@@ -192,6 +195,16 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
                 intent.putExtra("type", "Trẻ Em");
                 startActivity(intent);
+                getView().findViewById(R.id.cvChildren).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+                        CartFragment cartFragment = new CartFragment();
+                        manager.beginTransaction().setCustomAnimations(R.anim.left_out,R.anim.left_out)
+                                .replace(R.id.frame,cartFragment).addToBackStack(null)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+                    }
+                });
             }
         });
         cvNovel.setOnClickListener(new View.OnClickListener() {

@@ -38,7 +38,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
@@ -57,13 +56,14 @@ public class UserFragment extends Fragment {
     private FirebaseStorage storage;
     private FirebaseFirestore database;
     FirebaseAuth auth;
+    private Context mContext;
 
-    String email, name, phone, address, birthday, avatarName, imgUrl, imageEmail, fileTail="jpg";
+    String email, name, phone, address, birthday, imageEmail, fileTail = "jpg";
     Long Role;
     EditText edtUserName, edtDate, edtPhone, edtEmail, edtAddress;
     Button btnSave, btnCancel;
     String id;
-    int imageChecked=0;
+    int imageChecked = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,10 +76,7 @@ public class UserFragment extends Fragment {
         edtAddress = view.findViewById(R.id.edtAddress);
         btnSave = view.findViewById(R.id.btnSave);
         btnCancel = view.findViewById(R.id.btnCancelUpdate);
-	    profilePic = view.findViewById(R.id.profilePic);
-
-//        fileRefernce = storageRef.child(imageEmail+"."+getMimeType(getContext(),mImageUri));
-
+        profilePic = view.findViewById(R.id.profilePic);
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,16 +89,9 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 updateUser();
-                if(imageChecked==1){
+                if (imageChecked == 1) {
                     uploadFile();
                 }
-
-//                if (imageUploadTask != null && imageUploadTask.isInProgress()){
-//                    Toast.makeText(getContext(),"can't upload image right now", Toast.LENGTH_LONG).show();
-//                }else{
-//                    uploadFile();
-//                }
-
             }
         });
 
@@ -125,16 +115,10 @@ public class UserFragment extends Fragment {
         super.onStart();
         database = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-//        id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         id = auth.getCurrentUser().getUid();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         email = user.getEmail();
-        imageEmail = email.replace(".com","");
-
-//        storageRef = FirebaseStorage.getInstance().getReference();
-//        databaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-
-
+        imageEmail = email.replace(".com", "");
         getUser();
         Role = getUser();
         try {
@@ -171,8 +155,7 @@ public class UserFragment extends Fragment {
         return Role;
     }
 
-    public void updateUser() { //String imageUrl
-
+    public void updateUser() {
         name = edtUserName.getText().toString();
         email = edtEmail.getText().toString();
         birthday = edtDate.getText().toString();
@@ -225,8 +208,6 @@ public class UserFragment extends Fragment {
             edtAddress.requestFocus();
             return;
         }
-//        if (task.isSuccessful()){
-//                            User user = new User(email,password,name,",",",",0,2);
         DocumentReference documentReference = database.collection("USER").document(id);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         user.updateEmail(email)
@@ -235,10 +216,8 @@ public class UserFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Map<String, Object> user = new HashMap<>();
-//            user.put("EMAIL",email);
                             user.put("NAME", name);
                             user.put("ADDRESS", address);
-//                            user.put("AVATARLINK", imageUrl); //uploadFile());
                             user.put("BIRTHDAY", birthday);
                             user.put("PHONE", phone);
                             user.put("ROLE", Role);
@@ -257,20 +236,20 @@ public class UserFragment extends Fragment {
 
     }
 
-	public void choosePic(){
+    public void choosePic() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        imageChecked =1;
-        startActivityForResult(intent,PICK_IMAGE_REQUEST);
+        imageChecked = 1;
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == -1 &&  data.getData() != null){
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == -1 && data.getData() != null) {
             mImageUri = data.getData();
-            Picasso.with(getContext()).load(mImageUri).into(profilePic);
+            Picasso.with(getActivity()).load(mImageUri).into(profilePic);
         }
     }
 
@@ -284,95 +263,38 @@ public class UserFragment extends Fragment {
             final MimeTypeMap mime = MimeTypeMap.getSingleton();
             extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
         } else {
-            //If scheme is a File
-            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
             extension = MimeTypeMap.getFileExtensionFromUrl(String.valueOf(Uri.fromFile(new File(uri.getPath().toString()))));
         }
         return extension;
     }
 
-
-
-//     filePath.substring(filePath.lastIndexOf(".") + 1);
-
-
-    private void uploadFile(){
+    private void uploadFile() {
         storageRef = FirebaseStorage.getInstance().getReference();
         databaseRef = FirebaseDatabase.getInstance().getReference("uploads");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         email = user.getEmail();
-        imageEmail = email.replace(".com","");
-        fileRefernce = storageRef.child(imageEmail+"."+getMimeType(getContext(),mImageUri));
+        imageEmail = email.replace(".com", "");
+        fileRefernce = storageRef.child(imageEmail + "." + getMimeType(getContext(), mImageUri));
         auth = FirebaseAuth.getInstance();
-        if(mImageUri !=  null){
+        if (mImageUri != null) {
 
-                    fileRefernce.putFile(mImageUri)
+            fileRefernce.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(getContext(),"image updated !", Toast.LENGTH_LONG).show();
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() { imageProgressBar.setProgress(0); }
-//                    },500);
-//                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(getContext(), "image updated !", Toast.LENGTH_LONG).show();
+                        }
 
-//                    Task<Uri> imageUrl = taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                        @Override
-//                        public void onSuccess(Uri uri) {
-//                            // Got the uri
-//                            User userImage = new User(imageEmail, uri.toString());
-//                            // Wrap with Uri.parse() when retrieving
-//
-//                            String uploadId = databaseRef.push().getKey();
-//                            databaseRef.child(uploadId).setValue(userImage);
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            // Handle any errors
-//                        }
-//                    });
-//                    User userImage = new User(email.trim(), imageUrl.toString());
-//                    String upLoadId = databaseRef.push().getKey();
-//                    databaseRef.child(upLoadId).setValue(userImage);
-//
-//                    updateUser(imageUrl.toString());
-
-//                    Task<Uri> imageUrl = storageRef.child(imageEmail+"."+getMimeType(getContext(),mImageUri)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                        @Override
-//                        public void onSuccess(Uri uri) {
-//                            // Got the uri
-//                            User userImage = new User(imageEmail, uri.toString());
-//                            // Wrap with Uri.parse() when retrieving
-//
-//                            String uploadId = databaseRef.push().getKey();
-//                            databaseRef.child(uploadId).setValue(userImage);
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                        }
-//                    });
-//                    updateUser(imageUrl.toString());
-                }
-
-            }).addOnFailureListener(new OnFailureListener() {
+                    }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(), "User image not updated", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "User image not updated", Toast.LENGTH_LONG).show();
                 }
             });
-//                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                    double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-//                    imageProgressBar.setProgress((int) progress);
-//               }
-//            })
 
-        }else{Toast.makeText(getContext(),"No file selected", Toast.LENGTH_LONG).show();}
+        } else {
+            Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_LONG).show();
+        }
 
         try {
             getUserImage();
@@ -382,48 +304,28 @@ public class UserFragment extends Fragment {
     }
 
     public void getUserImage() throws IOException {
-        storageRef = FirebaseStorage.getInstance().getReference().child(imageEmail+"."+fileTail);
+        storageRef = FirebaseStorage.getInstance().getReference().child(imageEmail + "." + fileTail);
 
-
-        File localFile = File.createTempFile(imageEmail,"jpg");
+        File localFile = File.createTempFile(imageEmail, "jpg");
 
         storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(getContext(),"image retrieved",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "image retrieved", Toast.LENGTH_LONG).show();
                 Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                 profilePic.setImageBitmap(bitmap);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"you have no User's image!",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "you have no User's image!", Toast.LENGTH_LONG).show();
             }
         });
-
-//        try{
-//            final File localTempFile = File.createTempFile("user","jpg");
-//            storageRef.getFile(localTempFile)
-//                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                            Toast.makeText(getContext(),"image retrieved",Toast.LENGTH_LONG).show();
-//                            Bitmap bitmap = BitmapFactory.decodeFile(localTempFile.getAbsolutePath());
-//                            profilePic.setImageBitmap(bitmap);
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(getContext(),"Error retrieved",Toast.LENGTH_LONG).show();
-//                }
-//            });
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
     }
 
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 }
-
-
-
