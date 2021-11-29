@@ -1,17 +1,18 @@
 package com.example.myapplication.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.TypeAdapter;
+import com.example.myapplication.adapter.TypeAdminAdapter;
 import com.example.myapplication.model.Book;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,10 +23,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeActivity extends AppCompatActivity {
+public class AdminTypeActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     RecyclerView rcvType;
-    TypeAdapter typeAdapter;
+    TypeAdminAdapter typeAdapter;
     List<Book> types;
     ImageView imgBackType;
     TextView tvBookTypeActivity;
@@ -54,7 +55,7 @@ public class TypeActivity extends AppCompatActivity {
 
 
         types = new ArrayList<>();
-        typeAdapter = new TypeAdapter(this, types);
+        typeAdapter = new TypeAdminAdapter(this, types);
         rcvType.setAdapter(typeAdapter);
 
         /////Sách trẻ em
