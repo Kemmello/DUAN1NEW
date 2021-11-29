@@ -51,17 +51,28 @@ public class AdminDetailActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 //        auth = FirebaseAuth.getInstance();
 
-        final Object object = getIntent().getSerializableExtra("detail");
-        if (object instanceof Book) {
-            book = (Book) object;
-        }
 
-        id = getIntent().getStringExtra("all");
 
-        final Object objectType = getIntent().getSerializableExtra("type");
-        if (objectType instanceof Book) {
-            book = (Book) objectType;
+        final String idtype = getIntent().getStringExtra("type");
+        if (idtype != null) {
+            id = idtype;
         }
+        final String idall = getIntent().getStringExtra("all");
+        if (idall != null) {
+            id = idall;
+        }
+        final String iddetail = getIntent().getStringExtra("detail");
+        if (iddetail != null) {
+            id = iddetail;
+        }
+//        id = getIntent().getStringExtra("type");
+//
+//        id = getIntent().getStringExtra("detail");
+
+//        final Object objectType = getIntent().getSerializableExtra("type");
+//        if (objectType instanceof Book) {
+//            book = (Book) objectType;
+//        }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
         imgBack = this.findViewById(R.id.imgBack);

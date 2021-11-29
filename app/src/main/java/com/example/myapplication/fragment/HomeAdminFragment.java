@@ -22,6 +22,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activities.AdminDetailActivity;
+import com.example.myapplication.activities.AdminTypeActivity;
 import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.adapter.BookAdapter;
 import com.example.myapplication.adapter.BookAllAdminAdapter;
@@ -119,6 +120,10 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
+
+                                String documentId = document.getId();
+                                book.setDOCUMENTID(documentId);
+
                                 selllist.add(book);
                                 sellAdapter.notifyDataSetChanged();
 
@@ -139,6 +144,8 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
+                                String documentId = document.getId();
+                                book.setDOCUMENTID(documentId);
                                 salelist.add(book);
                                 saleAdapter.notifyDataSetChanged();
 
@@ -159,6 +166,8 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
+                                String documentId = document.getId();
+                                book.setDOCUMENTID(documentId);
                                 recommendlist.add(book);
                                 recommendAdapter.notifyDataSetChanged();
 
@@ -189,7 +198,7 @@ public class HomeAdminFragment extends Fragment {
         cvChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Trẻ Em");
                 startActivity(intent);
             }
@@ -197,7 +206,7 @@ public class HomeAdminFragment extends Fragment {
         cvNovel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Tiểu Thuyết");
                 startActivity(intent);
             }
@@ -205,7 +214,7 @@ public class HomeAdminFragment extends Fragment {
         cvSchool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Giáo Khoa");
                 startActivity(intent);
             }
@@ -213,7 +222,7 @@ public class HomeAdminFragment extends Fragment {
         cvLiterature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Văn Học");
                 startActivity(intent);
             }
@@ -221,7 +230,7 @@ public class HomeAdminFragment extends Fragment {
         cvTechnology.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Khoa Học");
                 startActivity(intent);
             }
@@ -229,7 +238,7 @@ public class HomeAdminFragment extends Fragment {
         cvPolitics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Chính Trị");
                 startActivity(intent);
             }
@@ -237,7 +246,7 @@ public class HomeAdminFragment extends Fragment {
         cvHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TypeActivity.class);
+                Intent intent = new Intent(getActivity(), AdminTypeActivity.class);
                 intent.putExtra("type", "Lịch Sử");
                 startActivity(intent);
             }
