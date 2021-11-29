@@ -91,6 +91,7 @@ public class CartFragment extends Fragment {
                         cartMap.put("CURRENTDATE",cart.getCURRENTDATE() );
                         cartMap.put("CURRENTTIME", cart.getCURRENTTIME());
                         cartMap.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
+                        cartMap.put("STATUS", "Chờ xác nhận");
 
                         firestore.collection("CURRENTUSER").document(auth.getCurrentUser().getUid())
                                 .collection("MYORDER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

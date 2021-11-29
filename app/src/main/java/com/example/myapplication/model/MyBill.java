@@ -1,30 +1,24 @@
 package com.example.myapplication.model;
+
 import java.io.Serializable;
 
-public class MyCart implements Serializable {
-    String TITLE, CURRENTDATE, CURRENTTIME, IMAGE;
-    int TOTALPRICE,TOTALQUANTITY,PRICE ;
+public class MyBill implements Serializable {
+    String TITLE, CURRENTDATE, CURRENTTIME, IMAGE, STATUS;
+    int TOTALPRICE,TOTALQUANTITY, PRICE;
     String DOCUMENTID;
 
-    public MyCart() {
+    public MyBill() {
     }
 
-    public MyCart(String TITLE, String CURRENTDATE, String CURRENTTIME, String IMAGE, int TOTALPRICE, int TOTALQUANTITY, int PRICE, String DOCUMENTID) {
+    public MyBill(String TITLE, String CURRENTDATE, String CURRENTTIME, String IMAGE, String STATUS, int TOTALPRICE, int TOTALQUANTITY, int PRICE, String DOCUMENTID) {
         this.TITLE = TITLE;
         this.CURRENTDATE = CURRENTDATE;
         this.CURRENTTIME = CURRENTTIME;
         this.IMAGE = IMAGE;
+        this.STATUS = STATUS;
         this.TOTALPRICE = TOTALPRICE;
         this.TOTALQUANTITY = TOTALQUANTITY;
         this.PRICE = PRICE;
-        this.DOCUMENTID = DOCUMENTID;
-    }
-
-    public String getDOCUMENTID() {
-        return DOCUMENTID;
-    }
-
-    public void setDOCUMENTID(String DOCUMENTID) {
         this.DOCUMENTID = DOCUMENTID;
     }
 
@@ -34,14 +28,6 @@ public class MyCart implements Serializable {
 
     public void setTITLE(String TITLE) {
         this.TITLE = TITLE;
-    }
-
-    public int getTOTALQUANTITY() {
-        return TOTALQUANTITY;
-    }
-
-    public void setTOTALQUANTITY(int TOTALQUANTITY) {
-        this.TOTALQUANTITY = TOTALQUANTITY;
     }
 
     public String getCURRENTDATE() {
@@ -68,6 +54,14 @@ public class MyCart implements Serializable {
         this.IMAGE = IMAGE;
     }
 
+    public String getSTATUS() {
+        return STATUS;
+    }
+
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
+    }
+
     public int getTOTALPRICE() {
         return TOTALPRICE;
     }
@@ -76,11 +70,27 @@ public class MyCart implements Serializable {
         this.TOTALPRICE = TOTALPRICE;
     }
 
+    public int getTOTALQUANTITY() {
+        return TOTALQUANTITY;
+    }
+
+    public void setTOTALQUANTITY(int TOTALQUANTITY) {
+        this.TOTALQUANTITY = TOTALQUANTITY;
+    }
+
     public int getPRICE() {
         return PRICE;
     }
 
     public void setPRICE(int PRICE) {
         this.PRICE = PRICE;
+    }
+
+    public String getDOCUMENTID() {
+        return DOCUMENTID;
+    }
+
+    public void setDOCUMENTID(String DOCUMENTID) {
+        this.DOCUMENTID = DOCUMENTID;
     }
 }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.model.MyBill;
 import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,16 +27,16 @@ import java.util.List;
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
     Context context;
-    List<MyCart> myCartList;
+    List<MyBill> myBillList;
 
     FirebaseFirestore firestore;
     FirebaseAuth auth;
 
     int totalPrice = 0;
 
-    public BillAdapter(Context context, List<MyCart> myCartList) {
+    public BillAdapter(Context context, List<MyBill> myBillList) {
         this.context = context;
-        this.myCartList = myCartList;
+        this.myBillList = myBillList;
 
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -51,21 +52,24 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull BillAdapter.ViewHolder holder, int position) {
-        totalPrice = myCartList.get(position).getTOTALQUANTITY() * myCartList.get(position).getPRICE();
-        holder.tvTenSanPhamGioHang.setText(myCartList.get(position).getTITLE());
+        totalPrice = myBillList.get(position).getTOTALQUANTITY() * myBillList.get(position).getPRICE();
+        holder.tvTenSanPhamGioHang.setText(myBillList.get(position).getTITLE());
         holder.tvGiaSanPhamGioHang.setText(String.valueOf(totalPrice) + " VNĐ");
-        Glide.with(context).load(myCartList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
+        holder.tvNgayBill.setText(myBillList.get(position).getCURRENTDATE());
+        holder.tvSoLuongBill.setText(String.valueOf("Số lượng: " + myBillList.get(position).getTOTALQUANTITY()));
+        Glide.with(context).load(myBillList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
+        holder.tvTrangThaiBill.setText(myBillList.get(position).getSTATUS());
 
     }
 
     @Override
     public int getItemCount() {
-        return myCartList.size();
+        return myBillList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvTenSanPhamGioHang, tvGiaSanPhamGioHang;
+        TextView tvTenSanPhamGioHang, tvGiaSanPhamGioHang, tvNgayBill, tvSoLuongBill, tvTrangThaiBill;
 
         ImageView ivBiaSanPham;
 
@@ -75,6 +79,9 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
 
             tvTenSanPhamGioHang = itemView.findViewById(R.id.tvTenSanPhamGioHangBill);
             tvGiaSanPhamGioHang = itemView.findViewById(R.id.tvGiaSanPhamGioHangBill);
+            tvNgayBill = itemView.findViewById(R.id.tvNgayBill);
+            tvSoLuongBill = itemView.findViewById(R.id.tvSoLuongBill);
+            tvTrangThaiBill = itemView.findViewById(R.id.tvTrangThaiBill);
             ivBiaSanPham = itemView.findViewById(R.id.ivBiaSanPhamBill);
 
 

@@ -13,21 +13,27 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Book;
+import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     ImageView imageViewDetail , imgAdd , imgMinus , imgBack;
     TextView tvBookNameDetail, tvBookAuthorDetail , tvBookTypeDetail , tvBookPageDetail , tvBookIntroduction , tvBookPriceDetail , tvQuantity;
     Button btnAddCart;
     Book book = null;
+    List<MyCart> list;
 
 
     int totalQuantity = 1;
@@ -37,6 +43,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_detail_item);
+        list = new ArrayList<>();
 
         final Object object = getIntent().getSerializableExtra("detail");
         if (object instanceof Book){
@@ -84,7 +91,9 @@ public class DetailActivity extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addedToCart();
+                if (InvaledBook()==true) {
+                    addedToCart();
+                }
             }
         });
 
@@ -115,6 +124,35 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                .collection("CURRENTUSER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for (DocumentSnapshot documentSnapshot : task.getResult()){
+                        String documentId = documentSnapshot.getId();
+                        MyCart cart = documentSnapshot.toObject(MyCart.class);
+                        cart.setDOCUMENTID(documentId);
+                        list.add(cart);
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean InvaledBook(){
+        boolean kq = true;
+
+        String title = book.getTITLE();
+        for (MyCart cart: list){
+            if (cart.getTITLE().equals(title)){
+                Toast.makeText(DetailActivity.this, "Bạn đã có sách này trong giỏ hàng", Toast.LENGTH_LONG).show();
+                kq = false;
+                break;
+            }
+        }
+        return kq;
     }
 
     private void addedToCart() {

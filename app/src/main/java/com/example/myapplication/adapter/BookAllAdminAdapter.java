@@ -58,7 +58,7 @@ public class BookAllAdminAdapter extends RecyclerView.Adapter<BookAllAdminAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AdminDetailActivity.class);
-                intent.putExtra("all", list.get(position));
+                intent.putExtra("all", list.get(position).getDOCUMENTID());
                 context.startActivity(intent);
             }
         });

@@ -1,61 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bookbackround"
-    android:layout_marginTop="48dp"
-    android:padding="10dp">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ivAvatar_Drawer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/avt"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
-
-    <androidx.cardview.widget.CardView
-        app:cardCornerRadius="10dp"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/ivAvatar_Drawer"
-        app:layout_constraintRight_toRightOf="@id/ivAvatar_Drawer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/red"
-        android:id="@+id/cvEdit_Drawer">
-    </androidx.cardview.widget.CardView>
+    android:layout_marginTop="48dp">
 
     <TextView
-        android:id="@+id/tvFullName_Drawer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="5dp"
-        android:paddingTop="5dp"
-        android:text="Welcome New User"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivAvatar_Drawer"></TextView>
-
-    <TextView
-        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="4dp"
-        android:paddingTop="5dp"
-        android:text="lupham011102@gmail.com"
+        android:layout_marginTop="60dp"
+        android:text="Welcome"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFullName_Drawer"></TextView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="25dp"
+        android:textStyle="bold"></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:text="BookStore"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"></TextView>
+</LinearLayout>

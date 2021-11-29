@@ -318,7 +318,7 @@ public class UserFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(getActivity(), "you have no User's image!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "you have no User's image!", Toast.LENGTH_LONG).show();
             }
         });
     }

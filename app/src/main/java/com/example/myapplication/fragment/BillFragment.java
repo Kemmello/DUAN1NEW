@@ -15,6 +15,7 @@ import android.widget.BaseAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.BillAdapter;
 import com.example.myapplication.adapter.MyCartAdapter;
+import com.example.myapplication.model.MyBill;
 import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +34,7 @@ public class BillFragment extends Fragment {
     FirebaseFirestore firestore;
 
     RecyclerView rcvBill;
-    List<MyCart> myCartList;
+    List<MyBill> myBillList;
     BillAdapter billAdapter;
 
 
@@ -54,8 +55,8 @@ public class BillFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
-        myCartList = new ArrayList<>();
-        billAdapter = new BillAdapter(getActivity(), myCartList);
+        myBillList = new ArrayList<>();
+        billAdapter = new BillAdapter(getActivity(), myBillList);
         rcvBill.setAdapter(billAdapter);
 
         firestore.collection("CURRENTUSER").document(auth.getCurrentUser().getUid())
@@ -67,11 +68,11 @@ public class BillFragment extends Fragment {
 
                         String documentId = documentSnapshot.getId();
 
-                        MyCart cart = documentSnapshot.toObject(MyCart.class);
-                        cart.setDOCUMENTID(documentId);
+                        MyBill bill = documentSnapshot.toObject(MyBill.class);
+                        bill.setDOCUMENTID(documentId);
 
 
-                        myCartList.add(cart);
+                        myBillList.add(bill);
                         billAdapter.notifyDataSetChanged();
                     }
                 }

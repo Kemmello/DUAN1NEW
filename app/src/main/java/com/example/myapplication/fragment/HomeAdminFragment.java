@@ -21,6 +21,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activities.AdminDetailActivity;
 import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.adapter.BookAdapter;
 import com.example.myapplication.adapter.BookAllAdminAdapter;
