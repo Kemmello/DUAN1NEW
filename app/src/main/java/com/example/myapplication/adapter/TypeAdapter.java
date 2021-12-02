@@ -47,7 +47,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("type", list.get(position));
+                intent.putExtra("type", list.get(position).getDOCUMENTID());
                 context.startActivity(intent);
             }
         });

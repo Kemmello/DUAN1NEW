@@ -20,11 +20,14 @@ import androidx.appcompat.app.AlertDialog;
 
 import androidx.annotation.NonNull;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.model.MyCart;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -164,7 +167,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             });
 
                 }
+                Fragment fragment = new CartFragment();
+                ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment).commit();
+
             }
+
         });
 
         holder.imgMinus.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +226,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             });
 
                 }
+                Fragment fragment = new CartFragment();
+                ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment).commit();
             }
         });
 
