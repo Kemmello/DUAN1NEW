@@ -15,11 +15,9 @@
     <color name="GhostWhite">#F8F8FF</color>
     <color name="DimGray">#696969</color>
     <color name="mauchuchudao">#1B6E62</color>
-    <color name="colorBackground">#DDFAED</color>
+    <color name="colorBackground">#6dcec3</color>
+    <color name="Blue">#0999f9</color>FDD32E
     <color name="mauchudennhat">#CC000000</color>
-    <color name="backGroundAllBook">#F3F3FF</color>
-
-
-
+    <color name="backGroundAllBook">#DEDEEA</color>
 
 </resources>

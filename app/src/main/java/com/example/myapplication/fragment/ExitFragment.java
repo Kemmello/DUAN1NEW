@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +24,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ExitFragment extends Fragment {
 
-Button btnLogOut;
-FirebaseAuth auth;
+    Button btnLogOut;
+    FirebaseAuth auth;
+
     public ExitFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +46,7 @@ FirebaseAuth auth;
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder =  new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Are you sure");
                 builder.setMessage("Please confirm");
                 builder.setPositiveButton("No", new DialogInterface.OnClickListener() {

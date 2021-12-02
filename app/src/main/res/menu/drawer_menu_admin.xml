@@ -6,6 +6,9 @@
         <item android:id="@+id/nav_trangchu"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="Home"/>
+        <item android:id="@+id/nav_add_sach"
+            android:icon="@drawable/ic_menu_book"
+            android:title="Add Book"/>
         <item android:id="@+id/nav_sach"
             android:icon="@drawable/ic_menu_book"
             android:title="Book"/>
