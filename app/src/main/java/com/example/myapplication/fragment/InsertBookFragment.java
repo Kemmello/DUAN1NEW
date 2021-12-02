@@ -1,12 +1,13 @@
 package com.example.myapplication.fragment;
 
+import static java.lang.Integer.parseInt;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,51 +26,51 @@ import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class InsertBookFragment extends Fragment {
+    private ImageView imgBook;
+    private String bookAuthorDetail, bookTypeDetail, bookIntroduction, bookPriceDetail, bookNameDetail;
+    private int bookPageDetail;
     EditText edtAuthor, edtIntroduction, edtPage, edtPrice, edtTitle, edtTypename;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
     Button btnTest;
-    private StorageReference storageRef, fileRefernce;
-    private static final int PICK_IMAGE_REQUEST = 1;
     private Uri mImageUri;
     private DatabaseReference databaseRef;
-    String email, imageEmail , fileTail = "jpg";
-    private ImageView profilePicBook;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    static String bookName, imageUrl = "imageUrl";
+    private StorageReference storageRef, fileRefernce;
+    int imageChecked = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_test, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.insert_book_fragment, container, false);
         return root;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         edtAuthor = view.findViewById(R.id.edtAuthor);
+        imgBook = view.findViewById(R.id.imgBook);
         edtIntroduction = view.findViewById(R.id.edtIntroduction);
         edtPage = view.findViewById(R.id.edtPage);
         edtPrice = view.findViewById(R.id.edtPrice);
         edtTitle = view.findViewById(R.id.edtTitle);
         edtTypename = view.findViewById(R.id.edtTypeName);
-        firestore= FirebaseFirestore.getInstance();
-        btnTest = view.findViewById(R.id.test);
-        profilePicBook = view.findViewById(R.id.imgBook);
+        firestore = FirebaseFirestore.getInstance();
 
-        profilePicBook.setOnClickListener(new View.OnClickListener() {
+        btnTest = view.findViewById(R.id.test);
+        imgBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 choosePic();
@@ -78,44 +79,166 @@ public class InsertBookFragment extends Fragment {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InsertData();
+                validate();
             }
         });
     }
-    public void InsertData(){
-        Map<String, String> items = new HashMap<>();
-        items.put("AUTHOR",edtAuthor.getText().toString().trim());
-        items.put("INTRODUCTION",edtIntroduction.getText().toString().trim());
-        items.put("PAGE",edtPage.getText().toString().trim());
-        items.put("PRICE",edtPrice.getText().toString().trim());
-        items.put("TITLE",edtTitle.getText().toString().trim());
-        items.put("TYPENAME",edtTypename.getText().toString().trim());
-        firestore.collection("BOOK").add(items)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        edtAuthor.setText("");
-                        edtIntroduction.setText("");
-                        edtPage.setText("");
-                        edtPrice.setText("");
-                        edtTitle.setText("");
-                        edtTypename.setText("");
-                        Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+    public void InsertData() {
+
+        int priceInt = parseInt(edtPrice.getText().toString().trim());
+        int pageInt = parseInt(edtPage.getText().toString().trim());
+
+        Map<String, Object> items = new HashMap<>();
+        items.put("AUTHOR", edtAuthor.getText().toString().trim());
+        items.put("INTRODUCTION", edtIntroduction.getText().toString().trim());
+        items.put("PAGE", pageInt);
+        items.put("PRICE", priceInt);
+        items.put("TITLE", edtTitle.getText().toString().trim());
+        bookName = edtTitle.getText().toString();
+        items.put("TYPENAME", edtTypename.getText().toString().trim());
+
+        String bookImageName = bookName.replaceAll(" ", "");
+        storageRef = FirebaseStorage.getInstance().getReference();
+        fileRefernce = storageRef.child(bookImageName + "." + getMimeType(getContext(), mImageUri));
+        if (mImageUri != null) {
+            fileRefernce.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            Toast.makeText(getContext(),"image updated !", Toast.LENGTH_LONG).show();
+                            fileRefernce
+                                    .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    imageUrl = uri.toString();
+                                    items.put("IMAGE", imageUrl);
+                                    firestore.collection("BOOK").add(items)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    edtAuthor.setText("");
+                                                    edtIntroduction.setText("");
+                                                    edtPage.setText("");
+                                                    edtPrice.setText("");
+                                                    edtTitle.setText("");
+                                                    edtTypename.setText("");
+                                                    Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(getContext(), "Book image not updated", Toast.LENGTH_LONG).show();
+                }
+            });
+//        }else{Toast.makeText(getContext(),"No file selected", Toast.LENGTH_LONG).show();}
+        }
+
+//        firestore.collection("BOOK").add(items)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        edtAuthor.setText("");
+//                        edtIntroduction.setText("");
+//                        edtPage.setText("");
+//                        edtPrice.setText("");
+//                        edtTitle.setText("");
+//                        edtTypename.setText("");
+//                        Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+
     }
-    public void choosePic(){
+
+    public void validate() {
+        bookNameDetail = edtTitle.getText().toString();
+        bookAuthorDetail = edtAuthor.getText().toString();
+        bookTypeDetail = edtTypename.getText().toString();
+        bookPageDetail = Integer.parseInt(edtPage.getText().toString());
+        bookIntroduction = edtIntroduction.getText().toString();
+        bookPriceDetail = edtPrice.getText().toString();
+
+        if (TextUtils.isEmpty(bookNameDetail)) {
+            Toast.makeText(getContext(), "Title is empty !", Toast.LENGTH_LONG).show();
+            edtTitle.requestFocus();
+            edtAuthor.setFocusable(false);
+            edtTypename.setFocusable(false);
+            edtPage.setFocusable(false);
+            edtIntroduction.setFocusable(false);
+            edtPrice.setFocusable(false);
+            return;
+        }
+        if (TextUtils.isEmpty(bookAuthorDetail)) {
+            Toast.makeText(getContext(), "Author is empty !", Toast.LENGTH_LONG).show();
+            edtTitle.setFocusable(false);
+            edtAuthor.requestFocus();
+            edtTypename.setFocusable(false);
+            edtPage.setFocusable(false);
+            edtIntroduction.setFocusable(false);
+            edtPrice.setFocusable(false);
+            return;
+        }
+        if (TextUtils.isEmpty(bookTypeDetail)) {
+            Toast.makeText(getContext(), "Type is empty !", Toast.LENGTH_LONG).show();
+            edtTitle.setFocusable(false);
+            edtAuthor.setFocusable(false);
+            edtTypename.requestFocus();
+            edtPage.setFocusable(false);
+            edtIntroduction.setFocusable(false);
+            edtPrice.setFocusable(false);
+            return;
+        }
+        if (bookPageDetail == 0) {
+            Toast.makeText(getContext(), "Page is empty !", Toast.LENGTH_LONG).show();
+            edtTitle.setFocusable(false);
+            edtAuthor.setFocusable(false);
+            edtTypename.setFocusable(false);
+            edtPage.requestFocus();
+            edtIntroduction.setFocusable(false);
+            edtPrice.setFocusable(false);
+            return;
+        }
+        if (TextUtils.isEmpty(bookIntroduction)) {
+            Toast.makeText(getContext(), "Introduction is empty !", Toast.LENGTH_LONG).show();
+            edtTitle.setFocusable(false);
+            edtAuthor.setFocusable(false);
+            edtTypename.setFocusable(false);
+            edtPage.setFocusable(false);
+            edtIntroduction.requestFocus();
+            edtPrice.setFocusable(false);
+            return;
+        }
+        if (TextUtils.isEmpty(bookPriceDetail)) {
+            Toast.makeText(getContext(), "Price is empty !", Toast.LENGTH_LONG).show();
+            edtTitle.setFocusable(false);
+            edtAuthor.setFocusable(false);
+            edtTypename.setFocusable(false);
+            edtPage.setFocusable(false);
+            edtIntroduction.setFocusable(false);
+            edtPrice.requestFocus();
+            return;
+        }
+        InsertData();
+    }
+
+    public void choosePic() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,1);
+        imageChecked = 1;
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == -1 && data.getData() != null) {
             mImageUri = data.getData();
-            Picasso.with(getActivity()).load(mImageUri).into(profilePicBook);
+            Picasso.with(getActivity()).load(mImageUri).into(imgBook);
         }
     }
 
@@ -131,60 +254,5 @@ public class InsertBookFragment extends Fragment {
             extension = MimeTypeMap.getFileExtensionFromUrl(String.valueOf(Uri.fromFile(new File(uri.getPath().toString()))));
         }
         return extension;
-    }
-
-    private void uploadFile() {
-        storageRef = FirebaseStorage.getInstance().getReference();
-        databaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        email = user.getEmail();
-        imageEmail = email.replace(".com", "");
-        fileRefernce = storageRef.child(imageEmail + "." + getMimeType(getContext(), mImageUri));
-        auth = FirebaseAuth.getInstance();
-        if (mImageUri != null) {
-
-            fileRefernce.putFile(mImageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(getContext(), "image updated !", Toast.LENGTH_LONG).show();
-                        }
-
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity(), "User image not updated", Toast.LENGTH_LONG).show();
-                }
-            });
-
-        } else {
-            Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_LONG).show();
-        }
-
-        try {
-            getUserImage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void getUserImage() throws IOException {
-        storageRef = FirebaseStorage.getInstance().getReference().child(imageEmail + "." + fileTail);
-
-        File localFile = File.createTempFile(imageEmail, "jpg");
-
-        storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(getContext(), "image retrieved", Toast.LENGTH_LONG).show();
-                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                profilePicBook.setImageBitmap(bitmap);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "you have no User's image!", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }

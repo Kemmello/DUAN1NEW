@@ -176,7 +176,7 @@ public class HomeFragment extends Fragment {
                                 scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -203,16 +203,16 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
                 intent.putExtra("type", "Trẻ Em");
                 startActivity(intent);
-                getView().findViewById(R.id.cvChildren).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        FragmentManager manager = getActivity().getSupportFragmentManager();
-                        CartFragment cartFragment = new CartFragment();
-                        manager.beginTransaction().setCustomAnimations(R.anim.left_out,R.anim.left_out)
-                                .replace(R.id.frame,cartFragment).addToBackStack(null)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-                    }
-                });
+//                getView().findViewById(R.id.cvChildren).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        FragmentManager manager = getActivity().getSupportFragmentManager();
+//                        CartFragment cartFragment = new CartFragment();
+//                        manager.beginTransaction().setCustomAnimations(R.anim.left_out,R.anim.left_out)
+//                                .replace(R.id.frame,cartFragment).addToBackStack(null)
+//                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+//                    }
+//                });
             }
         });
         cvNovel.setOnClickListener(new View.OnClickListener() {

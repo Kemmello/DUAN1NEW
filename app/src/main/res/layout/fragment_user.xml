@@ -208,12 +208,14 @@
                 app:cardElevation="10dp">
 
                 <Button
+                    android:id="@+id/btnSave"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:background="#1B6E62"
-                    android:id="@+id/btnSave"
                     android:text="SAVE"
-                    android:textSize="18dp" />
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -224,6 +226,8 @@
                 app:cardElevation="10dp">
 
                 <Button
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:background="#1B6E62"

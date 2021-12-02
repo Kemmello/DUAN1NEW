@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_centerVertical="true"
-                    android:background="#DDFAED"
+                    android:background="@color/colorBackground"
                     android:fitsSystemWindows="true"
                     app:titleTextColor="@color/white">
 
@@ -50,7 +50,7 @@
                             android:gravity="center"
                             android:text="BOOK STORE"
                             android:textAlignment="center"
-                            android:textColor="#1B6E62"
+                            android:textColor="@color/white"
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
@@ -93,6 +93,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

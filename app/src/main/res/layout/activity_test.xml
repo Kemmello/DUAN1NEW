@@ -33,7 +33,7 @@
             android:layout_marginLeft="125dp"
             android:layout_marginTop="-35dp"
             android:text="Book Detail"
-            android:textColor="#1B6E62"
+            android:textColor="@color/black"
             android:textSize="30dp" />
     </LinearLayout>
 

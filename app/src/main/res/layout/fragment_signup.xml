@@ -10,15 +10,16 @@
         android:id="@+id/edtName_SignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/edit_text_shape"
+        android:drawableLeft="@drawable/textview_user"
         android:hint="Enter Your name"
         android:minHeight="48dp"
-        android:drawableLeft="@drawable/textview_user"
         android:padding="2dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".8" />
@@ -33,7 +34,8 @@
         android:text="Your Name:"
         app:layout_constraintBottom_toTopOf="@+id/edtName_SignUp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/edtEmail"
@@ -96,14 +98,14 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape"
         android:text="Submit"
-        android:textColor="#DDFAED"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtRepeatPassword"
-        app:layout_constraintVertical_bias="0.164"
+        app:layout_constraintVertical_bias="0.195"
         app:layout_constraintWidth_percent=".8" />
 
     <TextView

@@ -93,6 +93,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Fragment fragment = new CartFragment();
+                        ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame,fragment).commit();
                         firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
                                 .collection("CURRENTUSER")
                                 .document(myCartList.get(position).getDOCUMENTID())
@@ -119,6 +122,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment fragment = new CartFragment();
+                ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment).commit();
                 if ( myCartList.get(position).getTOTALQUANTITY() < 10) {
                     totalQuantity = myCartList.get(position).getTOTALQUANTITY();
                     totalQuantity++;
@@ -178,6 +184,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.imgMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment fragment = new CartFragment();
+                ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment).commit();
                 if (myCartList.get(position).getTOTALQUANTITY() > 0) {
                     totalQuantity = myCartList.get(position).getTOTALQUANTITY();
                     totalQuantity--;

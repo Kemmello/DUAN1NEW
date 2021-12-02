@@ -41,7 +41,6 @@ public class BookAllAdminFragment extends Fragment {
         rcvAllBook = root.findViewById(R.id.rcvAllBook);
         rcvAllBook.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-
         books = new ArrayList<>();
         bookAllAdminAdapter = new BookAllAdminAdapter(getActivity(), books);
         rcvAllBook.setAdapter(bookAllAdminAdapter);

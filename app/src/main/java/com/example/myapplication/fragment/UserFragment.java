@@ -164,7 +164,7 @@ public class UserFragment extends Fragment {
 
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(getActivity(), "Tên không hợp lệ !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Name is empty !", Toast.LENGTH_LONG).show();
             edtUserName.requestFocus();
             edtDate.setFocusable(false);
             edtPhone.setFocusable(false);
@@ -173,7 +173,7 @@ public class UserFragment extends Fragment {
             return;
         }
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getActivity(), "Email không hợp lệ !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Email is empty !", Toast.LENGTH_LONG).show();
             edtUserName.setFocusable(false);
             edtDate.setFocusable(false);
             edtPhone.setFocusable(false);
@@ -182,7 +182,7 @@ public class UserFragment extends Fragment {
             return;
         }
         if (TextUtils.isEmpty(birthday)) {
-            Toast.makeText(getActivity(), "Ngày sinh không hợp lệ !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Birthday is empty !", Toast.LENGTH_LONG).show();
             edtUserName.setFocusable(false);
             edtDate.requestFocus();
             edtPhone.setFocusable(false);
@@ -191,7 +191,7 @@ public class UserFragment extends Fragment {
             return;
         }
         if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(getActivity(), "Sđt không hợp lệ !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Phonenumber is empty !", Toast.LENGTH_LONG).show();
             edtUserName.setFocusable(false);
             edtDate.setFocusable(false);
             edtPhone.requestFocus();
@@ -200,7 +200,7 @@ public class UserFragment extends Fragment {
             return;
         }
         if (TextUtils.isEmpty(address)) {
-            Toast.makeText(getActivity(), "địa chỉ không hợp lệ !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Address is empty !", Toast.LENGTH_LONG).show();
             edtUserName.setFocusable(false);
             edtDate.setFocusable(false);
             edtPhone.setFocusable(false);
@@ -225,11 +225,11 @@ public class UserFragment extends Fragment {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(getActivity(), "Cập nhật thành công", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity(), "Update success", Toast.LENGTH_LONG).show();
                                         }
                                     });
                         } else {
-                            Toast.makeText(getActivity(), "Cập nhật thất bại!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Update failed!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -311,7 +311,7 @@ public class UserFragment extends Fragment {
         storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(getContext(), "image retrieved", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), "image retrieved", Toast.LENGTH_LONG).show();
                 Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                 profilePic.setImageBitmap(bitmap);
             }

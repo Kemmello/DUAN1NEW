@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.BillAdminFragment;
 import com.example.myapplication.fragment.BillFragment;
 import com.example.myapplication.fragment.BookAllAdminFragment;
 import com.example.myapplication.fragment.BookFragment;
@@ -24,6 +25,7 @@ import com.example.myapplication.fragment.ExitAdminFragment;
 import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeAdminFragment;
 import com.example.myapplication.fragment.HomeFragment;
+import com.example.myapplication.fragment.InsertBookFragment;
 import com.example.myapplication.fragment.RevenueFragment;
 import com.example.myapplication.fragment.SearchFragment;
 import com.example.myapplication.fragment.TopFragment;
@@ -61,6 +63,10 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_trangchu:
                         fragment = new HomeAdminFragment();
                         title.setText("BOOK STORE");
+                        break;
+                    case R.id.nav_add_sach:
+                        fragment = new InsertBookFragment();
+                        title.setText("ADD BOOK");
                         break;
                     case R.id.nav_sach:
                         fragment = new BookAllAdminFragment();
@@ -127,7 +133,7 @@ public class AdminActivity extends AppCompatActivity {
                     title.setText("USER");
                     break;
                 case R.id.list_bottom:
-                    selectfrg = new BillFragment();
+                    selectfrg = new BillAdminFragment();
                     title.setText("BILL");
                     break;
                 case R.id.exit:

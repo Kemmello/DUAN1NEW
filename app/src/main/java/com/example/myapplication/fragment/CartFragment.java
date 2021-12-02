@@ -1,5 +1,7 @@
 package com.example.myapplication.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +14,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +25,9 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.MyCartAdapter;
 import com.example.myapplication.model.MyCart;
+import com.example.myapplication.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -44,6 +49,7 @@ public class CartFragment extends Fragment {
     TextView tvTotalAmount;
     Button btnBuy;
 
+    User user;
     RecyclerView rcvCart;
     MyCartAdapter cartAdapter;
     List<MyCart> myCartList;
@@ -67,11 +73,17 @@ public class CartFragment extends Fragment {
 
         tvTotalAmount = root.findViewById(R.id.tvTotalAmount);
 
+
         myCartList = new ArrayList<>();
         cartAdapter = new MyCartAdapter(getActivity(), myCartList);
         rcvCart.setAdapter(cartAdapter);
 
-
+        firestore.collection("USER").document(auth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                user = documentSnapshot.toObject(User.class);
+            }
+        });
 
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,43 +91,72 @@ public class CartFragment extends Fragment {
                 auth = FirebaseAuth.getInstance();
                 firestore = FirebaseFirestore.getInstance();
 
-                if(myCartList!= null && myCartList.size() >0){
-                    for (MyCart cart : myCartList){
+                if (myCartList != null && myCartList.size() > 0) {
+                    if (user.getADDRESS().length() == 0 || user.getPHONE().length() == 0) {
+                        Toast.makeText(getContext(),"Please update your profile", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for (MyCart cart : myCartList) {
 
-                        final HashMap<String, Object> cartMap = new HashMap<>();
+                            final HashMap<String, Object> cartMap = new HashMap<>();
 
-                        cartMap.put("TITLE", cart.getTITLE());
-                        cartMap.put("PRICE", cart.getPRICE());
-                        cartMap.put("IMAGE", cart.getIMAGE());
-                        cartMap.put("TOTALPRICE", cart.getTOTALPRICE());
-                        cartMap.put("CURRENTDATE",cart.getCURRENTDATE() );
-                        cartMap.put("CURRENTTIME", cart.getCURRENTTIME());
-                        cartMap.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
-                        cartMap.put("STATUS", "Chờ xác nhận");
+                            cartMap.put("TITLE", cart.getTITLE());
+                            cartMap.put("PRICE", cart.getPRICE());
+                            cartMap.put("IMAGE", cart.getIMAGE());
+                            cartMap.put("TOTALPRICE", cart.getTOTALPRICE());
+                            cartMap.put("CURRENTDATE", cart.getCURRENTDATE());
+                            cartMap.put("CURRENTTIME", cart.getCURRENTTIME());
+                            cartMap.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
+                            cartMap.put("STATUS", "Chờ xác nhận");
 
-                        firestore.collection("CURRENTUSER").document(auth.getCurrentUser().getUid())
-                                .collection("MYORDER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                Toast.makeText(getContext(), "Your order has been complete", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
-                                .collection("CURRENTUSER")
-                                .document(cart.getDOCUMENTID())
-                                .delete()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            myCartList.remove(cart);
-                                            cartAdapter.notifyDataSetChanged();
-                                            Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(getActivity(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            firestore.collection("CURRENTUSER").document(auth.getCurrentUser().getUid())
+                                    .collection("MYORDER").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                    Toast.makeText(getContext(), "Your order has been complete", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
+                            final HashMap<String, Object> cartMap2 = new HashMap<>();
+
+                            cartMap2.put("TITLE", cart.getTITLE());
+                            cartMap2.put("PRICE", cart.getPRICE());
+                            cartMap2.put("TOTALPRICE", cart.getTOTALPRICE());
+                            cartMap2.put("IMAGE", cart.getIMAGE());
+                            cartMap2.put("CURRENTDATE", cart.getCURRENTDATE());
+                            cartMap2.put("CURRENTTIME", cart.getCURRENTTIME());
+                            cartMap2.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
+                            cartMap2.put("STATUS", "Chờ xác nhận");
+                            cartMap2.put("ADDRESS", user.getADDRESS());
+                            cartMap2.put("USERID", auth.getCurrentUser().getUid());
+                            cartMap2.put("PHONE", user.getPHONE());
+                            cartMap2.put("NAME", user.getNAME());
+
+                            firestore.collection("ADMINBILL").add(cartMap2).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                                }
+                            });
+
+
+                            firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())
+                                    .collection("CURRENTUSER")
+                                    .document(cart.getDOCUMENTID())
+                                    .delete()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                myCartList.remove(cart);
+                                                cartAdapter.notifyDataSetChanged();
+                                                Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+                        }
                     }
                 }
             }
@@ -144,8 +185,6 @@ public class CartFragment extends Fragment {
         });
         return root;
     }
-
-
 
     @Override
     public void onResume() {

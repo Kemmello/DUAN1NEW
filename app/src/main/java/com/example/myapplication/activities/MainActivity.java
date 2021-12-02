@@ -28,6 +28,7 @@ import com.example.myapplication.fragment.ChangePasswordFragment;
 import com.example.myapplication.fragment.ContactFragment;
 import com.example.myapplication.fragment.ExitFragment;
 import com.example.myapplication.fragment.HomeFragment;
+import com.example.myapplication.fragment.InsertBookFragment;
 import com.example.myapplication.fragment.RevenueFragment;
 import com.example.myapplication.fragment.SearchFragment;
 import com.example.myapplication.fragment.TopFragment;
