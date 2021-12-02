@@ -15,6 +15,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.model.Book;
 import com.example.myapplication.model.MyCart;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -35,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
     Book book = null;
     List<MyCart> list;
 
+    String id;
 
     int totalQuantity = 1;
     FirebaseFirestore firestore;
@@ -45,19 +47,17 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.book_detail_item);
         list = new ArrayList<>();
 
-        final Object object = getIntent().getSerializableExtra("detail");
-        if (object instanceof Book){
-            book = (Book) object;
+        final String idtype = getIntent().getStringExtra("type");
+        if (idtype != null) {
+            id = idtype;
         }
-
-        final Object objectAll = getIntent().getSerializableExtra("all");
-        if (objectAll instanceof Book){
-            book = (Book) objectAll;
+        final String idall = getIntent().getStringExtra("all");
+        if (idall != null) {
+            id = idall;
         }
-
-        final Object objectType = getIntent().getSerializableExtra("type");
-        if (objectType instanceof Book){
-            book = (Book) objectType;
+        final String iddetail = getIntent().getStringExtra("detail");
+        if (iddetail != null) {
+            id = iddetail;
         }
 
         imageViewDetail = this.findViewById(R.id.imageViewDetail);
@@ -76,15 +76,20 @@ public class DetailActivity extends AppCompatActivity {
         tvBookPriceDetail = this.findViewById(R.id.tvBookPriceDetail);
         tvQuantity = this.findViewById(R.id.tvQuantity);
 
-        if (book != null){
-            Glide.with(getApplicationContext()).load(book.getIMAGE()).into(imageViewDetail);
-            tvBookNameDetail.setText(book.getTITLE());
-            tvBookAuthorDetail.setText(book.getAUTHOR());
-            tvBookTypeDetail.setText(book.getTYPENAME());
-            tvBookPageDetail.setText(book.getPAGE().toString());
-            tvBookPriceDetail.setText(book.getPRICE().toString()+" VNĐ");
-            tvBookIntroduction.setText(book.getINTRODUCTION());
-        }
+        DocumentReference documentReference = firestore.collection("BOOK").document(id);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Book book = documentSnapshot.toObject(Book.class);
+                Glide.with(getApplicationContext()).load(book.getIMAGE()).into(imageViewDetail);
+                tvBookNameDetail.setText(book.getTITLE());
+                tvBookAuthorDetail.setText(book.getAUTHOR());
+                tvBookTypeDetail.setText(book.getTYPENAME());
+                tvBookPageDetail.setText(book.getPAGE().toString());
+                tvBookPriceDetail.setText(book.getPRICE().toString() + " VNĐ");
+                tvBookIntroduction.setText(book.getINTRODUCTION());
+            }
+        });
 
 
         btnAddCart = this.findViewById(R.id.btnAddCart);

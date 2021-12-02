@@ -173,7 +173,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             });
 
                 }
+                Fragment fragment = new CartFragment();
+                ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment).commit();
+
             }
+
         });
 
         holder.imgMinus.setOnClickListener(new View.OnClickListener() {
@@ -230,6 +235,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             });
 
                 }
+                Fragment fragment = new CartFragment();
+                ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment).commit();
             }
         });
 

@@ -43,7 +43,7 @@ public class BookAdminAdapter extends RecyclerView.Adapter<BookAdminAdapter.View
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AdminDetailActivity.class);
-                intent.putExtra("detail", lst.get(position));
+                intent.putExtra("detail", lst.get(position).getDOCUMENTID());
                 context.startActivity(intent);
             }
         });

@@ -92,7 +92,7 @@ public class HomeAdminFragment extends Fragment {
         recyclerViewSale.setAdapter(saleAdapter);
         recyclerViewRecommend.setAdapter(recommendAdapter);
 
-        firestore.collection("NEWBOOK")
+        firestore.collection("BOOK").whereEqualTo("STATUS","NEWBOOK")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -100,6 +100,8 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
+                                String id = document.getId();
+                                book.setDOCUMENTID(id);
                                 newlist.add(book);
                                 bookAdapter.notifyDataSetChanged();
 
@@ -112,7 +114,7 @@ public class HomeAdminFragment extends Fragment {
                     }
                 });
 
-        firestore.collection("TOPSELL")
+        firestore.collection("BOOK").whereEqualTo("STATUS","TOPSELL")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -120,10 +122,8 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
-
-                                String documentId = document.getId();
-                                book.setDOCUMENTID(documentId);
-
+                                String id = document.getId();
+                                book.setDOCUMENTID(id);
                                 selllist.add(book);
                                 sellAdapter.notifyDataSetChanged();
 
@@ -136,7 +136,7 @@ public class HomeAdminFragment extends Fragment {
                     }
                 });
 
-        firestore.collection("BOOKSALE")
+        firestore.collection("BOOK").whereEqualTo("STATUS","BOOKSALE")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -144,8 +144,8 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
-                                String documentId = document.getId();
-                                book.setDOCUMENTID(documentId);
+                                String id = document.getId();
+                                book.setDOCUMENTID(id);
                                 salelist.add(book);
                                 saleAdapter.notifyDataSetChanged();
 
@@ -158,7 +158,7 @@ public class HomeAdminFragment extends Fragment {
                     }
                 });
 
-        firestore.collection("RECOMMEND")
+        firestore.collection("BOOK").whereEqualTo("STATUS","RECOMMEND")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -166,8 +166,8 @@ public class HomeAdminFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Book book = document.toObject(Book.class);
-                                String documentId = document.getId();
-                                book.setDOCUMENTID(documentId);
+                                String id = document.getId();
+                                book.setDOCUMENTID(id);
                                 recommendlist.add(book);
                                 recommendAdapter.notifyDataSetChanged();
 

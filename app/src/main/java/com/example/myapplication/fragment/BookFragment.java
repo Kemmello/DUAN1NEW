@@ -54,6 +54,8 @@ public class BookFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 Book book = document.toObject(Book.class);
+                                String id = document.getId();
+                                book.setDOCUMENTID(id);
                                 books.add(book);
                                 bookAllAdapter.notifyDataSetChanged();
                             }

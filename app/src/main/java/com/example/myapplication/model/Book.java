@@ -12,11 +12,11 @@ public class Book implements Serializable {
     Integer PAGE;
     String NEWBOOK;
     String DOCUMENTID;
-
+    String STATUS;
     public Book() {
     }
 
-    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE, String NEWBOOK, String DOCUMENTID) {
+    public Book(String IMAGE, String TITLE, String AUTHOR, String TYPENAME, Integer PRICE, String INTRODUCTION, Integer PAGE, String NEWBOOK, String DOCUMENTID, String STATUS) {
         this.IMAGE = IMAGE;
         this.TITLE = TITLE;
         this.AUTHOR = AUTHOR;
@@ -26,6 +26,7 @@ public class Book implements Serializable {
         this.PAGE = PAGE;
         this.NEWBOOK = NEWBOOK;
         this.DOCUMENTID = DOCUMENTID;
+        this.STATUS = STATUS;
     }
 
     public String getIMAGE() {
@@ -98,5 +99,13 @@ public class Book implements Serializable {
 
     public void setDOCUMENTID(String DOCUMENTID) {
         this.DOCUMENTID = DOCUMENTID;
+    }
+
+    public String getSTATUS() {
+        return STATUS;
+    }
+
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
     }
 }
