@@ -113,31 +113,35 @@ public class CartFragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     Toast.makeText(getContext(), "Your order has been complete", Toast.LENGTH_LONG).show();
+                                    //DOCUMENTID OF USER BILL
+                                    String userbillid = task.getResult().getId();
+
+                                    final HashMap<String, Object> cartMap2 = new HashMap<>();
+
+//                                    cartMap2.put("USERBILLID", userbillid);
+                                    cartMap2.put("TITLE", cart.getTITLE());
+                                    cartMap2.put("PRICE", cart.getPRICE());
+                                    cartMap2.put("TOTALPRICE", cart.getTOTALPRICE());
+                                    cartMap2.put("IMAGE", cart.getIMAGE());
+                                    cartMap2.put("CURRENTDATE", cart.getCURRENTDATE());
+                                    cartMap2.put("CURRENTTIME", cart.getCURRENTTIME());
+                                    cartMap2.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
+                                    cartMap2.put("STATUS", "Chờ xác nhận");
+                                    cartMap2.put("ADDRESS", user.getADDRESS());
+                                    cartMap2.put("USERID", auth.getCurrentUser().getUid());
+                                    cartMap2.put("PHONE", user.getPHONE());
+                                    cartMap2.put("NAME", user.getNAME());
+
+                                    firestore.collection("ADMINBILL").document(userbillid).set(cartMap2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                        }
+                                    });
                                 }
                             });
 
 
-                            final HashMap<String, Object> cartMap2 = new HashMap<>();
 
-                            cartMap2.put("TITLE", cart.getTITLE());
-                            cartMap2.put("PRICE", cart.getPRICE());
-                            cartMap2.put("TOTALPRICE", cart.getTOTALPRICE());
-                            cartMap2.put("IMAGE", cart.getIMAGE());
-                            cartMap2.put("CURRENTDATE", cart.getCURRENTDATE());
-                            cartMap2.put("CURRENTTIME", cart.getCURRENTTIME());
-                            cartMap2.put("TOTALQUANTITY", cart.getTOTALQUANTITY());
-                            cartMap2.put("STATUS", "Chờ xác nhận");
-                            cartMap2.put("ADDRESS", user.getADDRESS());
-                            cartMap2.put("USERID", auth.getCurrentUser().getUid());
-                            cartMap2.put("PHONE", user.getPHONE());
-                            cartMap2.put("NAME", user.getNAME());
-
-                            firestore.collection("ADMINBILL").add(cartMap2).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentReference> task) {
-
-                                }
-                            });
 
 
                             firestore.collection("ADDTOCART").document(auth.getCurrentUser().getUid())

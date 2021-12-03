@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/frame_insertBook"
     android:layout_width="match_parent"
@@ -10,12 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="vertical">
-
             <ImageView
 
                 android:layout_width="match_parent"
@@ -23,11 +17,6 @@
                 android:background="@color/colorBackground">
                 <!--            android:id="@+id/imgBack"-->
             </ImageView>
-
-
-        </LinearLayout>
-
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +25,7 @@
 
             <LinearLayout
                 android:id="@+id/ln6"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
@@ -44,7 +33,6 @@
                     android:id="@+id/imgBook"
                     android:layout_width="180dp"
                     android:layout_height="245dp"
-                    android:layout_marginLeft="105dp"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/imgadd" />
 
@@ -167,7 +155,7 @@
         </RelativeLayout>
 
         <ScrollView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginBottom="5dp">
 
@@ -178,11 +166,11 @@
                 app:cardCornerRadius="15dp">
 
                 <EditText
+                    android:textAlignment="viewStart"
                     android:id="@+id/edtIntroduction"
-                    android:layout_width="400dp"
+                    android:layout_width="match_parent"
                     android:layout_height="135dp"
                     android:background="@color/white"
-                    android:padding="10dp"
                     android:paddingRight="10dp"
                     android:textSize="20dp" />
 
@@ -200,4 +188,4 @@
     </LinearLayout>
 
 
-</FrameLayout>
+</ScrollView>

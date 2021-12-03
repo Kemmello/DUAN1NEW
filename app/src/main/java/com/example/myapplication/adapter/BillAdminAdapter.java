@@ -1,19 +1,27 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.activities.SignUpActivity;
 import com.example.myapplication.model.BillAdmin;
 import com.example.myapplication.model.MyBill;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -53,6 +61,53 @@ public class BillAdminAdapter extends RecyclerView.Adapter<BillAdminAdapter.View
         holder.tvPriceBillAdmin.setText(String.valueOf(billAdminList.get(position).getTOTALPRICE()) + " VNĐ");
         holder.tvStatusBillAdmin.setText(billAdminList.get(position).getSTATUS());
         Glide.with(context).load(billAdminList.get(position).getIMAGE()).into(holder.ivBiaBillAdmin);
+
+        String status = billAdminList.get(position).getSTATUS();
+        if (status.equalsIgnoreCase("Đã xác nhận")){
+            holder.tvStatusBillAdmin.setTextColor(Color.RED);
+        }
+        if (status.equalsIgnoreCase("Chờ xác nhận")){
+            holder.tvStatusBillAdmin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Are you sure");
+                    builder.setMessage("Please confirm");
+                    builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            firestore.collection("ADMINBILL").
+                                    document(billAdminList.get(position).getDOCUMENTID())
+                                    .update("STATUS","Đã xác nhận").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context,"Update status successfull",Toast.LENGTH_LONG).show();;
+                                    notifyDataSetChanged();
+                                }
+                            });
+                            firestore.collection("CURRENTUSER").document(billAdminList.get(position).getUSERID())
+                                    .collection("MYORDER")
+                                    .document(billAdminList.get(position).getDOCUMENTID())
+                                    .update("STATUS","Đã xác nhận").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context,"Update status successfull",Toast.LENGTH_LONG).show();;
+                                }
+                            });
+                        }
+                    });
+                    builder.show();
+
+                }
+            });
+        }
+
 
     }
 
