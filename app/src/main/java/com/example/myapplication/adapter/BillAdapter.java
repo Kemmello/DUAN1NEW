@@ -2,6 +2,7 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,10 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
         holder.tvSoLuongBill.setText(String.valueOf("Số lượng: " + myBillList.get(position).getTOTALQUANTITY()));
         Glide.with(context).load(myBillList.get(position).getIMAGE()).into(holder.ivBiaSanPham);
         holder.tvTrangThaiBill.setText(myBillList.get(position).getSTATUS());
-
+        String status = myBillList.get(position).getSTATUS();
+        if (status.equalsIgnoreCase("Đã xác nhận")){
+            holder.tvTrangThaiBill.setTextColor(Color.RED);
+        }
     }
 
     @Override

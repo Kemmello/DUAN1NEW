@@ -173,9 +173,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             });
 
                 }
-                Fragment fragment = new CartFragment();
+
+                Fragment fragment1 = new CartFragment();
                 ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,fragment).commit();
+                        .replace(R.id.frame,fragment1).commit();
 
             }
 
@@ -235,9 +236,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             });
 
                 }
-                Fragment fragment = new CartFragment();
+
+                Fragment fragment2 = new CartFragment();
                 ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,fragment).commit();
+                        .replace(R.id.frame,fragment2).commit();
+
             }
         });
 
