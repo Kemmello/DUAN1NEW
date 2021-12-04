@@ -32,6 +32,7 @@ import com.example.myapplication.model.SliderItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -92,7 +93,7 @@ public class HomeAdminFragment extends Fragment {
         recyclerViewSale.setAdapter(saleAdapter);
         recyclerViewRecommend.setAdapter(recommendAdapter);
 
-        firestore.collection("BOOK").whereEqualTo("STATUS","NEWBOOK")
+        firestore.collection("BOOK").whereEqualTo("STATUS","NEWBOOK").orderBy("TITLE", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -114,7 +115,7 @@ public class HomeAdminFragment extends Fragment {
                     }
                 });
 
-        firestore.collection("BOOK").whereEqualTo("STATUS","TOPSELL")
+        firestore.collection("BOOK").whereEqualTo("STATUS","TOPSELL").orderBy("TITLE", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -136,7 +137,7 @@ public class HomeAdminFragment extends Fragment {
                     }
                 });
 
-        firestore.collection("BOOK").whereEqualTo("STATUS","BOOKSALE")
+        firestore.collection("BOOK").whereEqualTo("STATUS","BOOKSALE").orderBy("TITLE", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -158,7 +159,7 @@ public class HomeAdminFragment extends Fragment {
                     }
                 });
 
-        firestore.collection("BOOK").whereEqualTo("STATUS","RECOMMEND")
+        firestore.collection("BOOK").whereEqualTo("STATUS","RECOMMEND").orderBy("TITLE", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

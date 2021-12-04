@@ -44,22 +44,23 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln6"
                 android:background="@null"
-                android:textStyle="bold"
                 android:gravity="center"
                 android:hint="Book name"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
+                android:layout_marginTop="5dp"
                 android:id="@+id/edtAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edtTitle"
                 android:layout_marginLeft="175dp"
-                android:textAlignment="center"
                 android:background="@color/white"
                 android:hint="Author"
+                android:textAlignment="center"
                 android:textSize="20dp" />
         </RelativeLayout>
 
@@ -83,10 +84,11 @@
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/edtTypeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <Spinner
+                    android:spinnerMode="dropdown"
+                    android:id="@+id/spnTypeName"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
                     android:layout_marginTop="5dp"
                     android:background="@color/white"
                     android:textAlignment="center"
@@ -177,13 +179,18 @@
             </androidx.cardview.widget.CardView>
         </ScrollView>
 
-
+        <Spinner
+            android:id="@+id/spnStatus"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:textAlignment="center"></Spinner>
         <Button
             android:id="@+id/test"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="-20dp"
+
             android:text="Add" />
     </LinearLayout>
 

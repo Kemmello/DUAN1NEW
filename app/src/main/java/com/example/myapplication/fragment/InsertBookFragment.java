@@ -12,14 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.myapplication.R;
 //import com.example.myapplication.activities.TestActivity;
@@ -40,9 +44,10 @@ import java.util.Map;
 
 public class InsertBookFragment extends Fragment {
     private ImageView imgBook;
-    private String bookAuthorDetail, bookTypeDetail, bookIntroduction, bookPriceDetail, bookNameDetail;
+    private String bookAuthorDetail, bookTypeDetail, bookIntroduction, bookPriceDetail, bookNameDetail, bookStatus;
     private int bookPageDetail;
-    EditText edtAuthor, edtIntroduction, edtPage, edtPrice, edtTitle, edtTypename;
+    EditText edtAuthor, edtIntroduction, edtPage, edtPrice, edtTitle;
+    Spinner spnType, spnStatus;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
     Button btnTest;
@@ -66,10 +71,45 @@ public class InsertBookFragment extends Fragment {
         edtPage = view.findViewById(R.id.edtPage);
         edtPrice = view.findViewById(R.id.edtPrice);
         edtTitle = view.findViewById(R.id.edtTitle);
-        edtTypename = view.findViewById(R.id.edtTypeName);
+//        edtTypename = view.findViewById(R.id.edtTypeName);
+        spnType = view.findViewById(R.id.spnTypeName);
+        spnStatus = view.findViewById(R.id.spnStatus);
+
         firestore = FirebaseFirestore.getInstance();
 
         btnTest = view.findViewById(R.id.test);
+        //Spinner thẻ loại
+        String[] typelist = {"Tiểu Thuyết","Giáo Khoa","Văn Học","Khoa Học","Chính Trị","Lịch Sử"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,typelist);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnType.setAdapter(adapter);
+        spnType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bookTypeDetail = typelist[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                bookTypeDetail = "";
+            }
+        });
+        //Spinner trang thai{sach moi, sach ban chay, ...}
+        String[] statuslist = {"RECOMMEND","BOOKSALE","TOPSELL","NEWBOOK"};
+        ArrayAdapter<String> adapterstatus = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,statuslist);
+        adapterstatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnStatus.setAdapter(adapterstatus);
+        spnStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bookStatus = statuslist[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                bookStatus = "";
+            }
+        });
         imgBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +126,9 @@ public class InsertBookFragment extends Fragment {
 
     public void InsertData() {
 
+
+
+
         int priceInt = parseInt(edtPrice.getText().toString().trim());
         int pageInt = parseInt(edtPage.getText().toString().trim());
 
@@ -96,8 +139,8 @@ public class InsertBookFragment extends Fragment {
         items.put("PRICE", priceInt);
         items.put("TITLE", edtTitle.getText().toString().trim());
         bookName = edtTitle.getText().toString();
-        items.put("TYPENAME", edtTypename.getText().toString().trim());
-
+        items.put("TYPENAME", bookTypeDetail);
+        items.put("STATUS",bookStatus);
         String bookImageName = bookName.replaceAll(" ", "");
         storageRef = FirebaseStorage.getInstance().getReference();
         fileRefernce = storageRef.child(bookImageName + "." + getMimeType(getContext(), mImageUri));
@@ -122,8 +165,13 @@ public class InsertBookFragment extends Fragment {
                                                     edtPage.setText("");
                                                     edtPrice.setText("");
                                                     edtTitle.setText("");
-                                                    edtTypename.setText("");
+
                                                     Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
+                                                    // Return
+                                                    Fragment fragment1 = new BookAllAdminFragment();
+
+                                                    ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
+                                                            .replace(R.id.frame,fragment1).commit();
                                                 }
                                             });
                                 }
@@ -132,32 +180,18 @@ public class InsertBookFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(getContext(), "Book image not updated", Toast.LENGTH_LONG).show();
                 }
             });
-//        }else{Toast.makeText(getContext(),"No file selected", Toast.LENGTH_LONG).show();}
         }
 
-//        firestore.collection("BOOK").add(items)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        edtAuthor.setText("");
-//                        edtIntroduction.setText("");
-//                        edtPage.setText("");
-//                        edtPrice.setText("");
-//                        edtTitle.setText("");
-//                        edtTypename.setText("");
-//                        Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+
 
     }
 
     public void validate() {
         bookNameDetail = edtTitle.getText().toString();
         bookAuthorDetail = edtAuthor.getText().toString();
-        bookTypeDetail = edtTypename.getText().toString();
+
         bookPageDetail = Integer.parseInt(edtPage.getText().toString());
         bookIntroduction = edtIntroduction.getText().toString();
         bookPriceDetail = edtPrice.getText().toString();
@@ -166,7 +200,7 @@ public class InsertBookFragment extends Fragment {
             Toast.makeText(getContext(), "Title is empty !", Toast.LENGTH_LONG).show();
             edtTitle.requestFocus();
             edtAuthor.setFocusable(false);
-            edtTypename.setFocusable(false);
+
             edtPage.setFocusable(false);
             edtIntroduction.setFocusable(false);
             edtPrice.setFocusable(false);
@@ -176,7 +210,7 @@ public class InsertBookFragment extends Fragment {
             Toast.makeText(getContext(), "Author is empty !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.requestFocus();
-            edtTypename.setFocusable(false);
+
             edtPage.setFocusable(false);
             edtIntroduction.setFocusable(false);
             edtPrice.setFocusable(false);
@@ -186,7 +220,7 @@ public class InsertBookFragment extends Fragment {
             Toast.makeText(getContext(), "Type is empty !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.setFocusable(false);
-            edtTypename.requestFocus();
+
             edtPage.setFocusable(false);
             edtIntroduction.setFocusable(false);
             edtPrice.setFocusable(false);
@@ -196,7 +230,7 @@ public class InsertBookFragment extends Fragment {
             Toast.makeText(getContext(), "Page is empty !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.setFocusable(false);
-            edtTypename.setFocusable(false);
+
             edtPage.requestFocus();
             edtIntroduction.setFocusable(false);
             edtPrice.setFocusable(false);
@@ -206,7 +240,7 @@ public class InsertBookFragment extends Fragment {
             Toast.makeText(getContext(), "Introduction is empty !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.setFocusable(false);
-            edtTypename.setFocusable(false);
+
             edtPage.setFocusable(false);
             edtIntroduction.requestFocus();
             edtPrice.setFocusable(false);
@@ -216,7 +250,7 @@ public class InsertBookFragment extends Fragment {
             Toast.makeText(getContext(), "Price is empty !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.setFocusable(false);
-            edtTypename.setFocusable(false);
+
             edtPage.setFocusable(false);
             edtIntroduction.setFocusable(false);
             edtPrice.requestFocus();

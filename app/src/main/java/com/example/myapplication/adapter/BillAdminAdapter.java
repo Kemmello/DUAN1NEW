@@ -93,9 +93,6 @@ public class BillAdminAdapter extends RecyclerView.Adapter<BillAdminAdapter.View
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(context,"Update status successfull",Toast.LENGTH_LONG).show();;
                                     notifyDataSetChanged();
-                                    Fragment fragment = new BillAdminFragment();
-                                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
-                                            .replace(R.id.frame,fragment).commit();
                                 }
                             });
                             firestore.collection("CURRENTUSER").document(billAdminList.get(position).getUSERID())
@@ -105,11 +102,15 @@ public class BillAdminAdapter extends RecyclerView.Adapter<BillAdminAdapter.View
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(context,"Update status successfull",Toast.LENGTH_LONG).show();;
+                                    Fragment fragment1 = new BillAdminFragment();
+                                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.frame,fragment1).commit();
                                 }
                             });
                         }
                     });
                     builder.show();
+
                 }
             });
         }
