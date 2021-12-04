@@ -13,11 +13,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.activities.SignUpActivity;
+import com.example.myapplication.fragment.BillAdminFragment;
+import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.model.BillAdmin;
 import com.example.myapplication.model.MyBill;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -98,6 +102,9 @@ public class BillAdminAdapter extends RecyclerView.Adapter<BillAdminAdapter.View
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(context,"Update status successfull",Toast.LENGTH_LONG).show();;
+                                    Fragment fragment1 = new BillAdminFragment();
+                                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.frame,fragment1).commit();
                                 }
                             });
                         }
