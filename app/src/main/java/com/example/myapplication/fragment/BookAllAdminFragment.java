@@ -18,6 +18,7 @@ import com.example.myapplication.model.Book;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -44,7 +45,7 @@ public class BookAllAdminFragment extends Fragment {
         books = new ArrayList<>();
         bookAllAdminAdapter = new BookAllAdminAdapter(getActivity(), books);
         rcvAllBook.setAdapter(bookAllAdminAdapter);
-        db.collection("BOOK")
+        db.collection("BOOK").orderBy("TITLE", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
