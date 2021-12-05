@@ -139,45 +139,54 @@ public class InsertBookFragment extends Fragment {
         items.put("STATUS",bookStatus);
         String bookImageName = bookName.replaceAll(" ", "");
         storageRef = FirebaseStorage.getInstance().getReference();
-        fileRefernce = storageRef.child(bookImageName + "." + getMimeType(getContext(), mImageUri));
-        if (mImageUri != null) {
-            fileRefernce.putFile(mImageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        boolean imageVal =false;
+        try {
+            fileRefernce = storageRef.child(bookImageName + "." + getMimeType(getContext(), mImageUri));
+            if (mImageUri != null) {
+                fileRefernce.putFile(mImageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 //                            Toast.makeText(getContext(),"image updated !", Toast.LENGTH_LONG).show();
-                            fileRefernce
-                                    .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    imageUrl = uri.toString();
-                                    items.put("IMAGE", imageUrl);
-                                    firestore.collection("BOOK").add(items)
-                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                @Override
-                                                public void onSuccess(DocumentReference documentReference) {
-                                                    edtAuthor.setText("");
-                                                    edtIntroduction.setText("");
-                                                    edtPage.setText("");
-                                                    edtPrice.setText("");
-                                                    edtTitle.setText("");
+                                fileRefernce
+                                        .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        imageUrl = uri.toString();
+                                        items.put("IMAGE", imageUrl);
+                                        firestore.collection("BOOK").add(items)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        edtAuthor.setText("");
+                                                        edtIntroduction.setText("");
+                                                        edtPage.setText("");
+                                                        edtPrice.setText("");
+                                                        edtTitle.setText("");
 
-                                                    Toast.makeText(getActivity(), "Add Book Success!", Toast.LENGTH_SHORT).show();
-                                                    // Return
-                                                    Fragment fragment1 = new BookAllAdminFragment();
+                                                        Toast.makeText(getActivity(), "Add Book Success!", Toast.LENGTH_SHORT).show();
+                                                        // Return
+                                                        Fragment fragment1 = new BookAllAdminFragment();
 
-                                                    ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
-                                                            .replace(R.id.frame,fragment1).commit();
-                                                }
-                                            });
-                                }
-                            });
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                }
-            });
+                                                        ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
+                                                                .replace(R.id.frame,fragment1).commit();
+                                                    }
+                                                });
+                                    }
+                                });
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+            }
+            imageVal =true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(imageVal == false){
+            Toast.makeText(getContext(),"Please insert your book image!!",Toast.LENGTH_LONG).show();
         }
 
 
@@ -223,7 +232,7 @@ public class InsertBookFragment extends Fragment {
             return;
         }
         if (TextUtils.isEmpty(bookPageDetail) || isNumeric(bookPageDetail) == false) {
-            Toast.makeText(getContext(), "Page is empty !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Please check your book's page !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.setFocusable(false);
 
@@ -243,7 +252,7 @@ public class InsertBookFragment extends Fragment {
             return;
         }
         if (TextUtils.isEmpty(bookPriceDetail) || isNumeric(bookPriceDetail) == false) {
-            Toast.makeText(getContext(), "Price is empty !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Please check your book's price !", Toast.LENGTH_LONG).show();
             edtTitle.setFocusable(false);
             edtAuthor.setFocusable(false);
 

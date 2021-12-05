@@ -57,7 +57,7 @@ public class AdminDetailActivity extends AppCompatActivity {
     EditText tvBookNameDetail, tvBookAuthorDetail, tvBookTypeDetail, tvBookPageDetail, tvBookIntroduction, tvBookPriceDetail;
     private String bookAuthorDetail, bookTypeDetail, bookPageDetail, bookIntroduction, bookPriceDetail, id;
     private StorageReference storageRef, fileRefernce;
-    private DatabaseReference databaseRef;
+    boolean success =false;
     private static final int PICK_IMAGE_REQUEST = 1;
     FirebaseFirestore firestore;
     Spinner spnBook;
@@ -143,6 +143,12 @@ public class AdminDetailActivity extends AppCompatActivity {
                 }
                 updateBook();
                 getBookDetail();
+                if(success == true){
+                    finish();
+                    Intent intent = new Intent(AdminDetailActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -172,6 +178,9 @@ public class AdminDetailActivity extends AppCompatActivity {
         bookPageDetail = tvBookPageDetail.getText().toString();
         bookIntroduction = tvBookIntroduction.getText().toString();
         bookPriceDetail = tvBookPriceDetail.getText().toString();
+        String price = bookPriceDetail.replace(" VNĐ","");
+        int priceInt = parseInt(price);
+        int pageInt = parseInt(bookPageDetail);
 
         if (TextUtils.isEmpty(bookNameDetail)) {
             Toast.makeText(this, "Title is empty  !", Toast.LENGTH_LONG).show();
@@ -223,7 +232,7 @@ public class AdminDetailActivity extends AppCompatActivity {
             tvBookPriceDetail.setFocusable(false);
             return;
         }
-        if (TextUtils.isEmpty(bookPriceDetail) || isNumeric(bookPriceDetail) == false) {
+        if (TextUtils.isEmpty(price) || isNumeric(price) == false) {
             Toast.makeText(this, "Price is empty !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.setFocusable(false);
             tvBookAuthorDetail.setFocusable(false);
@@ -235,9 +244,9 @@ public class AdminDetailActivity extends AppCompatActivity {
         }
 
 
-        String price = bookPriceDetail.replace(" VNĐ","");
-        int priceInt = parseInt(price);
-        int pageInt = parseInt(bookPageDetail);
+        price = bookPriceDetail.replace(" VNĐ","");
+        priceInt = parseInt(price);
+        pageInt = parseInt(bookPageDetail);
         DocumentReference documentReference = firestore.collection("BOOK").document(id);
 
 
@@ -257,6 +266,7 @@ public class AdminDetailActivity extends AppCompatActivity {
                 Toast.makeText(AdminDetailActivity.this, "Update success", Toast.LENGTH_LONG).show();
             }
         });
+        success = true;
     }
 
     public void getBookDetail(){
