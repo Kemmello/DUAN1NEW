@@ -72,14 +72,6 @@ public class AdminActivity extends AppCompatActivity {
                         fragment = new BookAllAdminFragment();
                         title.setText("ALL OF BOOK");
                         break;
-                    case R.id.nav_doanhthu:
-                        fragment = new RevenueFragment();
-                        title.setText("REVENUE");
-                        break;
-                    case R.id.nav_topsach:
-                        fragment = new TopFragment();
-                        title.setText("TOP BOOK");
-                        break;
                     case R.id.nav_lienhe:
                         fragment = new ContactFragment();
                         title.setText("CONTACT US");
