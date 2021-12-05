@@ -253,7 +253,6 @@ public class UserFragment extends Fragment {
         }
     }
 
-
     public static String getMimeType(Context context, Uri uri) {
         String extension;
 
