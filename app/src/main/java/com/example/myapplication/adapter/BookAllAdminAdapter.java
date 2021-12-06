@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -60,6 +61,7 @@ public class BookAllAdminAdapter extends RecyclerView.Adapter<BookAllAdminAdapte
                 Intent intent = new Intent(context, AdminDetailActivity.class);
                 intent.putExtra("all", list.get(position).getDOCUMENTID());
                 context.startActivity(intent);
+                ((Activity)context).overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 

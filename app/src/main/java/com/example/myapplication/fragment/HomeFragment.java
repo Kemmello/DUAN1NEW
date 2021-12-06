@@ -1,5 +1,6 @@
 package com.example.myapplication.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activities.MainActivity;
 import com.example.myapplication.activities.TypeActivity;
 import com.example.myapplication.adapter.BookAdapter;
 import com.example.myapplication.adapter.SliderAdapter;
@@ -204,16 +206,6 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), TypeActivity.class);
                 intent.putExtra("type", "Trẻ Em");
                 startActivity(intent);
-//                getView().findViewById(R.id.cvChildren).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        FragmentManager manager = getActivity().getSupportFragmentManager();
-//                        CartFragment cartFragment = new CartFragment();
-//                        manager.beginTransaction().setCustomAnimations(R.anim.left_out,R.anim.left_out)
-//                                .replace(R.id.frame,cartFragment).addToBackStack(null)
-//                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-//                    }
-//                });
             }
         });
         cvNovel.setOnClickListener(new View.OnClickListener() {

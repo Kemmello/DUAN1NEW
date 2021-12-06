@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -44,6 +45,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("detail", lst.get(position).getDOCUMENTID());
                 context.startActivity(intent);
+                ((Activity)context).overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
             }
         });
     }

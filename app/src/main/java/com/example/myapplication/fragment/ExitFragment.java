@@ -61,6 +61,7 @@ public class ExitFragment extends Fragment {
                         getActivity().finishAffinity();
                         Intent intent = new Intent(getContext(), SignUpActivity.class);
                         startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                     }
                 });
                 builder.show();

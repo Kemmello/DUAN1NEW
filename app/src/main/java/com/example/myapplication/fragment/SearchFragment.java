@@ -82,7 +82,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 Fragment fragment = new Fragment();
                 fragment = new HomeFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
+                getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.push_up_in,R.anim.push_down_out)
                         .replace(R.id.frame,fragment).commit();
             }
         });
