@@ -16,8 +16,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,13 +57,15 @@ public class AdminDetailActivity extends AppCompatActivity {
     EditText tvBookNameDetail, tvBookAuthorDetail, tvBookTypeDetail, tvBookPageDetail, tvBookIntroduction, tvBookPriceDetail;
     private String bookAuthorDetail, bookTypeDetail, bookPageDetail, bookIntroduction, bookPriceDetail, id;
     private StorageReference storageRef, fileRefernce;
-    private DatabaseReference databaseRef;
+    boolean success =false;
     private static final int PICK_IMAGE_REQUEST = 1;
     FirebaseFirestore firestore;
+    Spinner spnBook;
     private Uri mImageUri;
     static String imageUrl="imageUrl",bookNameDetail;
     TextView btnSaveAdmin;
     Book book=null;
+    ArrayAdapter spineradapter;
 
     List<Book> list;
     int position;
@@ -73,6 +78,7 @@ public class AdminDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_detail);
         firestore = FirebaseFirestore.getInstance();
+        spnBook = this.findViewById(R.id.spnTypeBook);
 //        auth = FirebaseAuth.getInstance();
 
 
@@ -103,7 +109,6 @@ public class AdminDetailActivity extends AppCompatActivity {
 
         tvBookNameDetail = this.findViewById(R.id.tvBookNameDetailAD);
         tvBookAuthorDetail = this.findViewById(R.id.tvBookAuthorDetailAD);
-        tvBookTypeDetail = this.findViewById(R.id.tvBookTypeDetailAD);
         tvBookPageDetail = this.findViewById(R.id.tvBookPageDetailAD);
         tvBookIntroduction = this.findViewById(R.id.tvBookIntroductionAD);
         tvBookPriceDetail = this.findViewById(R.id.tvBookPriceDetailAD);
@@ -138,6 +143,29 @@ public class AdminDetailActivity extends AppCompatActivity {
                 }
                 updateBook();
                 getBookDetail();
+                if(success == true){
+                    finish();
+                    Intent intent = new Intent(AdminDetailActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+        //Spinner thẻ loại
+        String[] typelist = {"Tiểu Thuyết","Giáo Khoa","Văn Học","Khoa Học","Chính Trị","Lịch Sử"};
+        spineradapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,typelist);
+        spineradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnBook.setAdapter(spineradapter);
+        spnBook.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bookTypeDetail = typelist[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                bookTypeDetail = "";
             }
         });
 
@@ -146,16 +174,19 @@ public class AdminDetailActivity extends AppCompatActivity {
     public void updateBook(){
         bookNameDetail = tvBookNameDetail.getText().toString();
         bookAuthorDetail = tvBookAuthorDetail.getText().toString();
-        bookTypeDetail = tvBookTypeDetail.getText().toString();
+//        bookTypeDetail = tvBookTypeDetail.getText().toString();
         bookPageDetail = tvBookPageDetail.getText().toString();
         bookIntroduction = tvBookIntroduction.getText().toString();
         bookPriceDetail = tvBookPriceDetail.getText().toString();
+        String price = bookPriceDetail.replace(" VNĐ","");
+        int priceInt = parseInt(price);
+        int pageInt = parseInt(bookPageDetail);
 
         if (TextUtils.isEmpty(bookNameDetail)) {
             Toast.makeText(this, "Title is empty  !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.requestFocus();
             tvBookAuthorDetail.setFocusable(false);
-            tvBookTypeDetail.setFocusable(false);
+//            tvBookTypeDetail.setFocusable(false);
             tvBookPageDetail.setFocusable(false);
             tvBookIntroduction.setFocusable(false);
             tvBookPriceDetail.setFocusable(false);
@@ -165,7 +196,7 @@ public class AdminDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Author is empty !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.setFocusable(false);
             tvBookAuthorDetail.requestFocus();
-            tvBookTypeDetail.setFocusable(false);
+//            tvBookTypeDetail.setFocusable(false);
             tvBookPageDetail.setFocusable(false);
             tvBookIntroduction.setFocusable(false);
             tvBookPriceDetail.setFocusable(false);
@@ -175,17 +206,17 @@ public class AdminDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Type is empty !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.setFocusable(false);
             tvBookAuthorDetail.setFocusable(false);
-            tvBookTypeDetail.requestFocus();
+//            tvBookTypeDetail.requestFocus();
             tvBookPageDetail.setFocusable(false);
             tvBookIntroduction.setFocusable(false);
             tvBookPriceDetail.setFocusable(false);
             return;
         }
-        if (TextUtils.isEmpty(bookPageDetail)) {
+        if (TextUtils.isEmpty(bookPageDetail) || isNumeric(bookPageDetail) == false) {
             Toast.makeText(this, "Page is empty !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.setFocusable(false);
             tvBookAuthorDetail.setFocusable(false);
-            tvBookTypeDetail.setFocusable(false);
+//            tvBookTypeDetail.setFocusable(false);
             tvBookPageDetail.requestFocus();
             tvBookIntroduction.setFocusable(false);
             tvBookPriceDetail.setFocusable(false);
@@ -195,17 +226,17 @@ public class AdminDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Introduction is empty !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.setFocusable(false);
             tvBookAuthorDetail.setFocusable(false);
-            tvBookTypeDetail.setFocusable(false);
+//            tvBookTypeDetail.setFocusable(false);
             tvBookPageDetail.setFocusable(false);
             tvBookIntroduction.requestFocus();
             tvBookPriceDetail.setFocusable(false);
             return;
         }
-        if (TextUtils.isEmpty(bookPriceDetail)) {
+        if (TextUtils.isEmpty(price) || isNumeric(price) == false) {
             Toast.makeText(this, "Price is empty !", Toast.LENGTH_LONG).show();
             tvBookNameDetail.setFocusable(false);
             tvBookAuthorDetail.setFocusable(false);
-            tvBookTypeDetail.setFocusable(false);
+//            tvBookTypeDetail.setFocusable(false);
             tvBookPageDetail.setFocusable(false);
             tvBookIntroduction.setFocusable(false);
             tvBookPriceDetail.requestFocus();
@@ -213,9 +244,9 @@ public class AdminDetailActivity extends AppCompatActivity {
         }
 
 
-        String price = bookPriceDetail.replace(" VNĐ","");
-        int priceInt = parseInt(price);
-        int pageInt = parseInt(bookPageDetail);
+        price = bookPriceDetail.replace(" VNĐ","");
+        priceInt = parseInt(price);
+        pageInt = parseInt(bookPageDetail);
         DocumentReference documentReference = firestore.collection("BOOK").document(id);
 
 
@@ -232,9 +263,10 @@ public class AdminDetailActivity extends AppCompatActivity {
         documentReference.update(book).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(AdminDetailActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+                Toast.makeText(AdminDetailActivity.this, "Update success", Toast.LENGTH_LONG).show();
             }
         });
+        success = true;
     }
 
     public void getBookDetail(){
@@ -248,10 +280,10 @@ public class AdminDetailActivity extends AppCompatActivity {
 //        Toast.makeText(this, "123"+book.getDOCUMENTID(),Toast.LENGTH_LONG).show();
                 tvBookNameDetail.setText(book.getTITLE());
                 tvBookAuthorDetail.setText(book.getAUTHOR());
-                tvBookTypeDetail.setText(book.getTYPENAME());
                 tvBookPageDetail.setText(book.getPAGE().toString());
                 tvBookPriceDetail.setText(book.getPRICE().toString() + " VNĐ");
                 tvBookIntroduction.setText(book.getINTRODUCTION());
+                spnBook.setSelection(spineradapter.getPosition(book.getTYPENAME()));
                 imageUrl = book.getIMAGE();
                 bookNameDetail = book.getTITLE();
             }
@@ -328,6 +360,13 @@ public class AdminDetailActivity extends AppCompatActivity {
         }else{Toast.makeText(AdminDetailActivity.this,"No file selected", Toast.LENGTH_LONG).show();}
 
     }
-
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
 
 }

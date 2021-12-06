@@ -52,7 +52,6 @@ public class ExitFragment extends Fragment {
                 builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                     }
                 });
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
