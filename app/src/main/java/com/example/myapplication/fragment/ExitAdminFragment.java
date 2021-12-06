@@ -1,5 +1,6 @@
 package com.example.myapplication.fragment;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,8 +59,10 @@ FirebaseAuth auth;
                     public void onClick(DialogInterface dialogInterface, int i) {
                         auth.signOut();
                         getActivity().finishAffinity();
+
                         Intent intent = new Intent(getContext(), SignUpActivity.class);
                         startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                     }
                 });
                 builder.show();

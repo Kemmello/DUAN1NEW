@@ -80,7 +80,7 @@ public class DetailActivity extends AppCompatActivity {
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Book book = documentSnapshot.toObject(Book.class);
+                book = documentSnapshot.toObject(Book.class);
                 Glide.with(getApplicationContext()).load(book.getIMAGE()).into(imageViewDetail);
                 tvBookNameDetail.setText(book.getTITLE());
                 tvBookAuthorDetail.setText(book.getAUTHOR());
@@ -192,4 +192,10 @@ public class DetailActivity extends AppCompatActivity {
             });
         }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+
+    }
 }

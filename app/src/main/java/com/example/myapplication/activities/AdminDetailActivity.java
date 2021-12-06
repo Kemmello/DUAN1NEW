@@ -145,8 +145,7 @@ public class AdminDetailActivity extends AppCompatActivity {
                 getBookDetail();
                 if(success == true){
                     finish();
-                    Intent intent = new Intent(AdminDetailActivity.this, AdminActivity.class);
-                    startActivity(intent);
+
                 }
 
             }
@@ -368,5 +367,10 @@ public class AdminDetailActivity extends AppCompatActivity {
             return false;
         }
     }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
 
+    }
 }

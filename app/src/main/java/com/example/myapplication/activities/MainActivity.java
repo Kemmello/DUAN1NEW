@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
@@ -37,7 +38,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
+    int startingPosition;
     BottomNavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        loadFragment(new HomeFragment(), 1);
         drawerLayout = this.findViewById(R.id.drawerLayout_main);
         toolbar = this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame,fragment).commit();
+                        .addToBackStack(null).setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left).replace(R.id.frame, fragment).commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -105,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Fragment fragment = new Fragment();
                 fragment = new SearchFragment();
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame,fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.push_up_in,R.anim.push_down_out)
+                        .replace(R.id.frame,fragment).commit();
 
             }
         });
@@ -116,31 +117,60 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             Fragment selectfrg = null;
+            int newPosition = 0;
             switch (item.getItemId()) {
                 case R.id.home:
                     selectfrg = new HomeFragment();
                     title.setText("HOME");
+                    newPosition = 1 ;
                     break;
                 case R.id.cart:
                     selectfrg = new CartFragment();
                     title.setText("CART");
+                    newPosition = 2 ;
                     break;
                 case R.id.user:
                     selectfrg = new UserFragment();
                     title.setText("USER");
+                    newPosition = 3 ;
                     break;
                 case R.id.list_bottom:
                     selectfrg = new BillFragment();
                     title.setText("BILL");
+                    newPosition = 4 ;
                     break;
                 case R.id.exit:
                     selectfrg = new ExitFragment();
                     title.setText("EXIT");
+                    newPosition = 5 ;
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
-            return true;
+//            getSupportFragmentManager().beginTransaction().setCustomAnimations(
+//                    .addToBackStack(null).replace(R.id.frame, selectfrg).commit();
+            return loadFragment(selectfrg, newPosition);
         }
     };
+    private boolean loadFragment(Fragment fragment, int newPosition) {
+        if(fragment != null) {
+            if(startingPosition > newPosition) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right );
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.frame, fragment);
+                transaction.commit();
+            }
+            if(startingPosition < newPosition) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.frame, fragment);
+                transaction.commit();
+            }
+            startingPosition = newPosition;
+            return true;
+        }
+
+        return false;
+    }
 
 }

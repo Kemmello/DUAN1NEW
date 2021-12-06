@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -34,7 +35,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
-
+    int startingPosition;
     BottomNavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -53,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
         ivsearch = findViewById(R.id.ivsearch);
         navigationView.setOnNavigationItemSelectedListener(navlistener);
         NavigationView navigationView_main = findViewById(R.id.navView_main);
-
+        loadFragment(new HomeAdminFragment(), 1);
         navigationView_main.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -81,8 +82,8 @@ public class AdminActivity extends AppCompatActivity {
                         title.setText("CHANGE PASSWORD");
                         break;
                 }
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, fragment).commit();
+                getSupportFragmentManager().beginTransaction().
+                        addToBackStack(null).setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left).replace(R.id.frame, fragment).commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -104,8 +105,8 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Fragment fragment = new Fragment();
                 fragment = new SearchFragment();
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.push_up_in,R.anim.push_down_out)
+                        .replace(R.id.frame,fragment).commit();
 
             }
         });
@@ -115,26 +116,53 @@ public class AdminActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             Fragment selectfrg = null;
+            int newPosition = 0;
             switch (item.getItemId()) {
                 case R.id.home:
                     selectfrg = new HomeAdminFragment();
                     title.setText("HOME");
+                    newPosition = 1 ;
                     break;
                 case R.id.user:
                     selectfrg = new UserFragment();
                     title.setText("USER");
+                    newPosition = 3 ;
                     break;
                 case R.id.list_bottom:
                     selectfrg = new BillAdminFragment();
                     title.setText("BILL");
+                    newPosition = 2 ;
                     break;
                 case R.id.exit:
                     selectfrg = new ExitAdminFragment();
                     title.setText("EXIT");
+                    newPosition = 4 ;
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame, selectfrg).commit();
-            return true;
+
+            return loadFragment(selectfrg, newPosition);
         }
     };
+    private boolean loadFragment(Fragment fragment, int newPosition) {
+        if(fragment != null) {
+            if(startingPosition > newPosition) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right );
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.frame, fragment);
+                transaction.commit();
+            }
+            if(startingPosition < newPosition) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.frame, fragment);
+                transaction.commit();
+            }
+            startingPosition = newPosition;
+            return true;
+        }
+
+        return false;
+    }
 }
