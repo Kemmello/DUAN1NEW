@@ -57,7 +57,8 @@ public class SearchFragment extends Fragment {
         search_box.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                viewAllBookList.clear();
+                bookAllAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -66,14 +67,16 @@ public class SearchFragment extends Fragment {
                 if (editable.toString().isEmpty()) {
                     viewAllBookList.clear();
                     bookAllAdapter.notifyDataSetChanged();
+
                 } else {
+                    viewAllBookList.clear();
+                    bookAllAdapter.notifyDataSetChanged();
                     searchProduct(editable.toString());
                 }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
 
@@ -98,6 +101,8 @@ public class SearchFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        viewAllBookList.clear();
+        bookAllAdapter.notifyDataSetChanged();
 
     }
     private void searchProduct(String book) {
@@ -110,6 +115,8 @@ public class SearchFragment extends Fragment {
                                 String title = document.getString("TITLE");
                                 if (title.contains(book)) {
                                     Book bookfound = document.toObject(Book.class);
+                                    String id  = document.getId();
+                                    bookfound.setDOCUMENTID(id);
                                     viewAllBookList.add(bookfound);
                                     bookAllAdapter.notifyDataSetChanged();
                                 }

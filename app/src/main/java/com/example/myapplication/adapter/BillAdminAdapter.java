@@ -2,7 +2,6 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.activities.SignUpActivity;
 import com.example.myapplication.fragment.BillAdminFragment;
-import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.model.BillAdmin;
-import com.example.myapplication.model.MyBill;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,7 +46,7 @@ public class BillAdminAdapter extends RecyclerView.Adapter<BillAdminAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BillAdminAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.bill_admin_item, parent, false));
+        return new BillAdminAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_bill_admin_item, parent, false));
     }
 
     @Override

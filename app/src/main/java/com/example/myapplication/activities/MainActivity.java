@@ -129,14 +129,14 @@ public class MainActivity extends AppCompatActivity {
                     title.setText("CART");
                     newPosition = 2 ;
                     break;
-                case R.id.user:
-                    selectfrg = new UserFragment();
-                    title.setText("USER");
-                    newPosition = 3 ;
-                    break;
                 case R.id.list_bottom:
                     selectfrg = new BillFragment();
                     title.setText("BILL");
+                    newPosition = 3 ;
+                    break;
+                case R.id.user:
+                    selectfrg = new UserFragment();
+                    title.setText("USER");
                     newPosition = 4 ;
                     break;
                 case R.id.exit:

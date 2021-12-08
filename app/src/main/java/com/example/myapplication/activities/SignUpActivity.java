@@ -6,6 +6,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ToggleButton;
 
 import com.example.myapplication.R;
@@ -20,6 +22,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
+    private static final String URL_GIF_IMAGE = "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif";
     TabLayout tabLayout;
     ViewPager viewPager;
     ToggleButton fabFacebook, fabGoogle;
@@ -33,11 +36,11 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
- 
         tabLayout = findViewById(R.id.tab_Layout);
         viewPager = findViewById(R.id.view_pager);
         fabFacebook = findViewById(R.id.btn_facebook);
         fabGoogle = findViewById(R.id.btn_google);
+
 
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();

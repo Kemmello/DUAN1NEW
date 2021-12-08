@@ -58,7 +58,7 @@ public class InsertBookFragment extends Fragment {
     int imageChecked = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.insert_book_fragment, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_insert_book, container, false);
         return root;
     }
 

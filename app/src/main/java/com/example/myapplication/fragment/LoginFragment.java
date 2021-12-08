@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activities.AdminActivity;
@@ -79,6 +81,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ForgetPasswordActivity.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.left_out);
             }
         });
     }
@@ -111,15 +114,16 @@ public class LoginFragment extends Fragment {
                                     if (user.getROLE()==2){
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
                                         startActivity(intent);
+                                        getActivity().overridePendingTransition(R.anim.fade_in,R.anim.left_out);
                                     }else {
                                         Intent intent = new Intent(getActivity(), AdminActivity.class);
                                         startActivity(intent);
+                                        getActivity().overridePendingTransition(R.anim.fade_in,R.anim.left_out);
                                     }
                                 }
                             });
                         }else {
                             Toast.makeText(getActivity(),"Wrong email or password",Toast.LENGTH_LONG).show();
-
                         }
                     }
                 });
