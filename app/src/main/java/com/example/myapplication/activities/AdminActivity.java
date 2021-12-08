@@ -40,7 +40,6 @@ public class AdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     TextView title;
-    ImageView ivsearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class AdminActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.bottom_nav);
         title = findViewById(R.id.title);
-        ivsearch = findViewById(R.id.ivsearch);
         navigationView.setOnNavigationItemSelectedListener(navlistener);
         NavigationView navigationView_main = findViewById(R.id.navView_main);
         loadFragment(new HomeAdminFragment(), 1);
@@ -72,6 +70,14 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_sach:
                         fragment = new BookAllAdminFragment();
                         title.setText("ALL OF BOOK");
+                        break;
+                    case R.id.nav_doanhthu:
+                        fragment = new RevenueFragment();
+                        title.setText("REVENUE");
+                        break;
+                    case R.id.nav_top:
+                        fragment = new TopFragment();
+                        title.setText("TOP BOOK");
                         break;
                     case R.id.nav_lienhe:
                         fragment = new ContactFragment();
@@ -100,16 +106,6 @@ public class AdminActivity extends AppCompatActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeAdminFragment()).commit();
 
-        ivsearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = new Fragment();
-                fragment = new SearchFragment();
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.push_up_in,R.anim.push_down_out)
-                        .replace(R.id.frame,fragment).commit();
-
-            }
-        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {

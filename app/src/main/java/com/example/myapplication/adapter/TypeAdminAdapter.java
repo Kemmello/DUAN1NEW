@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.activities.AdminDetailActivity;
-import com.example.myapplication.activities.DetailActivity;
 import com.example.myapplication.model.Book;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class TypeAdminAdapter extends RecyclerView.Adapter<TypeAdminAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_book_item, parent, false));
 
     }
 

@@ -44,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_detail_item);
+        setContentView(R.layout.layout_book_detail_item);
         list = new ArrayList<>();
 
         final String idtype = getIntent().getStringExtra("type");
