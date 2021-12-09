@@ -154,7 +154,7 @@ public class HomeAdminFragment extends Fragment {
                                 scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -176,7 +176,7 @@ public class HomeAdminFragment extends Fragment {
                                 scvHome.setVisibility(View.VISIBLE);
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

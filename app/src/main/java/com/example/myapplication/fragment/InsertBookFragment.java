@@ -203,62 +203,26 @@ public class InsertBookFragment extends Fragment {
 
         if (TextUtils.isEmpty(bookNameDetail)) {
             Toast.makeText(getContext(), "Title is empty !", Toast.LENGTH_LONG).show();
-            edtTitle.requestFocus();
-            edtAuthor.setFocusable(false);
-
-            edtPage.setFocusable(false);
-            edtIntroduction.setFocusable(false);
-            edtPrice.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(bookAuthorDetail)) {
             Toast.makeText(getContext(), "Author is empty !", Toast.LENGTH_LONG).show();
-            edtTitle.setFocusable(false);
-            edtAuthor.requestFocus();
-
-            edtPage.setFocusable(false);
-            edtIntroduction.setFocusable(false);
-            edtPrice.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(bookTypeDetail)) {
             Toast.makeText(getContext(), "Type is empty !", Toast.LENGTH_LONG).show();
-            edtTitle.setFocusable(false);
-            edtAuthor.setFocusable(false);
-
-            edtPage.setFocusable(false);
-            edtIntroduction.setFocusable(false);
-            edtPrice.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(bookPageDetail) || isNumeric(bookPageDetail) == false) {
             Toast.makeText(getContext(), "Please check your book's page !", Toast.LENGTH_LONG).show();
-            edtTitle.setFocusable(false);
-            edtAuthor.setFocusable(false);
-
-            edtPage.requestFocus();
-            edtIntroduction.setFocusable(false);
-            edtPrice.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(bookIntroduction)) {
             Toast.makeText(getContext(), "Introduction is empty !", Toast.LENGTH_LONG).show();
-            edtTitle.setFocusable(false);
-            edtAuthor.setFocusable(false);
-
-            edtPage.setFocusable(false);
-            edtIntroduction.requestFocus();
-            edtPrice.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(bookPriceDetail) || isNumeric(bookPriceDetail) == false) {
             Toast.makeText(getContext(), "Please check your book's price !", Toast.LENGTH_LONG).show();
-            edtTitle.setFocusable(false);
-            edtAuthor.setFocusable(false);
-
-            edtPage.setFocusable(false);
-            edtIntroduction.setFocusable(false);
-            edtPrice.requestFocus();
             return;
         }
         InsertData();

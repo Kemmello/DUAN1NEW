@@ -76,50 +76,26 @@ public class SignupFragment extends Fragment {
         String rppassword = etrepeatPassword.getText().toString();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(getActivity(), "Username is empty", Toast.LENGTH_LONG).show();
-            etname.requestFocus();
-            etpassword.setFocusable(false);
-            etrepeatPassword.setFocusable(false);
-            etemail.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getActivity(), "Email is empty", Toast.LENGTH_LONG).show();
-            etemail.requestFocus();
-            etpassword.setFocusable(false);
-            etrepeatPassword.setFocusable(false);
-            etname.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getActivity(), "Password is empty", Toast.LENGTH_LONG).show();
-            etpassword.requestFocus();
-            etemail.setFocusable(false);
-            etrepeatPassword.setFocusable(false);
-            etname.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(rppassword)) {
             Toast.makeText(getActivity(), "Re-enter password", Toast.LENGTH_LONG).show();
-            etrepeatPassword.requestFocus();
-            etpassword.setFocusable(false);
-            etemail.setFocusable(false);
-            etname.setFocusable(false);
             return;
         }
         if (password.equals(rppassword) == false) {
             Toast.makeText(getActivity(), "Password incorrect", Toast.LENGTH_LONG).show();
-            etrepeatPassword.requestFocus();
-            etpassword.setFocusable(false);
-            etemail.setFocusable(false);
-            etname.setFocusable(false);
             return;
         }
         if (password.length() < 6) {
             Toast.makeText(getActivity(),"Password must be longer than 6 characters", Toast.LENGTH_LONG).show();
-            etpassword.requestFocus();
-            etemail.setFocusable(false);
-            etrepeatPassword.setFocusable(false);
-            etname.setFocusable(false);
             return;
         }
         auth.createUserWithEmailAndPassword(email, password)

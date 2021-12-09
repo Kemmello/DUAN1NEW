@@ -1,6 +1,7 @@
 package com.example.myapplication.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -51,30 +52,18 @@ public class ChangePasswordFragment extends Fragment {
         LoginFragment Loginfrmnt = new LoginFragment();
         if (!oldPassword.equals(Loginfrmnt.getPass())) {
             Toast.makeText(getActivity(), "Enter wrong old password!", Toast.LENGTH_LONG).show();
-            edtOldPassword.requestFocus();
-            edtPassword_Change.setFocusable(false);
-            edtRepeatPassword_Change.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(password_Change)) {
             Toast.makeText(getActivity(), "Enter new password", Toast.LENGTH_LONG).show();
-            edtPassword_Change.requestFocus();
-            edtOldPassword.setFocusable(false);
-            edtRepeatPassword_Change.setFocusable(false);
             return;
         }
         if (TextUtils.isEmpty(rppassword_Change)) {
             Toast.makeText(getActivity(), "Password is empty", Toast.LENGTH_LONG).show();
-            edtRepeatPassword_Change.requestFocus();
-            edtPassword_Change.setFocusable(false);
-            edtOldPassword.setFocusable(false);
             return;
         }
         if (!rppassword_Change.equals(password_Change)) {
             Toast.makeText(getActivity(), "Incorrect password!", Toast.LENGTH_LONG).show();
-            edtRepeatPassword_Change.requestFocus();
-            edtPassword_Change.setFocusable(false);
-            edtOldPassword.setFocusable(false);
             return;
         }
 
@@ -85,17 +74,17 @@ public class ChangePasswordFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(), "User password updated" ,Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "User password updated", Toast.LENGTH_LONG).show();
+                            auth.signOut();
+                            getActivity().finishAffinity();
+                            Intent intent = new Intent(getContext(), SignUpActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getActivity(), "Error , Please check again !", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-        auth.signOut();
-        getActivity().finish();
-
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -112,6 +101,14 @@ public class ChangePasswordFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 OnClickChangePass();
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edtOldPassword.setText("");
+                edtPassword_Change.setText("");
+                edtRepeatPassword_Change.setText("");
             }
         });
     }

@@ -67,6 +67,7 @@ public class BillAdminAdapter extends RecyclerView.Adapter<BillAdminAdapter.View
             holder.tvStatusBillAdmin.setTextColor(Color.RED);
         }
         if (status.equalsIgnoreCase("Chờ xác nhận")){
+            holder.tvStatusBillAdmin.setTextColor(Color.BLUE);
             holder.tvStatusBillAdmin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

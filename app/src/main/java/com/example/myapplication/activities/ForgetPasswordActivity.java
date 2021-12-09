@@ -63,7 +63,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     startActivity(new Intent(ForgetPasswordActivity.this, LoginFragment.class));
                     finish();
                 }else {
-                    Toast.makeText(ForgetPasswordActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetPasswordActivity.this, "Invalid email, please re-enter !", Toast.LENGTH_SHORT).show();
                 }
             }
         });

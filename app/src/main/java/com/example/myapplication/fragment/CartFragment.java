@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -113,6 +114,9 @@ public class CartFragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     Toast.makeText(getContext(), "Your order has been complete", Toast.LENGTH_LONG).show();
+                                    Fragment fragment1 = new CartFragment();
+                                    ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.frame,fragment1).commit();
                                     //DOCUMENTID OF USER BILL
                                     String userbillid = task.getResult().getId();
 

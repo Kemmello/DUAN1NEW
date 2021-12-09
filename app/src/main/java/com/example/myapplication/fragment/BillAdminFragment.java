@@ -58,7 +58,7 @@ public class BillAdminFragment extends Fragment {
         billAdminAdapter = new BillAdminAdapter(getActivity(), billAdminList);
         rcvBillAdmin.setAdapter(billAdminAdapter);
 
-        firestore.collection("ADMINBILL").orderBy("CURRENTDATE", Query.Direction.ASCENDING).orderBy("STATUS", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        firestore.collection("ADMINBILL").orderBy("STATUS", Query.Direction.ASCENDING).orderBy("CURRENTDATE", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
